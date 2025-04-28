@@ -4,12 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sai Teja Appala | Oracle VBCS Developer</title>
-  <!-- Oracle JET Redwood CSS -->
-  <link rel="stylesheet" href="https://static.oracle.com/cdn/jet/v14.1.0/default/css/redwood/oj-redwood-min.css" />
+
+  <!-- Oracle JET Redwood CSS (generic CDN) -->
+  <link
+    id="css"
+    rel="stylesheet"
+    href="https://static.oracle.com/cdn/jet/default/css/redwood/oj-redwood-min.css"
+    type="text/css"
+  />
+
   <!-- RequireJS and JET Loader -->
-  <script src="https://static.oracle.com/cdn/jet/v14.1.0/default/js/libs/require/require.js" data-main="https://static.oracle.com/cdn/jet/v14.1.0/default/js/jet-loader.js"></script>
+  <script
+    src="https://static.oracle.com/cdn/jet/default/js/libs/require/require.js"
+    data-main="https://static.oracle.com/cdn/jet/default/js/jet-loader.js"
+  ></script>
 </head>
 <body class="oj-body oj-typography-body-md">
+
   <header class="oj-flex-bar oj-sm-align-items-center oj-md-justify-between oj-md-padding-2 oj-border-bottom oj-elevation-1">
     <div class="oj-typography-heading-lg">Sai Teja Appala</div>
     <nav>
@@ -24,64 +35,88 @@
   </header>
 
   <main>
+    <!-- Home Section -->
     <section id="home" class="oj-flex oj-flex-direction-column oj-typography-heading-xl oj-justify-center oj-align-center oj-padding-6">
       <div>Hello, I'm Sai Teja</div>
       <div class="oj-typography-body-lg oj-margin-top-2">Oracle VBCS Developer | Technical Consultant at Deloitte USI</div>
     </section>
 
+    <!-- About Me -->
     <section id="about" class="oj-padding-6 oj-background-surface-5">
       <h2 class="oj-typography-heading-md">About Me</h2>
       <p class="oj-typography-body-md oj-margin-top-2">
-        Technical Consultant with a well-rounded skillset for designing, developing, and deploying custom PaaS applications that seamlessly integrate with Oracle SaaS offerings using Oracle Visual Builder Cloud Service and Oracle Integration Cloud.<br>
-        Expertise in SQL/PLSQL for database business logic, application personalization, BI Reports, automation testing of Oracle SaaS pages, REST/SOAP integrations, and a strong background in JavaScript, CSS, HTML, Shell scripting, and Unix.
+        Technical Consultant with a well-rounded skillset for designing, developing, and deploying custom PaaS applications
+        that seamlessly integrate with Oracle SaaS offerings using Oracle Visual Builder Cloud Service and Oracle Integration Cloud.<br>
+        Expertise in SQL/PLSQL for database business logic, application personalization, BI Reports, automation testing of
+        Oracle SaaS pages, REST/SOAP integrations, and a strong background in JavaScript, CSS, HTML, Shell scripting, and Unix.
       </p>
     </section>
 
+    <!-- Experience -->
     <section id="experience" class="oj-padding-6 oj-flex oj-flex-direction-column">
       <h2 class="oj-typography-heading-md">Experience</h2>
+
       <div class="oj-surface oj-shadow-2 oj-border-radius-md oj-padding-4 oj-margin-top-4">
         <h3 class="oj-typography-heading-sm">Timecard Creation Extension</h3>
         <p class="oj-typography-body-md oj-margin-top-1">
-          Built a VBCS extension to streamline supplier invoicing in a complex procurement landscape. Supports Time & Material and Fixed Price models, integrated with Oracle Cloud BPAs, POs, and supplier portal, with OIC integrations for PO/BPA sync and automated receipt creation.<br>
+          Built a VBCS extension to streamline supplier invoicing in a complex procurement landscape.
+          Supports Time &amp; Material and Fixed Price models, integrated with Oracle Cloud BPAs, POs,
+          and supplier portal, with OIC integrations for PO/BPA sync and automated receipt creation.<br>
           Implemented approval process automation to improve operational efficiency.
         </p>
       </div>
+
       <div class="oj-surface oj-shadow-2 oj-border-radius-md oj-padding-4 oj-margin-top-4">
         <h3 class="oj-typography-heading-sm">Job & Program Management Apps</h3>
         <p class="oj-typography-body-md oj-margin-top-1">
-          Designed and developed job management applications with one-to-many relationships in VBCS, ATP, and OIC. Built PL/SQL packages for data validation, bulk insert/update, and history tracking. Developed UI fragments for people search, audit trails, and history display, handling large volumes of data.<br>
+          Designed and developed job management applications with one-to-many relationships in VBCS, ATP, and OIC.
+          Built PL/SQL packages for data validation, bulk insert/update, and history tracking.
+          Developed UI fragments for people search, audit trails, and history display, handling large volumes of data.<br>
           Managed OCI infrastructure: ATP provisioning, network, REST enablement, and OCI bucket storage.
         </p>
       </div>
+
       <div class="oj-surface oj-shadow-2 oj-border-radius-md oj-padding-4 oj-margin-top-4">
-        <h3 class="oj-typography-heading-sm">Automation & BI Reports Lead</h3>
+        <h3 class="oj-typography-heading-sm">Automation &amp BI Reports Lead</h3>
         <p class="oj-typography-body-md oj-margin-top-1">
-          Led a team of 12 to develop 1500+ test automation scripts for Oracle Cloud Fusion GL, PPM, and Supply modules. Developed BI Reports and Angular UI for a custom data transformation tool to support cloud application data conversions.
+          Led a team of 12 to develop 1500+ test automation scripts for Oracle Cloud Fusion GL, PPM, and Supply modules.
+          Developed BI Reports and Angular UI for a custom data transformation tool to support cloud application data conversions.
         </p>
       </div>
     </section>
 
+    <!-- Skills -->
     <section id="skills" class="oj-padding-6 oj-background-surface-5">
       <h2 class="oj-typography-heading-md">Technical Skills</h2>
       <ul class="oj-ul oj-typography-body-md oj-margin-top-2">
         <li>C, C++, Java, JavaScript</li>
         <li>SQL, PL/SQL, Angular</li>
         <li>Oracle VBCS, Oracle Integration Cloud</li>
-        <li>BI Publisher, REST & SOAP Webservices</li>
+        <li>BI Publisher, REST &amp; SOAP Webservices</li>
         <li>HTML, CSS, Shell Scripting, Unix</li>
       </ul>
     </section>
 
+    <!-- Education -->
     <section id="education" class="oj-padding-6 oj-flex oj-flex-direction-column">
       <h2 class="oj-typography-heading-md">Education</h2>
-      <p class="oj-typography-body-md oj-margin-top-2">B.Tech in Computer Science & Engineering, National Institute of Technology, Andhra Pradesh (2016 - 2020)</p>
+      <p class="oj-typography-body-md oj-margin-top-2">
+        B.Tech in Computer Science &amp; Engineering, National Institute of Technology, Andhra Pradesh (2016 – 2020)
+      </p>
     </section>
 
+    <!-- Contact -->
     <section id="contact" class="oj-padding-6 oj-background-surface-5 oj-text-center">
       <h2 class="oj-typography-heading-md">Contact Me</h2>
-      <p class="oj-typography-body-md oj-margin-top-2">Email: <a class="oj-link" href="mailto:saitejaappala@gmail.com">saitejaappala@gmail.com</a></p>
-      <p class="oj-typography-body-md">LinkedIn: <a class="oj-link" href="https://www.linkedin.com/in/saiteja-appala-b9194714a/" target="_blank">/in/saiteja-appala-b9194714a</a></p>
-      <p class="oj-typography-body-md">GitHub: <a class="oj-link" href="https://github.com/saitejaappala" target="_blank">@saitejaappala</a></p>
+      <p class="oj-typography-body-md oj-margin-top-2">
+        Email: <a class="oj-link" href="mailto:saitejaappala@gmail.com">saitejaappala@gmail.com</a>
+      </p>
+      <p class="oj-typography-body-md">
+        LinkedIn: <a class="oj-link" href="https://www.linkedin.com/in/saiteja-appala-b9194714a/" target="_blank">/in/saiteja-appala-b9194714a</a>
+      </p>
+      <p class="oj-typography-body-md">
+        GitHub: <a class="oj-link" href="https://github.com/saitejaappala" target="_blank">@saitejaappala</a>
+      </p>
     </section>
   </main>
 
@@ -90,13 +125,14 @@
   </footer>
 
   <script>
-    // Smooth Scroll
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
+
 </body>
 </html>
