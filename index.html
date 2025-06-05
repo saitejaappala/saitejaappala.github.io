@@ -88,98 +88,58 @@
 						<!-- Work -->
 							<article id="work">
 								<h2 class="major">Work</h2>
-								<section id="work">
-  <h2 class="major">Project: Timecard Automation for Supplier Invoicing</h2>
-  <span class="image main"><img src="images/timecard-screenshot.jpg" alt="Timecard App Screenshot" /></span>
-
-  <p><strong>Role:</strong> Lead Developer & Solution Architect</p>
-  <p><strong>Tech Stack:</strong> Oracle VBCS, OIC, ATP, BI Publisher, ORDS, REST APIs</p>
-  <p><strong>Duration:</strong> 6 months (Phase 1) + ongoing enhancements</p>
-
-  <details>
-    <summary>🔧 Background & Business Problem</summary>
-    <p>In large-scale procurement environments, suppliers submit timecards under Time & Material (T&M) or Fixed Price models. Previously, this was manual—causing invoice delays, compliance issues, and inefficiencies in Oracle SaaS receipt processing.</p>
-  </details>
-
-  <details>
-    <summary>💡 Solution Overview</summary>
-    <p>We built a VBCS-based app for 50+ suppliers to submit timecards, integrated with ATP and Oracle Cloud via OIC. Key features:</p>
+								<h3>Project: Timecard Automation for Supplier Invoicing</h3>
+								<p>In large-scale procurement environments, suppliers submit timecards under Time & Material (T&M) or Fixed Price models. Previously, this was manual—causing invoice delays, compliance issues, and inefficiencies in Oracle SaaS receipt processing.</p>
+ <p>We built a VBCS-based app for 50+ suppliers to submit timecards, integrated with ATP and Oracle Cloud via OIC. Key features:</p>
     <ul>
       <li>T&M and Fixed Price modes</li>
       <li>PO/BPA validation</li>
       <li>Automated approval workflows</li>
       <li>BI Publisher reports for compliance</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>🛠️ My Contributions</summary>
-    <ul>
+		<ul>
       <li>Dynamic UI with validations and fragments in VBCS</li>
       <li>Normalized ATP schema and REST-exposed APIs via ORDS</li>
       <li>OIC integrations for PO sync and receipt creation</li>
       <li>Email notifications with retry-safe queues</li>
       <li>BI Publisher reports for PDF/Excel downloads</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>📊 Business Impact</summary>
-    <ul>
+		 <ul>
       <li>60% reduction in manual validations</li>
       <li>80% faster processing time</li>
       <li>10,000+ timecards processed annually</li>
       <li>100% contract compliance and audit success</li>
-    </ul>
-  </details>
+    </ul>						
 
-  <details>
-    <summary>⚙️ Challenges & Resolutions</summary>
     <table>
       <tr><th>Challenge</th><th>Resolution</th></tr>
       <tr><td>Varied input formats</td><td>Used dynamic fragments per PO type</td></tr>
       <tr><td>PO validation complexity</td><td>OIC-driven real-time checks</td></tr>
       <tr><td>Timeouts on bulk submissions</td><td>Async queue and retry design in ATP</td></tr>
     </table>
-  </details>
 
-  <details>
-    <summary>📈 Lessons Learned</summary>
+
     <ul>
       <li>Fragmented UI design boosts VBCS performance</li>
       <li>ORDS access must be securely gated</li>
       <li>Staging in ATP improves middleware resilience</li>
       <li>BI Publisher is vital for formal documentation</li>
     </ul>
-  </details>
 
-  <details>
-    <summary>🔭 Future Enhancements</summary>
+
     <ul>
       <li>Mobile version via Visual Builder Mobile</li>
       <li>Oracle Digital Assistant integration</li>
       <li>Analytics dashboard for Finance</li>
       <li>Supplier Portal extensions</li>
     </ul>
-  </details>
-</section>
-<section id="work">
-  <h2 class="major">Project: Job and Program Management Applications</h2>
-  <span class="image main"><img src="images/job-mgmt-ui.jpg" alt="Job Management UI Screenshot" /></span>
 
-  <p><strong>Role:</strong> Full Stack Developer & System Integrator</p>
-  <p><strong>Tech Stack:</strong> Oracle VBCS, Oracle Integration Cloud (OIC), Autonomous Transaction Processing (ATP), ORDS, REST APIs, PL/SQL</p>
-  <p><strong>Duration:</strong> 5 months (Initial Phase) + Continuous Enhancements</p>
 
-  <details>
-    <summary>🔧 Background & Business Problem</summary>
+  <h3>Project: Job and Program Management Applications</h3>
     <p>
       The client, a multi-entity global organization, required a centralized platform to manage job numbers and their associated employee and department assignments. The absence of a unified system led to data fragmentation, manual dependency on Excel for mapping, and significant delays in workforce planning and reporting. They also lacked audit visibility for changes made to assignments over time.
     </p>
-  </details>
 
-  <details>
-    <summary>💡 Solution Overview</summary>
     <p>
       I designed and built two tightly integrated Oracle VBCS applications: one for Job Management and one for Program Management. These applications provided real-time tracking, editing, and reporting of job and assignment data through seamless interaction with Oracle ATP and REST services via OIC.
     </p>
@@ -190,10 +150,6 @@
       <li>Bulk insert and update with validation via PL/SQL packages</li>
       <li>Data integration with HCM for employee/department fetch</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>🛠️ My Contributions</summary>
     <ul>
       <li>Designed normalized database schema in ATP for job details and assignments</li>
       <li>Created reusable PL/SQL packages for validation, bulk insert, update, and rollback</li>
@@ -202,20 +158,12 @@
       <li>Implemented audit logic with timestamped change tracking and user metadata</li>
       <li>Created helper UI fragments for people search, auto-fill from HCM, and assignment review</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>📊 Business Impact</summary>
     <ul>
       <li>Enabled centralized control over 5,000+ job records and 15,000+ assignments</li>
       <li>Reduced manual reconciliation time by over 60%</li>
       <li>Improved traceability with 80% enhancement in audit visibility</li>
       <li>Cut onboarding and job role assignment effort from 3 days to 1</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>⚙️ Challenges & Resolutions</summary>
     <table>
       <tr><th>Challenge</th><th>Resolution</th></tr>
       <tr>
@@ -231,20 +179,12 @@
         <td>Built transaction-safe PL/SQL packages with EXCEPTION blocks and audit</td>
       </tr>
     </table>
-  </details>
-
-  <details>
-    <summary>📈 Lessons Learned</summary>
     <ul>
       <li>Nested dynamic forms in VBCS are manageable using component modularity</li>
       <li>Audit logging is critical in high-change applications and should be schema-level</li>
       <li>HCM integrations require throttling and optimization for REST fetches</li>
       <li>Bulk PL/SQL procedures must be built with idempotent design principles</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>🔭 Future Enhancements</summary>
     <ul>
       <li>Excel/CSV upload support with preview-validation before insert</li>
       <li>Role-based dashboards for department heads to approve assignments</li>
@@ -252,24 +192,12 @@
       <li>Drill-down exportable history view for audit and compliance team</li>
     </ul>
   </details>
-</section>
-<section id="work">
-  <h2 class="major">Project: Oracle Fusion Automation Suite</h2>
-  <span class="image main"><img src="images/fusion-automation.jpg" alt="Oracle Fusion Automation Screenshot" /></span>
 
-  <p><strong>Role:</strong> Automation Lead</p>
-  <p><strong>Tech Stack:</strong> Oracle Cloud Fusion, UFT One (Micro Focus), ALM, Angular, BI Publisher, SQL Developer</p>
-  <p><strong>Duration:</strong> 8 months</p>
 
-  <details>
-    <summary>🔧 Background & Business Problem</summary>
+  <h3>Project: Oracle Fusion Automation Suite</h3>
     <p>
       The client was undertaking a large-scale Oracle Cloud Fusion implementation across Financials (GL), Project Portfolio Management (PPM), and Supply Chain Management (SCM). Manual testing of business processes was time-consuming and error-prone, often resulting in delayed releases, inconsistent test coverage, and higher defect leakage during UAT. A full automation suite was needed to support regression testing, data validation, and migration efforts.
     </p>
-  </details>
-
-  <details>
-    <summary>💡 Solution Overview</summary>
     <p>
       I led the development and delivery of an end-to-end automation framework using UFT One and ALM to cover over 1,500 test scenarios. Additionally, I designed a custom Angular-based UI that enabled business analysts and QA leads to perform data transformations and validations for pre-UAT cycles. The suite covered:
     </p>
@@ -280,10 +208,6 @@
       <li>BI Publisher reports for consolidated test results</li>
       <li>Angular UI tool for test data preparation and migration validation</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>🛠️ My Contributions</summary>
     <ul>
       <li>Defined test automation strategy with Deloitte QA leadership</li>
       <li>Built modular reusable functions for rapid script development</li>
@@ -292,10 +216,6 @@
       <li>Developed a custom UI using Angular to allow non-technical users to validate data mappings and initiate test cycles</li>
       <li>Generated BI Publisher reports from ALM and UFT logs for executive reporting</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>📊 Business Impact</summary>
     <ul>
       <li><strong>70%</strong> reduction in manual testing effort across releases</li>
       <li><strong>50%</strong> faster data transformation and migration validation</li>
@@ -303,10 +223,6 @@
       <li>Reduced UAT cycle from 4 weeks to 2.5 weeks</li>
       <li>Improved defect detection rates during SIT by over 40%</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>⚙️ Challenges & Resolutions</summary>
     <table>
       <tr><th>Challenge</th><th>Resolution</th></tr>
       <tr>
@@ -322,28 +238,19 @@
         <td>Used Angular app to define dynamic mapping rules and reusable formats</td>
       </tr>
     </table>
-  </details>
 
-  <details>
-    <summary>📈 Lessons Learned</summary>
     <ul>
       <li>Automation is not just script creation—it’s orchestration, data, and reporting combined</li>
       <li>Custom UI tools improve adoption of test frameworks among business teams</li>
       <li>BI Publisher can be adapted for QA reporting just as effectively as for financials</li>
       <li>Consistency and modularity in UFT scripting reduce maintenance effort significantly</li>
     </ul>
-  </details>
-
-  <details>
-    <summary>🔭 Future Enhancements</summary>
     <ul>
       <li>CI/CD integration with Oracle Fusion test runs</li>
       <li>End-to-end test data management portal for functional consultants</li>
       <li>AI-driven screenshot validation and OCR-based field matching</li>
       <li>Interactive dashboards using Oracle JET for test coverage insights</li>
     </ul>
-  </details>
-</section>
 
 								<h3>Internship Experience-1:</h3>
 									<p>Teja and a team of five worked on a Computer Vision based case study to increase real-time security using live feed of CCTV cameras of a resort. The team's aim was to develop a real-time security system that would be more efficient than a human security system, more affordable in the long run, and could be deployed easily. The team first analyzed the live feed of the CCTV cameras to identify potential security risks. They then developed a computer vision algorithm that could detect these risks in real time. The team also developed a user interface that would allow security personnel to monitor the system and take action as needed.</p>
