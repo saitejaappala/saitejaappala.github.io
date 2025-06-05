@@ -88,40 +88,79 @@
 						<!-- Work -->
 							<article id="work">
 								<h2 class="major">Work</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								
-								<div class="tabs">
-								  <input type="radio" name="tabs" id="tab1" checked>
-								  <label for="tab1">Timecard Automation</label>
-								  <div class="tab-content">
-								    <h3>Timecard Automation for Supplier Invoicing</h3>
-								    <p><strong>Role:</strong> Lead Developer & Solution Architect</p>
-								    <p><strong>Tools:</strong> Oracle VBCS, OIC, ATP, BI Publisher, ORDS</p>
-								    <p><strong>Summary:</strong> Developed a robust VBCS-based application for 50+ suppliers to submit timecards (Time & Material and Fixed Price models). Integrated with Oracle Cloud modules to automate procurement workflows and align invoices with PO terms.</p>
-								    <p><strong>Impact:</strong> Reduced invoice processing time by 60%, ensured contract compliance, and automated receipt creation using OIC integrations. The system handles 10,000+ timecard entries annually across 3 business units.</p>
-								    <!-- Future: Insert long-form detail with headings like Solution Design, Challenges, Metrics, etc. -->
-								  </div>
-								
-								  <input type="radio" name="tabs" id="tab2">
-								  <label for="tab2">Journal Entry Checklist</label>
-								  <div class="tab-content">
-								    <h3>Journal Entry Checklist Automation</h3>
-								    <p><strong>Role:</strong> Full Stack Developer</p>
-								    <p><strong>Tools:</strong> Oracle VBCS, Oracle GL APIs, Excel Export, PDF Styling</p>
-								    <p><strong>Summary:</strong> Built a centralized VBCS application for OpCo teams to manage Journal Entry (JE) and PPM checklists. Included search, status sync from Oracle GL, period rollover, and export options.</p>
-								    <p><strong>Impact:</strong> Enhanced traceability and reduced manual tracking effort. Saved 30% of time during month-end close cycles and improved reconciliation accuracy.</p>
-								  </div>
-								
-								  <input type="radio" name="tabs" id="tab3">
-								  <label for="tab3">Oracle Fusion Test Automation</label>
-								  <div class="tab-content">
-								    <h3>Oracle Fusion Automation Suite</h3>
-								    <p><strong>Role:</strong> Automation Lead</p>
-								    <p><strong>Tools:</strong> ALM, UFT One, Angular, BI Publisher</p>
-								    <p><strong>Summary:</strong> Led a 12-member team to build over 1500 automation test cases across GL, PPM, and SCM modules. Designed Angular UI for a data transformation app used in Oracle Fusion data conversions.</p>
-								    <p><strong>Impact:</strong> Reduced UAT timelines by 40%, improved regression cycle speed by 70%, and supported large-scale cloud deployments with early bug detection.</p>
-								  </div>
-								</div>
+								<h2 class="major">Project: Timecard Automation for Supplier Invoicing</h2>
+							  <span class="image main"><img src="images/timecard-screenshot.jpg" alt="Timecard App Screenshot" /></span>
+							
+							  <p><strong>Role:</strong> Lead Developer & Solution Architect</p>
+							  <p><strong>Tech Stack:</strong> Oracle VBCS, OIC, ATP, BI Publisher, ORDS, REST APIs</p>
+							  <p><strong>Duration:</strong> 6 months (Phase 1) + ongoing enhancements</p>
+							
+							  <details>
+							    <summary>🔧 Background & Business Problem</summary>
+							    <p>In large-scale procurement environments, suppliers submit timecards under Time & Material (T&M) or Fixed Price models. Previously, this was manual—causing invoice delays, compliance issues, and inefficiencies in Oracle SaaS receipt processing.</p>
+							  </details>
+							
+							  <details>
+							    <summary>💡 Solution Overview</summary>
+							    <p>We built a VBCS-based app for 50+ suppliers to submit timecards, integrated with ATP and Oracle Cloud via OIC. Key features:</p>
+							    <ul>
+							      <li>T&M and Fixed Price modes</li>
+							      <li>PO/BPA validation</li>
+							      <li>Automated approval workflows</li>
+							      <li>BI Publisher reports for compliance</li>
+							    </ul>
+							  </details>
+							
+							  <details>
+							    <summary>🛠️ My Contributions</summary>
+							    <ul>
+							      <li>Dynamic UI with validations and fragments in VBCS</li>
+							      <li>Normalized ATP schema and REST-exposed APIs via ORDS</li>
+							      <li>OIC integrations for PO sync and receipt creation</li>
+							      <li>Email notifications with retry-safe queues</li>
+							      <li>BI Publisher reports for PDF/Excel downloads</li>
+							    </ul>
+							  </details>
+							
+							  <details>
+							    <summary>📊 Business Impact</summary>
+							    <ul>
+							      <li>60% reduction in manual validations</li>
+							      <li>80% faster processing time</li>
+							      <li>10,000+ timecards processed annually</li>
+							      <li>100% contract compliance and audit success</li>
+							    </ul>
+							  </details>
+							
+							  <details>
+							    <summary>⚙️ Challenges & Resolutions</summary>
+							    <table>
+							      <tr><th>Challenge</th><th>Resolution</th></tr>
+							      <tr><td>Varied input formats</td><td>Used dynamic fragments per PO type</td></tr>
+							      <tr><td>PO validation complexity</td><td>OIC-driven real-time checks</td></tr>
+							      <tr><td>Timeouts on bulk submissions</td><td>Async queue and retry design in ATP</td></tr>
+							    </table>
+							  </details>
+							
+							  <details>
+							    <summary>📈 Lessons Learned</summary>
+							    <ul>
+							      <li>Fragmented UI design boosts VBCS performance</li>
+							      <li>ORDS access must be securely gated</li>
+							      <li>Staging in ATP improves middleware resilience</li>
+							      <li>BI Publisher is vital for formal documentation</li>
+							    </ul>
+							  </details>
+							
+							  <details>
+							    <summary>🔭 Future Enhancements</summary>
+							    <ul>
+							      <li>Mobile version via Visual Builder Mobile</li>
+							      <li>Oracle Digital Assistant integration</li>
+							      <li>Analytics dashboard for Finance</li>
+							      <li>Supplier Portal extensions</li>
+							    </ul>
+							  </details>
 								<h3>Internship Experience-1:</h3>
 									<p>Teja and a team of five worked on a Computer Vision based case study to increase real-time security using live feed of CCTV cameras of a resort. The team's aim was to develop a real-time security system that would be more efficient than a human security system, more affordable in the long run, and could be deployed easily. The team first analyzed the live feed of the CCTV cameras to identify potential security risks. They then developed a computer vision algorithm that could detect these risks in real time. The team also developed a user interface that would allow security personnel to monitor the system and take action as needed.</p>
 									
