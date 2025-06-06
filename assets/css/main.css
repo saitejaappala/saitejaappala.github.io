@@ -6,37 +6,6 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-:root {
-  --redwood-font-family: "Oracle Sans","Helvetica Neue",Arial,sans-serif;
-  --redwood-text-color: #161513;
-  --redwood-bg: #f5f7f8;
-  --redwood-primary: #0066cc;
-  --redwood-border: #d6d7d9;
-}
-
-body {
-  font-family: var(--redwood-font-family);
-  color: var(--redwood-text-color);
-  background: var(--redwood-bg);
-}
-
-a {
-  color: var(--redwood-primary);
-}
-
-.button, button, input[type="submit"], input[type="button"], .oj-button {
-  background: var(--redwood-primary);
-  color: #fff;
-  border: 1px solid var(--redwood-border);
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-}
-
-.button:hover {
-  background: #0056b3;
-}
-
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
