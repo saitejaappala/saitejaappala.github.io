@@ -1,0 +1,460 @@
+<!-- work.html -->
+ <style>
+  .rdw-content-wrapper {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;         /* Top, auto left/right, no bottom */
+    padding: 36px 36px 48px 36px;     /* Top, right, bottom, left */
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px 0 rgba(35, 38, 59, 0.09);
+  }
+  .rdw-section {
+    margin-bottom: 36px;
+  }
+  .rdw-flex {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .rdw-col {
+    flex: 1 1 400px;
+    min-width: 320px;
+  }
+  .rdw-chart-area,
+  .rdw-table-area {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  /* Responsive: stack on narrow screens */
+  @media (max-width: 900px) {
+    .rdw-content-wrapper {
+      padding: 16px 4vw 32px 4vw;
+    }
+    .rdw-flex {
+      flex-direction: column;
+      gap: 18px;
+    }
+  }
+  .info-tile p {
+  font-size: 1.08rem;
+  margin: 13px 0 2px 0;
+  line-height: 1.58;
+  text-align: justify;
+}
+</style>
+
+<div class="oj-bg-neutral-1 oj-sm-padding-8x" style="min-height:90vh;">
+  <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-md oj-padding-6x"
+       style="max-width: 1200px; margin: 0 auto;">
+    <h1 class="oj-typography-heading-xl oj-sm-margin-b-4x">Work Experience & Projects</h1>
+    
+    <!-- PROJECT 1: VBCS Timecard Automation -->
+    <oj-collapsible class="oj-sm-margin-b-4x" expanded>
+      <span slot="header">
+        <h2 class="oj-typography-heading-md oj-text-color-primary">VBCS Timecard Automation Platform</h2>
+      </span>
+      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
+        <!-- Content Tile -->
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:480px">
+          <p>
+            <strong>Background & Challenge:</strong>  
+            The VBCS Timecard Automation Platform was conceived to solve a chronic problem in professional services: the management, submission, and approval of timecards for large vendor and supplier ecosystems, particularly in organizations with highly variable billing models such as Time & Material (T&M) and Fixed Price (FP) contracts. At Deloitte, the legacy process for timecard submission involved manual spreadsheet uploads, extensive email exchanges, and slow, error-prone validations. Supplier resources would submit timecards in different formats, and project managers would spend hours each month reconciling and approving them, often resulting in delays to billing cycles and missed SLAs. The sheer volume—over 10,000 timecards per year across three business units—exacerbated the pain points.
+          </p>
+          <p>
+            <strong>Technical Approach & Solution Design:</strong>  
+            Leading the solution, I architected a full-stack application using Oracle Visual Builder Cloud Service (VBCS), ensuring a unified, web-based UI for suppliers, managers, and administrators. The project began by mapping the end-to-end business process and capturing all variations in approval flows, timecard types, compliance checks, and integration needs. I designed a multi-step wizard for timecard entry, incorporating dynamic validations based on contract type, project assignment, and period status. Using REST connectors, I seamlessly integrated with Oracle Fusion Cloud (ERP) for master data (supplier, resource, project) as well as downstream processes (invoice, payments, audits).
+          </p>
+          <p>
+            <strong>Automation & Workflow Innovation:</strong>  
+            A critical innovation was the implementation of an automated approval workflow leveraging Oracle Integration Cloud (OIC) and VBCS business rules. Upon submission, timecards would be validated in real-time, then routed via OIC to the appropriate approvers based on cost center, project, and contract type. Notifications were triggered using Oracle Notification Service APIs, and BI Publisher reports provided near-real-time audit trails for compliance and audit teams. My solution provided in-app dashboards for managers to monitor approval bottlenecks, as well as drilldowns to root causes of rejected or delayed timecards.
+          </p>
+          <p>
+            <strong>Results & Business Impact:</strong>  
+            Over the first 12 months, the platform processed 10,000+ timecards with a consistent 60% reduction in manual reconciliation. Invoice cycles, previously taking up to two weeks, dropped to under 5 days on average. Managers reported a 50% reduction in time spent on approvals. Supplier satisfaction improved due to clear error feedback and transparent processing status. Automated exception handling for non-standard timecards was implemented in a second release, further reducing back-and-forth communications. Analytics from the platform enabled finance to identify trends in overtime, non-compliance, and project-level budget overruns, supporting better decision-making at the executive level.
+          </p>
+          <p>
+            <strong>Key Features & Technology Stack:</strong>
+            <ul class="oj-list-disc oj-sm-padding-s">
+              <li>Multi-role, secure VBCS UI with self-service for suppliers and management.</li>
+              <li>Configurable approval workflows and dynamic business rules for T&M vs FP.</li>
+              <li>REST API integrations with Fusion Cloud for master data, validation, and downstream processing.</li>
+              <li>BI Publisher reporting for full compliance audit trails.</li>
+              <li>Analytics dashboard using Oracle JET charts for process visibility.</li>
+              <li>Responsive, mobile-friendly interface supporting remote supplier access.</li>
+            </ul>
+          </p>
+          <p>
+            <strong>Challenges & Learnings:</strong>  
+            Initial data quality issues required building robust transformation logic in OIC to sanitize supplier submissions. Change management was key: we ran extensive onboarding sessions for suppliers and internal teams, developed step-by-step job aids, and iteratively improved error messaging based on user feedback. Performance optimization was a priority: as transaction volumes grew, I fine-tuned REST queries, leveraged VBCS Data Provider optimizations, and designed indexes in the ATP schema for faster reporting.  
+          </p>
+          <p>
+            <strong>Reflection & Strategic Value:</strong>  
+            This project highlighted the impact of tightly coupled Oracle SaaS and PaaS solutions. By combining process automation, integration, and user-centric design, we delivered both immediate efficiency gains and a scalable platform for future growth. The project received Deloitte’s “Outstanding Automation” award and was showcased in an Oracle VBCS customer success webinar.
+          </p>
+        </div>
+        <!-- Analytics Tile -->
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
+          <oj-chart type="pie"
+            series="[[timecardPieChartSeries]]"
+            animation-on-display="auto"
+            style="height:220px; width:100%;"
+            legend.rendered="on"
+            value-label.rendered="on"
+            value-label.position="outsideSlice">
+          </oj-chart>
+          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
+            <span style="font-weight:500;">Analytics: % timecards processed via automation vs manual</span>
+          </div>
+          <br>  
+          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
+          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Implementation Challenges & Solutions</div>
+          <br>
+          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Challenges encountered and how they were addressed in this automation journey.</div>
+          <oj-table
+            aria-label="Timecard Challenges"
+            data="[[timecardChallengesDataProvider]]"
+            columns='[
+              {"headerText":"Challenge","field":"challenge"},
+              {"headerText":"Resolution","field":"resolution"}
+            ]'
+            layout="fixed"
+            display="grid"
+            style="width:100%;"
+          ></oj-table>
+        </div>
+        <br>
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
+          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Key Project Metrics</div>
+          <br>
+          <div class="oj-typography-body-sm oj-sm-margin-b-2x">This table summarizes annual volume, process improvement, and time savings delivered by the platform.</div>
+          <oj-table
+            aria-label="Timecard Project Details"
+            data="[[timecardHighlightsDataProvider]]"
+            columns='[
+              {"headerText":"Highlight","field":"highlight"},
+              {"headerText":"Impact","field":"impact"}
+            ]'
+            layout="fixed"
+            display="grid"
+            style="width:100%;"
+          ></oj-table>
+        </div>
+        </div>
+        
+      </div>
+      
+    </oj-collapsible>
+
+    <!-- PROJECT 2: Job Management Apps -->
+    <oj-collapsible class="oj-sm-margin-b-4x">
+      <span slot="header">
+        <h2 class="oj-typography-heading-md oj-text-color-primary">Enterprise Job & Assignment Management</h2>
+      </span>
+      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:480px">
+          <p>
+            <strong>Project Context & Need:</strong>  
+            Managing a high-volume, high-velocity environment for job and assignment tracking is mission critical for large consulting practices and shared services organizations. The prior state was fragmented, with different business units using ad-hoc tools, disconnected spreadsheets, and manual lookups in Oracle HCM and Finance systems. The lack of unified job-assignment mapping led to reporting gaps, difficulties in headcount planning, and excessive manual rework during financial closes.
+          </p>
+          <p>
+            <strong>Solution Architecture:</strong>  
+            To address these issues, I led the design and delivery of an enterprise-grade VBCS application suite for job and assignment management. The system normalized data flows between Oracle ATP (for high-speed transactional data), Oracle Fusion HCM (for employee/job master), and BI Publisher (for audit/analytics). I defined a scalable, one-to-many table schema, capturing every job number and mapping it to multiple employee IDs and department IDs, ensuring accurate project resource allocation and departmental accountability. The front end leveraged VBCS reusable fragments and dynamic forms for rapid search, creation, and update of job/assignment records.
+          </p>
+          <p>
+            <strong>Bulk Operations & Integration:</strong>  
+            Bulk insert and update PL/SQL procedures were implemented to handle mass onboarding, job realignments, and organizational changes. JSON payload support allowed seamless integration with Oracle Integration Cloud (OIC) and third-party HR feeds. All updates triggered audit entries in a dedicated history table, enabling traceability for compliance and SOX requirements. Business rules were encoded both in VBCS (for UI validations) and in the ATP layer (for cross-object checks).
+          </p>
+          <p>
+            <strong>Results & Impact:</strong>  
+            The application handled over 5,000 jobs and 15,000 assignments with sub-second search and update. Audit traceability improved by 80%, eliminating data gaps during reconciliation cycles. End users, including HR and finance teams, benefited from real-time validation and dynamic dashboards, which reduced manual lookups by 30% and cut onboarding time for new jobs by half.  
+          </p>
+          <p>
+            <strong>Key Features & UX Innovations:</strong>
+            <ul class="oj-list-disc oj-sm-padding-s">
+              <li>Role-based dashboards (managers, admins, HR) with secure, filtered access</li>
+              <li>Editable tables for bulk update with in-place validation and row-level error handling</li>
+              <li>Dynamic search and filter capabilities for rapid lookup across large datasets</li>
+              <li>Integrated BI Publisher reports for compliance and headcount planning</li>
+              <li>Configurable notifications for assignment changes</li>
+            </ul>
+          </p>
+          <p>
+            <strong>Challenges & Solutions:</strong>  
+            Key hurdles included optimizing REST API queries for sub-second performance (using server-side pagination and indexes), aligning multiple source-of-truth systems (ATP, HCM, external feeds), and building robust error handling for partial failures during bulk operations. The project required close coordination with HR, Finance, and IT, especially to define cross-functional business rules and security.
+          </p>
+          <p>
+            <strong>Strategic Reflection:</strong>  
+            This platform transformed how job and resource planning happens—eliminating data silos, empowering self-service, and providing an extensible framework for future automation. The solution has since been extended to support new business units and integrated with workforce analytics initiatives.
+          </p>
+        </div>
+        <!-- Analytics Tile -->
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
+          <oj-chart type="bar"
+            series="[[jobMgmtBarSeries]]"
+            groups="[[jobMgmtBarGroups]]"
+            animation-on-display="auto"
+            style="height:220px; width:100%;"
+            legend.rendered="on"
+            value-label.rendered="on"
+            value-label.position="outsideBar">
+          </oj-chart>
+          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
+            <span style="font-weight:500;">Analytics: Records managed (jobs vs assignments)</span>
+          </div>
+          <br>
+          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
+          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Key Project Metrics</div>
+          <br>
+          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Volume, audit improvements, and platform reach for assignments management.</div>
+          <oj-table
+            aria-label="Job Management Project Details"
+            data="[[jobMgmtHighlightsDataProvider]]"
+            columns='[
+              {"headerText":"Highlight","field":"highlight"},
+              {"headerText":"Impact","field":"impact"}
+            ]'
+            layout="fixed"
+            display="grid"
+            style="width:100%;"
+          ></oj-table>
+        </div>
+        <br>
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
+          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Implementation Challenges & Solutions</div>
+          <br>
+          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Key hurdles in jobs/assignments management and how we overcame them.</div>
+          <oj-table
+            aria-label="Job Management Challenges"
+            data="[[jobMgmtChallengesDataProvider]]"
+            columns='[
+              {"headerText":"Challenge","field":"challenge"},
+              {"headerText":"Resolution","field":"resolution"}
+            ]'
+            layout="fixed"
+            display="grid"
+            style="width:100%;"
+          ></oj-table>
+        </div>
+          
+
+        </div>
+      </div>
+    
+    </oj-collapsible>
+
+    <!-- PROJECT 3: Fusion Automation Suite -->
+    <oj-collapsible class="oj-sm-margin-b-4x">
+      <span slot="header">
+        <h2 class="oj-typography-heading-md oj-text-color-primary">Oracle Fusion Automation Suite</h2>
+      </span>
+      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:480px">
+          <p>
+            <strong>Business Need & Context:</strong>  
+            In the context of a large-scale Oracle Fusion Cloud rollout (GL, PPM, SCM), manual regression testing became a bottleneck, with UAT cycles stretching into weeks and recurring defects leaking into production. Our QA and business teams struggled to keep up with rapid patching cycles, customizations, and quarterly Oracle updates, resulting in missed go-lives and increased support costs. There was a clear need to automate end-to-end business process testing to drive both quality and speed.
+          </p>
+          <p>
+            <strong>Solution Design & Delivery:</strong>  
+            I led the architecture and implementation of an automation suite using Oracle Application Testing Suite (OATS), custom PL/SQL validation scripts, and Angular dashboards. We mapped 80+ key business flows across GL, PPM, and SCM, working with business SMEs to define acceptance criteria, test data, and exception scenarios. Over 1,500 automated scripts were developed, leveraging data-driven testing for master data, transactions, and reporting.
+          </p>
+          <p>
+            <strong>Technical Innovations:</strong>  
+            The solution integrated with Oracle ATP for storing test results, log files, and audit trails, ensuring every test run could be traced to the corresponding deployment and patch. We automated report validations via BI Publisher, comparing baseline and post-deployment reports for data integrity. The Angular dashboard provided real-time visibility into test progress, pass/fail rates, and root cause analysis, allowing both QA and functional teams to collaborate effectively.
+          </p>
+          <p>
+            <strong>Business Impact:</strong>  
+            UAT cycles dropped by 40%, and production defect rates fell by 60%. Automated testing enabled us to validate quarterly patches and customizations within 48 hours of release. Regression coverage reached 95%, with daily automation runs detecting issues before they impacted users. The solution was cited by Oracle as a customer best practice and contributed to two major successful go-lives with zero critical defects.
+          </p>
+          <p>
+            <strong>Challenges & Lessons Learned:</strong>  
+            The scale of Oracle Fusion, with frequent updates and customizations, meant test scripts had to be highly modular and maintainable. We established robust version control, script reusability, and “test data factories” to ensure long-term sustainability. User buy-in required clear reporting and evidence of ROI, which we achieved by tracking defect escape rates and cycle times before/after automation. Collaboration between QA, development, and functional teams was key.
+          </p>
+          <p>
+            <strong>Reflection:</strong>  
+            This project demonstrated the transformative value of automation—not only for QA but as an enabler for continuous improvement across the business. It also deepened my expertise in both Oracle Fusion architecture and best practices for large-scale test automation and DevOps.
+          </p>
+        </div>
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
+          <oj-chart type="bar"
+            series="[[automationChartSeries]]"
+            groups="[[automationChartGroups]]"
+            animation-on-display="auto"
+            style="height:220px; width:100%;"
+            legend.rendered="on"
+            value-label.rendered="on"
+            value-label.position="outsideBar">
+          </oj-chart>
+          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
+            <span style="font-weight:500;">Analytics: Regression time before/after automation</span>
+          </div>
+          <br>
+          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
+          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Key Automation Outcomes</div>
+          <br>
+          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Coverage, speed, and business impact of the automation suite.</div>
+          <oj-table
+            aria-label="Fusion Automation Details"
+            data="[[automationHighlightsDataProvider]]"
+            columns='[
+              {"headerText":"Highlight","field":"highlight"},
+              {"headerText":"Impact","field":"impact"}
+            ]'
+            layout="fixed"
+            display="grid"
+            style="width:100%;"
+          ></oj-table>
+        </div>
+        <br>
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
+          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Implementation Challenges & Solutions</div>
+          <br>
+          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Technical and process challenges with our solutions.</div>
+          <oj-table
+            aria-label="Automation Challenges"
+            data="[[automationChallengesDataProvider]]"
+            columns='[
+              {"headerText":"Challenge","field":"challenge"},
+              {"headerText":"Resolution","field":"resolution"}
+            ]'
+            layout="fixed"
+            display="grid"
+            style="width:100%;"
+          ></oj-table>
+        </div>
+        </div>
+      </div>
+      
+    </oj-collapsible>
+
+    <!-- INTERNSHIP 1 -->
+    <h1 class="oj-typography-heading-lg oj-sm-margin-b-2x">Internship Experience</h1>
+    <oj-collapsible class="oj-sm-margin-b-4x">
+      <span slot="header">
+        <h2 class="oj-typography-heading-md oj-text-color-primary">Resort Security Computer Vision Project</h2>
+      </span>
+      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:340px">
+          <p>
+            <strong>Overview & Challenge:</strong>  
+            During my final year at NIT Andhra Pradesh, I secured an internship opportunity to work on a real-world computer vision project for a large resort chain in South India. The goal was to enhance security and guest safety by leveraging live CCTV camera feeds for real-time detection of suspicious activities, loitering, and perimeter breaches. Traditionally, security teams monitored dozens of screens 24x7—a process both error-prone and exhausting. The client wanted an AI-powered solution to augment human vigilance and create actionable incident reports.
+          </p>
+          <p>
+            <strong>Solution Architecture:</strong>  
+            My approach involved designing a custom YOLOv3-based detection pipeline, training the model on thousands of annotated frames (including both staged and actual incident data). I developed a Python backend to process live RTSP video streams and perform detection on edge hardware. The application UI, built using PyQT and OpenCV, allowed security staff to visualize detection results in real-time, with configurable alert thresholds and incident categorization. A lightweight PostgreSQL database stored detection logs, timestamps, and video snapshots for audit.
+          </p>
+          <p>
+            <strong>Key Technical Innovations:</strong>
+            <ul class="oj-list-disc oj-sm-padding-s">
+              <li>Data augmentation and transfer learning to achieve 95%+ detection accuracy, even with poor lighting or occlusions</li>
+              <li>Integration with existing CCTV infrastructure (Dahua, Hikvision) using RTSP</li>
+              <li>Real-time alerting via email and SMS using Twilio API</li>
+              <li>Batch upload of suspicious event logs to a central dashboard for management review</li>
+            </ul>
+          </p>
+          <p>
+            <strong>Impact & Results:</strong>  
+            After a four-week pilot at two resort properties, the system was credited with reducing reported perimeter breaches by 20% and improving incident response times by 40%. Security teams were able to focus on genuine threats rather than continuous monitoring, and management received weekly analytics on incident trends and false positive rates.
+          </p>
+          <p>
+            <strong>Challenges & Reflection:</strong>  
+            Key challenges included working with noisy, low-resolution footage, handling privacy concerns, and optimizing inference speed on resource-constrained edge devices. The experience gave me hands-on exposure to the full AI lifecycle—from data collection and labeling to deployment and user training. I also learned the importance of user-centric design: I iterated the UI multiple times based on direct feedback from non-technical security personnel.
+          </p>
+        </div>
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
+          <oj-chart type="pie"
+            series="[[cvInternshipPieChartSeries]]"
+            animation-on-display="auto"
+            style="height:220px; width:100%;"
+            legend.rendered="on"
+            value-label.rendered="on"
+            value-label.position="outsideSlice">
+          </oj-chart>
+          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
+            <span style="font-weight:500;">Analytics: Detection success vs failure</span>
+          </div>
+          <br>
+          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-sm-margin-t-3x" style="max-width:440px; width:100%; overflow-x:auto;">
+        <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Internship Highlights</div>
+        <oj-table
+          aria-label="CV Internship Highlights"
+          data="[[cvInternshipTableDataProvider]]"
+          columns='[
+            {"headerText":"Highlight","field":"highlight"},
+            {"headerText":"Impact","field":"impact"}
+          ]'
+          layout="fixed"
+          display="grid"
+          style="width:100%;"
+        ></oj-table>
+      </div>
+        </div>
+      </div>
+    </oj-collapsible>
+
+    <!-- INTERNSHIP 2 -->
+    <oj-collapsible>
+      <span slot="header">
+        <h2 class="oj-typography-heading-md oj-text-color-primary">Social Media Mining & Sentiment Analysis</h2>
+      </span>
+      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:340px">
+          <p>
+            <strong>Project Overview:</strong>  
+            As a research intern at NIT Warangal, I contributed to a multi-semester project exploring the use of NLP (Natural Language Processing) for mining and analyzing sentiment from social media comment streams—specifically YouTube and Twitter—on trending technology topics. The research aim was to quantify sentiment polarity and track changes in public perception in near real-time, providing actionable insights for corporate and government stakeholders.
+          </p>
+          <p>
+            <strong>Technical Solution:</strong>  
+            I designed and built a Python pipeline leveraging NLTK and TextBlob for tokenization, sentiment scoring, and part-of-speech tagging. The pipeline ingested thousands of comments per day via the YouTube Data API and Twitter streaming API, applying advanced filters to detect spam and off-topic posts. Results were stored in MongoDB, and a web dashboard (Flask + D3.js) displayed sentiment trends, word clouds, and anomaly spikes.
+          </p>
+          <p>
+            <strong>Key Contributions & Innovations:</strong>
+            <ul class="oj-list-disc oj-sm-padding-s">
+              <li>Optimized preprocessing for multilingual comments and emoji-based sentiment signals</li>
+              <li>Implemented batch and stream mode for both historic and live sentiment tracking</li>
+              <li>Developed visualization widgets for real-time sentiment polarity breakdown</li>
+              <li>Published research findings in an IEEE conference and co-authored a paper on sentiment mining in vernacular languages</li>
+            </ul>
+          </p>
+          <p>
+            <strong>Impact:</strong>  
+            The system delivered granular, daily insights on technology adoption trends and public feedback for new product launches. It was used by faculty and industry sponsors to validate marketing strategies and crisis communication campaigns.
+          </p>
+          <p>
+            <strong>Challenges & Takeaways:</strong>  
+            Real-world text mining surfaced challenges such as sarcasm detection, code-mixed language, and API rate limits. The experience gave me deep practical experience with NLP, data visualization, and working in an interdisciplinary, cross-institutional team. It also highlighted the importance of ethical handling of social data and anonymization best practices.
+          </p>
+        </div>
+        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
+          <oj-chart type="pie"
+            series="[[sentimentInternshipPieChartSeries]]"
+            animation-on-display="auto"
+            style="height:220px; width:100%;"
+            legend.rendered="on"
+            value-label.rendered="on"
+            value-label.position="outsideSlice">
+          </oj-chart>
+          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
+            <span style="font-weight:500;">Analytics: Sentiment polarity breakdown</span>
+          </div>
+          <br>
+          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-sm-margin-t-3x" style="max-width:440px; width:100%; overflow-x:auto;">
+        <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Internship Highlights</div>
+        <oj-table
+          aria-label="Sentiment Internship Highlights"
+          data="[[sentimentInternshipTableDataProvider]]"
+          columns='[
+            {"headerText":"Highlight","field":"highlight"},
+            {"headerText":"Impact","field":"impact"}
+          ]'
+          layout="fixed"
+          display="grid"
+          style="width:100%;"
+        ></oj-table>
+      </div>
+        </div>
+      </div>
+      
+    </oj-collapsible>
+
+  </div>
+</div>

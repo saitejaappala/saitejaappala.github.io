@@ -1,0 +1,2 @@
+define(['exports', './LiveRegion-38fa0df8', 'preact/jsx-runtime', 'preact/hooks', 'css!./LiveRegionStyles.styles.css', './useTestId-efb1c8f9', './LayerHost-a36b1781', './Common/themes/redwood/theme', './Common/themes/themeContract.css', 'preact', 'preact/compat'], (function(e,t,o,s,i,c,n,r,a,m,d){"use strict";e.LiveRegion=t.LiveRegion,Object.defineProperty(e,"__esModule",{value:!0})}));
+//# sourceMappingURL=UNSAFE_LiveRegion.js.map
