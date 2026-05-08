@@ -1,0 +1,276 @@
+<!-- home.html -->
+<style>
+body {
+  background: #f7f6f4;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Main Centered Container - between the "red lines" */
+.rdw-main-container {
+  max-width: 1300px;     /* Adjust to match red lines in your screenshot */
+  margin: 0 auto;        /* Center horizontally */
+  padding-top: 18px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.rdw-main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 2vw;
+}
+
+.rdw-profile-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 220px;
+  max-width: 300px;
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.rdw-profile-pic-rect {
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 4px 32px 0 rgba(35, 38, 59, 0.09);
+  width: 230px;
+  height: 230px;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-bottom: 0;
+  border: none;
+}
+.rdw-profile-pic-rect img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 11px;
+  box-shadow: none;
+  border: none;
+  display: block;
+}
+
+.rdw-profile-stats {
+  width: 230px;
+  height: 230px;
+  min-width: 180px;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.rdw-profile-stat-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.rdw-profile-stat {
+  flex: 1 1 100px;
+  background: #fbeee7;
+  border-radius: 10px;
+  border: 1px solid #f7d3c1;
+  box-shadow: 0 1px 8px rgba(230,90,41,0.04);
+  min-width: 110px;
+  text-align: center;
+  padding: 15px 10px 9px 10px;
+  color: #a04a24;
+  font-size: 1.09rem;
+}
+.rdw-profile-stat strong {
+  display: block;
+  font-size: 1.43rem;
+  color: #b72113;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.rdw-info-tile {
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 4px 32px 0 rgba(35, 38, 59, 0.09);
+  padding: 32px 36px 26px 36px;
+  flex: 1 1 0;
+  min-width: 340px;
+  max-width: 900px;
+  color: #212121;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #e14b4b18;
+}
+
+.rdw-info-tile h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  margin-top: 0;
+  color: #b72113;
+  letter-spacing: -0.5px;
+}
+.rdw-info-tile h2 {
+  font-size: 1.19rem;
+  font-weight: 700;
+  margin: 23px 0 8px 0;
+  color: #655C5C;
+}
+.rdw-info-tile p {
+  font-size: 1.08rem;
+  margin: 13px 0 2px 0;
+  line-height: 1.58;
+  text-align: justify;
+}
+.rdw-info-tile p + p {
+  margin-top: 8px;
+}
+
+.rdw-info-tile ul {
+  margin: 8px 0 14px 20px;
+  padding-left: 0;
+}
+.rdw-info-tile li {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+.rdw-info-tile .skills {
+  margin: 0 0 10px 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rdw-info-tile .skill-chip {
+  background: #f4ece6;
+  border-radius: 8px;
+  padding: 2px 11px;
+  font-size: 0.98rem;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 3px;
+}
+.rdw-info-tile strong {
+  font-weight: 700;
+}
+.rdw-info-tile .links {
+  margin-top: 16px;
+}
+.rdw-info-tile .links a {
+  color: #0077b6;
+  text-decoration: underline;
+  margin-right: 18px;
+  font-size: 1.07rem;
+}
+@media (max-width: 1400px) {
+  .rdw-main-container { max-width: 98vw; }
+}
+@media (max-width: 1024px) {
+  .rdw-main-content {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    align-items: stretch;
+    padding: 10px 0 0 0;
+  }
+  .rdw-profile-block, .rdw-info-tile {
+    max-width: 99vw;
+    min-width: unset;
+    margin: 0 auto;
+  }
+  .rdw-profile-pic-rect {
+    height: 170px;
+    width: 50vw;
+    max-width: 220px;
+  }
+  .rdw-info-tile {
+    padding: 22px 8vw 18px 8vw;
+  }
+}
+</style>
+
+<div class="rdw-main-container">
+  <div class="rdw-main-content">
+    <!-- Profile Section (picture + stats below) -->
+    <div class="rdw-profile-block">
+      <div class="rdw-profile-pic-rect">
+        <img src="css/images/SAITEJA.jpg" alt="Sai Teja Appala profile image" />
+      </div>
+      <div class="rdw-profile-stats">
+        <div class="rdw-profile-stat-row">
+          <div class="rdw-profile-stat"><strong>5</strong>Years Exp</div>
+          <div class="rdw-profile-stat"><strong>3x</strong>Outstanding Awards</div>
+        </div>
+        <div class="rdw-profile-stat-row">
+          <div class="rdw-profile-stat"><strong>15,00+</strong>Test Cases Automated</div>
+          <div class="rdw-profile-stat"><strong>5+</strong>End-to-End Implementations</div>
+          <div class="rdw-profile-stat"><strong>3</strong>Certifications</div>
+        </div>
+      </div>
+    </div>
+    <!-- Details Tile -->
+    <div class="rdw-info-tile">
+      <h1>Sai Teja Appala</h1>
+      <p>
+        <strong>Senior Oracle PaaS Consultant</strong> with over 5 years of dedicated experience in architecting, developing, and delivering highly scalable solutions on Oracle Cloud Infrastructure (OCI). I specialize in driving the digital transformation journey of large enterprises, focusing on creating robust applications using <strong>Oracle Visual Builder (VBCS)</strong>, <strong>Integration Cloud (OIC)</strong>, <strong>Autonomous Transaction Processing (ATP)</strong>, and <strong>BI Publisher</strong>. My career has centered on building cloud-native platforms that streamline business processes and foster automation at scale.
+      </p>
+      <p>
+        At Deloitte, I led cross-functional teams to deliver enterprise-grade timecard solutions, advanced job assignment automation, and seamless ERP integrations—achieving up to 60% reduction in manual workloads and 80% faster business cycle times. My experience spans not only designing secure REST and SOAP integrations but also optimizing finance, procurement, and analytics operations for maximum business impact. Recognized for my ability to bridge technical and functional teams, I am passionate about cloud strategy, platform reliability, and mentoring upcoming tech talent. Beyond project delivery, I invest in continuous learning, keep up with Redwood design, and advocate for building intuitive and accessible enterprise UIs.
+      </p>
+      <div class="skills">
+        <span class="skill-chip">Oracle VBCS</span>
+        <span class="skill-chip">OIC</span>
+        <span class="skill-chip">PL/SQL</span>
+        <span class="skill-chip">REST/SOAP APIs</span>
+        <span class="skill-chip">BI Publisher</span>
+        <span class="skill-chip">ATP</span>
+        <span class="skill-chip">Automation</span>
+        <span class="skill-chip">UI/UX Design</span>
+        <span class="skill-chip">Cloud ERP</span>
+        <span class="skill-chip">Oracle Redwood</span>
+      </div>
+      <!-- ... Rest of your info ... -->
+       <h2>Certifications</h2>
+    <ul>
+      <li>Oracle Cloud Platform Application Integration Specialist</li>
+      <li>Oracle Autonomous Database Cloud 2019 Specialist</li>
+      <li>Scrum Fundamentals Certified</li>
+    </ul>
+    <h2>Recent Projects</h2>
+    <ul>
+      <li><strong>Timecard Automation Platform</strong>: Built for a Fortune 500 client, automating PO, approval, and receipting flows via VBCS and OIC.</li>
+      <li><strong>Job Assignment Suite</strong>: Dynamic Redwood-based application for managing 15,000+ assignments per year using ATP and BI Reports.</li>
+      <li><strong>Fusion Test Automation Framework</strong>: Led UAT automation across Oracle Fusion modules, reducing cycles by 40%.</li>
+    </ul>
+    <h2>Key Achievements</h2>
+    <ul>
+      <li>Enabled a 60% reduction in manual reconciliation with automated job management (handled 15,000+ assignments annually)</li>
+      <li>Rolled out supplier-facing platforms now adopted by 50+ vendors in 6 countries</li>
+      <li>Awarded two “Outstanding” and one “Diamond” for leadership in enterprise automation</li>
+    </ul>
+    <h2>Leadership & Campus Roles</h2>
+    <ul>
+      <li>Secretary General, Alumni Association, NIT Andhra Pradesh</li>
+      <li>Social Networking Head, DSC Google Developers</li>
+      <li>TEDx NIT AP Branding Lead, Vulcanzy Fest Hospitality Head</li>
+      <li>Nodal Officer, NIT Conclave</li>
+    </ul>
+    <h2>Professional Interests</h2>
+    <ul>
+      <li>Cloud architecture, Oracle integrations, Redwood UI/UX</li>
+      <li>Automation, analytics, and enterprise productivity</li>
+      <li>Mentoring, tech communities, and business transformation</li>
+    </ul>
+    <div class="links">
+      <a href="resume.pdf" target="_blank">View Resume</a>
+      <a href="mailto:saitejaappala@gmail.com">Email</a>
+      <a href="https://github.com/saitejaappala" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/saitejaappala/" target="_blank">LinkedIn</a>
+      <a href="https://redwood.oracle.com/" target="_blank">Redwood Design</a>
+    </div>
+  </div>
+</div>
