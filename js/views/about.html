@@ -1,89 +1,464 @@
-<!--
- Copyright (c) 2014, 2025, Oracle and/or its affiliates.
- Licensed under The Universal Permissive License (UPL), Version 1.0
- as shown at https://oss.oracle.com/licenses/upl/
--->
 <style>
-.about-container {
-  max-width: 900px;
-  margin: 32px auto 0 auto;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 32px 0 rgba(35, 38, 59, 0.08);
-  padding: 40px 32px 32px 32px;
-  color: #222;
+:root {
+  --rw-dark:      #22272B;
+  --rw-red:       #C74634;
+  --rw-red-light: #FFF5F3;
+  --rw-red-mid:   #F5C5BA;
+  --rw-red-deep:  #9B2915;
+  --rw-bg:        #F6F6F6;
+  --rw-surface:   #FFFFFF;
+  --rw-border:    #E8DED9;
+  --rw-text:      #22272B;
+  --rw-muted:     #737373;
+  --rw-shadow:    0 4px 20px rgba(0,0,0,0.07);
+  --rw-shadow-lg: 0 8px 36px rgba(199,70,52,0.12);
 }
-.about-title {
-  font-size: 2.3rem;
-  font-weight: 800;
-  color: #b22b19;
-  margin-bottom: 8px;
-}
-.about-bio {
-  font-size: 1.14rem;
-  color: #434343;
-  margin-bottom: 18px;
-  line-height: 1.7;
-}
-.hobbies-section {
-  margin-top: 24px;
-}
-.hobbies-title {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #8f2e13;
-  margin-bottom: 10px;
-}
-.hobby-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
-  margin-top: 10px;
-}
-.hobby-chip {
-  display: flex;
-  align-items: center;
-  padding: 7px 17px;
-  border-radius: 14px;
-  background: #f5e4db;
-  color: #753d14;
-  font-weight: 500;
-  font-size: 1.09rem;
-  box-shadow: 0 2px 6px 0 rgba(70,30,10,0.04);
-}
-.hobby-chip .emoji {
-  margin-right: 9px;
-  font-size: 1.3em;
-}
-@media (max-width: 600px) {
-  .about-container {
-    padding: 18px 8px;
-  }
-  .about-title {
-    font-size: 1.3rem;
-  }
-  .hobbies-title {
-    font-size: 1.07rem;
-  }
-}
+.abt3-page { max-width:1100px; margin:0 auto; padding:36px 24px 64px; font-family:'Inter','Segoe UI',Arial,sans-serif; color:var(--rw-text); }
+.abt3-section-lbl { font-size:0.7rem; text-transform:uppercase; letter-spacing:1.2px; color:var(--rw-muted); font-weight:700; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--rw-border); }
+.abt3-grid { display:grid; grid-template-columns:300px 1fr; gap:22px; align-items:flex-start; }
+@media(max-width:900px){ .abt3-grid { grid-template-columns:1fr; } }
+.abt3-col-left { display:flex; flex-direction:column; gap:18px; }
+.abt3-col-right { display:flex; flex-direction:column; gap:18px; }
+.abt3-card { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; padding:24px; box-shadow:var(--rw-shadow); }
+
+/* ── ID CARD ── */
+.abt3-id-card { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; overflow:hidden; box-shadow:var(--rw-shadow); text-align:center; }
+.abt3-id-header { background:var(--rw-red-light); border-bottom:1px solid var(--rw-red-mid); padding:28px 20px 22px; }
+.abt3-id-header img { width:110px; height:110px; border-radius:50%; object-fit:cover; border:3px solid var(--rw-red); display:block; margin:0 auto; }
+.abt3-id-body { padding:18px 20px 22px; }
+.abt3-id-name { font-size:1.2rem; font-weight:900; color:var(--rw-dark); margin:0 0 3px; }
+.abt3-id-role { font-size:0.85rem; color:var(--rw-red); font-weight:700; margin-bottom:3px; display:block; }
+.abt3-id-company { font-size:0.8rem; color:var(--rw-muted); margin-bottom:16px; display:block; }
+.abt3-id-open { display:inline-flex; align-items:center; gap:5px; background:#F0FBF6; border:1px solid #A3D9B8; border-radius:20px; padding:4px 12px; font-size:0.72rem; font-weight:700; color:#1A7A45; margin-bottom:14px; }
+.abt3-id-dot { width:8px; height:8px; border-radius:50%; background:#22C55E; animation:abt3Pulse 2s ease-in-out infinite; }
+@keyframes abt3Pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
+.abt3-id-links { display:flex; flex-direction:column; gap:7px; }
+.abt3-id-link { display:flex; align-items:center; justify-content:center; gap:7px; padding:8px 14px; border-radius:7px; font-size:0.82rem; font-weight:700; text-decoration:none; transition:all 0.18s; border:1px solid; }
+.abt3-id-link:hover { transform:translateX(2px); }
+.abt3-link-primary { background:var(--rw-red); border-color:var(--rw-red); color:#fff !important; }
+.abt3-link-primary:hover { background:var(--rw-red-deep); color:#fff !important; }
+.abt3-link-secondary { background:var(--rw-bg); border-color:var(--rw-border); color:var(--rw-text); }
+.abt3-link-secondary:hover { border-color:var(--rw-red); color:var(--rw-red); }
+
+/* ── SKILL BARS ── */
+.abt3-skill-row { margin-bottom:12px; }
+.abt3-skill-name { font-size:0.82rem; font-weight:600; color:var(--rw-text); display:flex; justify-content:space-between; margin-bottom:5px; }
+.abt3-skill-pct { color:var(--rw-red); font-weight:800; }
+.abt3-skill-bar { height:5px; background:#F0E8E5; border-radius:3px; overflow:hidden; }
+.abt3-skill-fill { height:100%; background:linear-gradient(90deg,var(--rw-red),#E87A6A); border-radius:3px; }
+
+/* ── AI CHAT WIDGET ── */
+.abt3-bot-card { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; overflow:hidden; box-shadow:var(--rw-shadow); }
+.abt3-bot-header { background:var(--rw-surface); border-bottom:1px solid var(--rw-border); padding:14px 18px; display:flex; align-items:center; gap:10px; }
+.abt3-bot-avatar { width:34px; height:34px; border-radius:50%; background:var(--rw-red); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; position:relative; }
+.abt3-bot-online { position:absolute; bottom:0; right:0; width:9px; height:9px; border-radius:50%; background:#22C55E; border:2px solid #fff; }
+.abt3-bot-name { font-size:0.9rem; font-weight:800; color:var(--rw-dark); }
+.abt3-bot-sub { font-size:0.7rem; color:var(--rw-muted); }
+.abt3-bot-msgs { padding:14px 16px; height:200px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
+.abt3-bot-msgs::-webkit-scrollbar { width:4px; }
+.abt3-bot-msgs::-webkit-scrollbar-thumb { background:var(--rw-red-mid); border-radius:2px; }
+.abt3-msg { max-width:88%; padding:9px 13px; border-radius:12px; font-size:0.8rem; line-height:1.5; }
+.abt3-msg-bot { background:var(--rw-red-light); border:1px solid var(--rw-red-mid); color:var(--rw-text); align-self:flex-start; border-radius:4px 12px 12px 12px; }
+.abt3-msg-user { background:var(--rw-red); color:#fff; align-self:flex-end; border-radius:12px 4px 12px 12px; }
+.abt3-typing-msg { display:flex; gap:4px; align-items:center; padding:8px 12px; background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:4px 12px 12px 12px; width:fit-content; align-self:flex-start; }
+.abt3-typing-msg span { width:5px; height:5px; border-radius:50%; background:var(--rw-red); animation:abt3Dot 1.2s ease-in-out infinite; display:inline-block; }
+.abt3-typing-msg span:nth-child(2) { animation-delay:0.2s; }
+.abt3-typing-msg span:nth-child(3) { animation-delay:0.4s; }
+@keyframes abt3Dot { 0%,80%,100%{ transform:scale(0.6); opacity:0.4; } 40%{ transform:scale(1); opacity:1; } }
+.abt3-bot-qs { padding:10px 14px 14px; display:flex; flex-direction:column; gap:5px; border-top:1px solid var(--rw-border); }
+.abt3-bot-q { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:7px; padding:7px 12px; font-size:0.75rem; color:var(--rw-text); cursor:pointer; transition:all 0.18s; text-align:left; width:100%; font-family:inherit; }
+.abt3-bot-q:hover { background:var(--rw-red-light); border-color:var(--rw-red-mid); color:var(--rw-red-deep); }
+
+/* ── SUMMARY ── */
+.abt3-summary p { font-size:0.95rem; line-height:1.75; color:#4a4a4a; margin:0; }
+
+/* ── TIMELINE ── */
+.abt3-timeline { display:flex; flex-direction:column; }
+.abt3-tl-company { display:flex; align-items:center; gap:12px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--rw-border); }
+.abt3-tl-company-badge { width:40px; height:40px; border-radius:8px; background:var(--rw-dark); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.85rem; font-weight:900; flex-shrink:0; }
+.abt3-tl-company-name { font-size:1rem; font-weight:800; color:var(--rw-dark); }
+.abt3-tl-company-meta { font-size:0.77rem; color:var(--rw-muted); margin-top:1px; }
+.abt3-tl-item { display:flex; gap:16px; padding-bottom:20px; }
+.abt3-tl-item:last-child { padding-bottom:0; }
+.abt3-tl-left { display:flex; flex-direction:column; align-items:center; width:32px; flex-shrink:0; }
+.abt3-tl-dot { width:11px; height:11px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+.abt3-tl-dot-active { background:var(--rw-red); box-shadow:0 0 0 3px rgba(199,70,52,0.15); }
+.abt3-tl-dot-past { background:#D0C8C4; }
+.abt3-tl-line { flex:1; width:1px; background:var(--rw-border); margin-top:5px; }
+.abt3-tl-item:last-child .abt3-tl-line { display:none; }
+.abt3-tl-period { font-size:0.7rem; color:var(--rw-red); font-weight:700; text-transform:uppercase; letter-spacing:0.4px; }
+.abt3-tl-tenure { display:inline-block; font-size:0.68rem; color:var(--rw-muted); font-weight:500; margin-left:6px; text-transform:none; letter-spacing:0; }
+.abt3-tl-title { font-size:0.95rem; font-weight:800; color:var(--rw-dark); margin:2px 0 1px; }
+.abt3-tl-org { font-size:0.8rem; color:var(--rw-muted); margin-bottom:5px; }
+.abt3-tl-desc { font-size:0.82rem; color:#555; line-height:1.55; }
+
+/* ── EDUCATION ── */
+.abt3-edu { display:flex; flex-direction:column; gap:14px; }
+.abt3-edu-item { display:flex; gap:14px; align-items:flex-start; padding:14px; background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:10px; transition:all 0.2s; }
+.abt3-edu-item:hover { border-color:var(--rw-red-mid); background:var(--rw-red-light); }
+.abt3-edu-badge { width:42px; height:42px; border-radius:8px; background:var(--rw-red); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.65rem; font-weight:900; flex-shrink:0; text-align:center; line-height:1.2; }
+.abt3-edu-inst { font-size:0.92rem; font-weight:800; color:var(--rw-dark); margin-bottom:2px; }
+.abt3-edu-degree { font-size:0.8rem; color:var(--rw-red); font-weight:700; margin-bottom:2px; }
+.abt3-edu-period { font-size:0.74rem; color:var(--rw-muted); }
+
+/* ── CERTS ── */
+.abt3-cert-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+@media(max-width:700px){ .abt3-cert-grid { grid-template-columns:1fr 1fr; } }
+.abt3-cert-item { background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:10px; padding:14px 12px; text-align:center; transition:box-shadow 0.2s; }
+.abt3-cert-item:hover { box-shadow:var(--rw-shadow-lg); }
+.abt3-cert-icon { width:40px; height:40px; border-radius:8px; background:var(--rw-red); display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.68rem; font-weight:900; margin:0 auto 10px; line-height:1.2; }
+.abt3-cert-name { font-size:0.82rem; color:var(--rw-dark); font-weight:700; display:block; }
+.abt3-cert-sub { font-size:0.7rem; color:var(--rw-muted); }
+
+/* ── GOALS ── */
+.abt3-goals { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.abt3-goal { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:10px; padding:16px; transition:all 0.2s; }
+.abt3-goal:hover { border-color:var(--rw-red-mid); background:var(--rw-red-light); }
+.abt3-goal-icon { font-size:1.4rem; margin-bottom:7px; }
+.abt3-goal-title { font-size:0.85rem; font-weight:800; color:var(--rw-dark); margin-bottom:3px; }
+.abt3-goal-desc { font-size:0.76rem; color:var(--rw-muted); line-height:1.5; }
+
+/* ── LEADERSHIP ── */
+.abt3-leadership { display:flex; flex-direction:column; gap:9px; }
+.abt3-lead-item { display:flex; align-items:flex-start; gap:11px; padding:11px 14px; background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:9px; transition:all 0.2s; }
+.abt3-lead-item:hover { border-color:var(--rw-red-mid); background:var(--rw-red-light); }
+.abt3-lead-dot { width:7px; height:7px; border-radius:50%; background:var(--rw-red); flex-shrink:0; margin-top:5px; }
+.abt3-lead-text { font-size:0.84rem; color:var(--rw-text); font-weight:600; line-height:1.45; }
+.abt3-lead-sub { font-size:0.74rem; color:var(--rw-muted); font-weight:400; }
+
+/* ── PROFESSIONAL INTERESTS ── */
+.abt3-interests { display:flex; flex-wrap:wrap; gap:9px; }
+.abt3-interest-pill { display:inline-flex; align-items:center; gap:6px; background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:8px; padding:7px 13px; font-size:0.8rem; font-weight:600; color:var(--rw-text); transition:all 0.2s; }
+.abt3-interest-pill:hover { border-color:var(--rw-red-mid); background:var(--rw-red-light); color:var(--rw-red-deep); }
+.abt3-interest-dot { width:6px; height:6px; border-radius:50%; background:var(--rw-red); flex-shrink:0; }
+
+/* ── CAMPUS LIFE ── */
+.abt3-campus-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:600px){ .abt3-campus-grid { grid-template-columns:1fr; } }
+.abt3-campus-item { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:10px; padding:16px; transition:all 0.2s; }
+.abt3-campus-item:hover { border-color:var(--rw-red-mid); background:var(--rw-red-light); }
+.abt3-campus-icon { font-size:1.3rem; margin-bottom:7px; }
+.abt3-campus-title { font-size:0.85rem; font-weight:800; color:var(--rw-dark); margin-bottom:2px; line-height:1.3; }
+.abt3-campus-org { font-size:0.7rem; color:var(--rw-red); font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-bottom:6px; }
+.abt3-campus-desc { font-size:0.77rem; color:var(--rw-muted); line-height:1.55; }
+.abt3-campus-intro { font-size:0.88rem; color:#4a4a4a; line-height:1.7; margin-bottom:16px; text-align:justify; }
+
+/* ── HOBBIES ── */
+.abt3-hobbies { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+.abt3-hobby { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:10px; padding:14px 8px; text-align:center; transition:all 0.2s; cursor:default; }
+.abt3-hobby:hover { border-color:var(--rw-red-mid); background:var(--rw-red-light); transform:translateY(-2px); box-shadow:var(--rw-shadow-lg); }
+.abt3-hobby-icon { font-size:1.6rem; display:block; margin-bottom:5px; }
+.abt3-hobby-label { font-size:0.7rem; font-weight:700; color:var(--rw-dark); text-transform:uppercase; letter-spacing:0.4px; line-height:1.3; }
+.abt3-hobby-tagline { font-size:0.65rem; color:var(--rw-muted); margin-top:3px; line-height:1.3; font-style:italic; }
+
+/* ── PHOTO TEASER ── */
+.abt3-teaser-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+.abt3-teaser-img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; display:block; transition:transform 0.25s; }
+.abt3-teaser-img:hover { transform:scale(1.03); }
+.abt3-teaser-link { display:flex; align-items:center; justify-content:center; gap:8px; background:var(--rw-red); color:#fff !important; text-decoration:none; padding:10px 0; border-radius:9px; font-size:0.82rem; font-weight:700; transition:background 0.18s; }
+.abt3-teaser-link:hover { background:var(--rw-red-deep); }
+
 </style>
 
-<div class="about-container">
-  <div class="about-title">About Me</div>
-  <div class="about-bio">
-    Hi, I'm <strong>Sai Teja Appala</strong>—a passionate techie, explorer, and lifelong learner. I thrive on solving real-world problems, collaborating with diverse teams, and continuously seeking new experiences outside of work. When I’m not building cloud solutions, you’ll find me wandering new places, riding my bike, or strategizing my next chess move.
-  </div>
+<div class="abt3-page">
+  <div class="abt3-grid">
 
-  <div class="hobbies-section">
-    <div class="hobbies-title">My Hobbies & Interests</div>
-    <div class="hobby-chips">
-      <span class="hobby-chip"><span class="emoji">🌏</span> Travelling</span>
-      <span class="hobby-chip"><span class="emoji">🏍️</span> Bike Rides</span>
-      <span class="hobby-chip"><span class="emoji">♟️</span> Chess</span>
-      <span class="hobby-chip"><span class="emoji">🏊‍♂️</span> Swimming</span>
-      <span class="hobby-chip"><span class="emoji">🍜</span> Street Food</span>
-      <span class="hobby-chip"><span class="emoji">🎬</span> Web Series & Movies</span>
-      <span class="hobby-chip"><span class="emoji">🤝</span> Meeting New People</span>
+    <!-- LEFT COLUMN -->
+    <div class="abt3-col-left">
+
+      <!-- ID CARD -->
+      <div class="abt3-id-card">
+        <div class="abt3-id-header">
+          <img src="css/images/SAITEJA.jpg" alt="Sai Teja Appala" />
+        </div>
+        <div class="abt3-id-body">
+          <div class="abt3-id-name">Sai Teja Appala</div>
+          <span class="abt3-id-role">Senior Oracle PaaS Consultant</span>
+          <span class="abt3-id-company">Deloitte · Hyderabad, India</span>
+          <div class="abt3-id-open"><span class="abt3-id-dot"></span> Open to Opportunities</div>
+          <div class="abt3-id-links">
+            <a class="abt3-id-link abt3-link-primary" href="css/images/Sai Teja Appala Resume.pdf" target="_blank">📄 View Resume</a>
+            <a class="abt3-id-link abt3-link-secondary" href="https://www.linkedin.com/in/saitejaappala/" target="_blank">🔗 LinkedIn</a>
+            <a class="abt3-id-link abt3-link-secondary" href="mailto:saitejaappala@gmail.com">✉️ Email</a>
+            <a class="abt3-id-link abt3-link-secondary" href="https://github.com/saitejaappala" target="_blank">⌥ GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Technical Proficiency</div>
+        <div class="abt3-skill-row"><div class="abt3-skill-name">Oracle VBCS <span class="abt3-skill-pct">85%</span></div><div class="abt3-skill-bar"><div class="abt3-skill-fill" style="width:95%"></div></div></div>
+        <div class="abt3-skill-row"><div class="abt3-skill-name">OIC / Integration <span class="abt3-skill-pct">75%</span></div><div class="abt3-skill-bar"><div class="abt3-skill-fill" style="width:92%"></div></div></div>
+        <div class="abt3-skill-row"><div class="abt3-skill-name">PL/SQL &amp; ATP <span class="abt3-skill-pct">85%</span></div><div class="abt3-skill-bar"><div class="abt3-skill-fill" style="width:88%"></div></div></div>
+        <div class="abt3-skill-row"><div class="abt3-skill-name">BI Publisher <span class="abt3-skill-pct">85%</span></div><div class="abt3-skill-bar"><div class="abt3-skill-fill" style="width:85%"></div></div></div>
+        <div class="abt3-skill-row"><div class="abt3-skill-name">Oracle Fusion ERP <span class="abt3-skill-pct">75%</span></div><div class="abt3-skill-bar"><div class="abt3-skill-fill" style="width:80%"></div></div></div>
+        <div class="abt3-skill-row"><div class="abt3-skill-name">Oracle JET / Redwood <span class="abt3-skill-pct">85%</span></div><div class="abt3-skill-bar"><div class="abt3-skill-fill" style="width:78%"></div></div></div>
+      </div>
+
+      <!-- SAIBOT -->
+      <div class="abt3-bot-card">
+        <div class="abt3-bot-header">
+          <div class="abt3-bot-avatar">🤖<div class="abt3-bot-online"></div></div>
+          <div>
+            <div class="abt3-bot-name">SaiBot</div>
+            <div class="abt3-bot-sub">Oracle Cloud AI Agent · Online</div>
+          </div>
+        </div>
+        <div class="abt3-bot-msgs" id="abt3BotMsgs">
+          <div class="abt3-msg abt3-msg-bot">Hi! I'm SaiBot. Ask me anything about Sai Teja's expertise 👋</div>
+        </div>
+        <div class="abt3-bot-qs">
+          <button class="abt3-bot-q" onclick="abt3Ask(this,'What is your specialization?')">💡 What is your specialization?</button>
+          <button class="abt3-bot-q" onclick="abt3Ask(this,'Tell me about a key project')">📦 Tell me about a key project</button>
+          <button class="abt3-bot-q" onclick="abt3Ask(this,'What is your SME goal?')">🎯 What is your SME goal?</button>
+          <button class="abt3-bot-q" onclick="abt3Ask(this,'Why VBCS over other frameworks?')">🔍 Why VBCS over other tools?</button>
+        </div>
+      </div>
+
+      <!--
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Certifications</div>
+        <div class="abt3-cert-grid">
+          <div class="abt3-cert-item"><div class="abt3-cert-icon">OCI</div><strong class="abt3-cert-name">Cloud Platform</strong><span class="abt3-cert-sub">App Integration Specialist</span></div>
+          <div class="abt3-cert-item"><div class="abt3-cert-icon">ADB</div><strong class="abt3-cert-name">Autonomous DB</strong><span class="abt3-cert-sub">Cloud 2019 Specialist</span></div>
+          <div class="abt3-cert-item"><div class="abt3-cert-icon">SCR</div><strong class="abt3-cert-name">Scrum</strong><span class="abt3-cert-sub">Fundamentals Certified</span></div>
+        </div>
+      </div>
+      -->
+
+      <!-- SME GOALS -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">SME Goals</div>
+        <div class="abt3-goals">
+          <div class="abt3-goal"><div class="abt3-goal-icon">🧠</div><div class="abt3-goal-title">Oracle Cloud SME</div><div class="abt3-goal-desc">Deep domain authority across VBCS, OIC, ATP, and ERP Cloud</div></div>
+          <div class="abt3-goal"><div class="abt3-goal-icon">📣</div><div class="abt3-goal-title">Thought Leadership</div><div class="abt3-goal-desc">Publishing architecture patterns for the Oracle community</div></div>
+          <div class="abt3-goal"><div class="abt3-goal-icon">🌐</div><div class="abt3-goal-title">Community Building</div><div class="abt3-goal-desc">Mentoring consultants and contributing to Oracle ecosystems</div></div>
+          <div class="abt3-goal"><div class="abt3-goal-icon">🚀</div><div class="abt3-goal-title">Platform Innovation</div><div class="abt3-goal-desc">AI-augmented Oracle Cloud delivery models at enterprise scale</div></div>
+        </div>
+      </div>
+
+      <!-- PROFESSIONAL INTERESTS -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Professional Interests</div>
+        <div class="abt3-interests">
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Cloud Architecture</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Oracle Integrations</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Redwood UI/UX</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Automation</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Analytics</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Enterprise Productivity</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Mentoring</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Tech Communities</span>
+          <span class="abt3-interest-pill"><span class="abt3-interest-dot"></span>Business Transformation</span>
+        </div>
+      </div>
+
+      <!-- BEYOND THE OFFICE -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Beyond the Office</div>
+        <div class="abt3-hobbies">
+          <div class="abt3-hobby">
+            <span class="abt3-hobby-icon">🌏</span>
+            <div class="abt3-hobby-label">Travelling</div>
+            <div class="abt3-hobby-tagline">New cities, new perspectives</div>
+          </div>
+          <div class="abt3-hobby">
+            <span class="abt3-hobby-icon">🏍️</span>
+            <div class="abt3-hobby-label">Bike Rides</div>
+            <div class="abt3-hobby-tagline">Weekend escapes on two wheels</div>
+          </div>
+          <div class="abt3-hobby">
+            <span class="abt3-hobby-icon">♟️</span>
+            <div class="abt3-hobby-label">Chess</div>
+            <div class="abt3-hobby-tagline">Strategy over speed</div>
+          </div>
+          <div class="abt3-hobby">
+            <span class="abt3-hobby-icon">🏊‍♂️</span>
+            <div class="abt3-hobby-label">Swimming</div>
+            <div class="abt3-hobby-tagline">Early morning clarity</div>
+          </div>
+          <div class="abt3-hobby">
+            <span class="abt3-hobby-icon">🍜</span>
+            <div class="abt3-hobby-label">Street Food</div>
+            <div class="abt3-hobby-tagline">The real culture tour</div>
+          </div>
+          <div class="abt3-hobby">
+            <span class="abt3-hobby-icon">🎬</span>
+            <div class="abt3-hobby-label">Web Series &amp; Movies</div>
+            <div class="abt3-hobby-tagline">Good stories, great evenings</div>
+          </div>
+          <div class="abt3-hobby">
+            <span class="abt3-hobby-icon">🤝</span>
+            <div class="abt3-hobby-label">Meeting People</div>
+            <div class="abt3-hobby-tagline">Every conversation teaches</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="abt3-col-right">
+
+      <!-- SUMMARY -->
+      <div class="abt3-card abt3-summary">
+        <div class="abt3-section-lbl">Executive Summary</div>
+        <p>I'm a Senior Oracle Cloud Consultant at Deloitte — but the story started long before the job title. Growing up with a deep curiosity for how technology shapes the way organisations work, I pursued Computer Science at NIT Andhra Pradesh, where four years of study ran parallel to four years of building things from scratch: alumni networks, TEDx events, Google Developer communities, and inter-college conclaves. That experience of making complex things happen with people is something I carry directly into my work today.</p>
+        <p style="margin-top:12px;">Since joining Deloitte in 2020, I've focused on one discipline with real depth — Oracle Cloud PaaS. I build VBCS applications that replace what standard Oracle can't deliver, design OIC integrations that connect fragmented enterprise systems, author BI Publisher and OTBI reports that transform how Finance and Procurement teams make decisions, and write the PL/SQL and Unix automation that keeps everything running reliably behind the scenes. What drives me isn't the technology itself — it's the gap between what Oracle ships out of the box and what businesses actually need. My best work lives in that gap.</p>
+        <p style="margin-top:12px;">Currently pursuing an MBA in Business Analytics at BITS Pilani alongside my work at Deloitte — because I believe the next frontier for Oracle Cloud consultants isn't just technical depth, it's the ability to translate platform capability into strategic business value. Open to senior roles and leadership opportunities where I can keep building at that intersection.</p>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Experience</div>
+        <div class="abt3-timeline">
+          <!-- Company header -->
+          <div class="abt3-tl-company">
+            <div class="abt3-tl-company-badge">D.</div>
+            <div>
+              <div class="abt3-tl-company-name">Deloitte</div>
+              <div class="abt3-tl-company-meta">Full-time · 5 yrs 9 mos · Hyderabad, Telangana, India</div>
+            </div>
+          </div>
+          <!-- Senior Consultant -->
+          <div class="abt3-tl-item">
+            <div class="abt3-tl-left"><div class="abt3-tl-dot abt3-tl-dot-active"></div><div class="abt3-tl-line"></div></div>
+            <div>
+              <div class="abt3-tl-period">May 2026 – Present <span class="abt3-tl-tenure">· 1 mo</span></div>
+              <div class="abt3-tl-title">Senior Consultant</div>
+              <div class="abt3-tl-org">Hybrid · Oracle Integration Cloud (OIC), Oracle BI &amp; OTBI Reports</div>
+              <div class="abt3-tl-desc">Leading the Reports and Extensions Track on Oracle Cloud programs for Fortune 500 clients. Owning delivery of VBCS applications, OIC integrations, BI Publisher reports, and PL/SQL extensions. Technical lead on the Program Setup PaaS application — custom-built to replace the standard Oracle Program page with 40+ field validations, full audit history, and advanced search across Parent, Child, and Standalone programs.</div>
+            </div>
+          </div>
+          <!-- Consultant -->
+          <div class="abt3-tl-item">
+            <div class="abt3-tl-left"><div class="abt3-tl-dot abt3-tl-dot-past"></div><div class="abt3-tl-line"></div></div>
+            <div>
+              <div class="abt3-tl-period">Jun 2023 – May 2026 <span class="abt3-tl-tenure">· 3 yrs</span></div>
+              <div class="abt3-tl-title">Consultant</div>
+              <div class="abt3-tl-org">Hybrid · Oracle Database, SOAP, REST APIs, VBCS, OIC</div>
+              <div class="abt3-tl-desc">Architected OIC integrations and led full-cycle VBCS builds across Finance and Procurement. Delivered complex VBCS apps including the Job Assignment Suite managing 15,000+ assignments per year. Drove BI Publisher reporting and contributed to UAT automation frameworks cutting cycle times by 40%.</div>
+            </div>
+          </div>
+          <!-- Analyst -->
+          <div class="abt3-tl-item">
+            <div class="abt3-tl-left"><div class="abt3-tl-dot abt3-tl-dot-past"></div></div>
+            <div>
+              <div class="abt3-tl-period">Sep 2020 – May 2023 <span class="abt3-tl-tenure">· 2 yrs 9 mos</span></div>
+              <div class="abt3-tl-title">Analyst</div>
+              <div class="abt3-tl-org">Hybrid · Oracle Database, SOAP, REST APIs, PL/SQL</div>
+              <div class="abt3-tl-desc">Built foundational expertise in Oracle PL/SQL, REST/SOAP integrations, and VBCS fundamentals. Delivered real outcomes from day one — contributing to ERP implementations across Finance and Procurement modules for enterprise clients.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Education</div>
+        <div class="abt3-edu">
+          <div class="abt3-edu-item">
+            <div class="abt3-edu-badge">NIT<br/>AP</div>
+            <div>
+              <div class="abt3-edu-inst">National Institute of Technology, Andhra Pradesh</div>
+              <div class="abt3-edu-degree">B.Tech — Computer Science &amp; Engineering</div>
+              <div class="abt3-edu-period">Aug 2016 – Jul 2020</div>
+            </div>
+          <div class="abt3-edu-item">
+            <div class="abt3-edu-badge">BITS<br/>PIL</div>
+            <div>
+              <div class="abt3-edu-inst">BITS Pilani Work Integrated Learning Programmes</div>
+              <div class="abt3-edu-degree">MBA — Business Analytics</div>
+              <div class="abt3-edu-period">Jan 2025 – Dec 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAMPUS LIFE -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Campus Life · NIT Andhra Pradesh</div>
+        <p class="abt3-campus-intro">Four years at NIT Andhra Pradesh were as much about leading and building as they were about studying. I held roles across student government, tech communities, large-scale events, and inter-institute coordination — each one teaching a different dimension of how to get things done with people.</p>
+        <div class="abt3-campus-grid">
+          <div class="abt3-campus-item">
+            <div class="abt3-campus-icon">🎓</div>
+            <div class="abt3-campus-title">Secretary General</div>
+            <div class="abt3-campus-org">Alumni Association · NIT AP</div>
+            <div class="abt3-campus-desc">Led the official alumni body, managing relationships between the institute and its graduate network. Organised alumni meets, mentorship programmes, and fundraising initiatives connecting students with industry professionals.</div>
+          </div>
+          <div class="abt3-campus-item">
+            <div class="abt3-campus-icon">🔴</div>
+            <div class="abt3-campus-title">Branding Lead</div>
+            <div class="abt3-campus-org">TEDx NIT Andhra Pradesh</div>
+            <div class="abt3-campus-desc">Owned the visual identity and marketing for TEDx NIT AP — from logo design and social media campaigns to event collateral and speaker promotion. Built the brand presence that drew audiences from across the campus and beyond.</div>
+          </div>
+          <div class="abt3-campus-item">
+            <div class="abt3-campus-icon">💻</div>
+            <div class="abt3-campus-title">Social Networking Head</div>
+            <div class="abt3-campus-org">DSC Google Developers · NIT AP</div>
+            <div class="abt3-campus-desc">Managed digital presence and community outreach for the Google Developer Student Club — growing the chapter's following, coordinating tech workshops, and connecting students with Google developer resources and events.</div>
+          </div>
+          <div class="abt3-campus-item">
+            <div class="abt3-campus-icon">🎪</div>
+            <div class="abt3-campus-title">Hospitality Head</div>
+            <div class="abt3-campus-org">Vulcanzy Fest · NIT AP</div>
+            <div class="abt3-campus-desc">Managed end-to-end guest experience for NIT AP's cultural fest — coordinating accommodation, logistics, and on-ground hospitality for hundreds of participants and performers from colleges across the country.</div>
+          </div>
+          <div class="abt3-campus-item">
+            <div class="abt3-campus-icon">🏛️</div>
+            <div class="abt3-campus-title">Nodal Officer</div>
+            <div class="abt3-campus-org">NIT Conclave · NIT AP</div>
+            <div class="abt3-campus-desc">Served as the coordinating officer for the NIT Conclave, liaising between NIT AP and other National Institutes of Technology on scheduling, inter-institutional coordination, and event execution at the national level.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIFE IN PICTURES — TEASER -->
+      <div class="abt3-card">
+        <div class="abt3-section-lbl">Life in Pictures</div>
+        <div class="abt3-teaser-grid">
+          <img class="abt3-teaser-img" src="pictures/Screenshot_20260510_234248_Instagram.jpg" alt="Travel" loading="lazy">
+          <img class="abt3-teaser-img" src="pictures/Screenshot_20260510_234338_Instagram.jpg" alt="Rides" loading="lazy">
+          <img class="abt3-teaser-img" src="pictures/Screenshot_20260510_234712_Instagram.jpg" alt="Nature" loading="lazy">
+        </div>
+        <a class="abt3-teaser-link" data-oj-binding-provider="none" href="?ojr=gallery">📸 &nbsp;View all 53 photos in Gallery →</a>
+      </div>
+
     </div>
   </div>
 </div>
+
+<script>
+(function(){
+  var answers = {
+    'What is your specialization?': "I specialize in Oracle Cloud PaaS — VBCS for enterprise UIs, OIC for integration orchestration, and ATP/PL/SQL for data layers. I bridge Oracle platform capabilities and real business outcomes. 🔗",
+    'Tell me about a key project': "Program Setup Information — a custom PaaS app on Oracle VBCS that replaced the standard Oracle Program page. Supports Parent, Child, and Standalone programs with hierarchy, advanced search filters, full audit history, and 40+ cross-field validations. Data from Standard REST APIs, stored in Oracle ATP. 🏗️",
+    'What is your SME goal?': "Becoming an Oracle Cloud SME — deep technical authority, published architecture patterns, and shaping enterprise Oracle Cloud adoption. The SME tracker on the Home page shows exactly where I am on that journey. 🎯",
+    'Why VBCS over other frameworks?': "VBCS is Oracle-native, Redwood-compatible, and integrates seamlessly with OIC and Fusion. For Oracle Cloud shops it eliminates the impedance mismatch between UI and backend — and Oracle supports it long-term. ✅"
+  };
+  window.abt3Ask = function(btn, q){
+    var msgs = document.getElementById('abt3BotMsgs');
+    if(!msgs) return;
+    var uMsg = document.createElement('div');
+    uMsg.className = 'abt3-msg abt3-msg-user';
+    uMsg.textContent = q;
+    msgs.appendChild(uMsg);
+    var typing = document.createElement('div');
+    typing.className = 'abt3-typing-msg';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    btn.disabled = true;
+    setTimeout(function(){
+      typing.remove();
+      var bMsg = document.createElement('div');
+      bMsg.className = 'abt3-msg abt3-msg-bot';
+      bMsg.textContent = answers[q] || "Great question! Reach out at saitejaappala@gmail.com for more. 📬";
+      msgs.appendChild(bMsg);
+      msgs.scrollTop = msgs.scrollHeight;
+      btn.disabled = false;
+    }, 1100);
+  };
+})();
+</script>

@@ -1,460 +1,262 @@
-<!-- work.html -->
- <style>
-  .rdw-content-wrapper {
-    max-width: 1200px;
-    margin: 40px auto 0 auto;         /* Top, auto left/right, no bottom */
-    padding: 36px 36px 48px 36px;     /* Top, right, bottom, left */
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 32px 0 rgba(35, 38, 59, 0.09);
-  }
-  .rdw-section {
-    margin-bottom: 36px;
-  }
-  .rdw-flex {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .rdw-col {
-    flex: 1 1 400px;
-    min-width: 320px;
-  }
-  .rdw-chart-area,
-  .rdw-table-area {
-    margin-top: 24px;
-    margin-bottom: 24px;
-  }
-  /* Responsive: stack on narrow screens */
-  @media (max-width: 900px) {
-    .rdw-content-wrapper {
-      padding: 16px 4vw 32px 4vw;
-    }
-    .rdw-flex {
-      flex-direction: column;
-      gap: 18px;
-    }
-  }
-  .info-tile p {
-  font-size: 1.08rem;
-  margin: 13px 0 2px 0;
-  line-height: 1.58;
-  text-align: justify;
+<style>
+:root {
+  --rw-dark:#22272B; --rw-red:#C74634; --rw-red-light:#FFF5F3; --rw-red-mid:#F5C5BA;
+  --rw-red-deep:#9B2915; --rw-bg:#F6F6F6; --rw-surface:#FFFFFF; --rw-border:#E8DED9;
+  --rw-text:#22272B; --rw-muted:#737373; --rw-shadow:0 4px 20px rgba(0,0,0,0.07);
+  --rw-shadow-lg:0 8px 36px rgba(199,70,52,0.12);
 }
+.wrk3-page { max-width:1200px; margin:0 auto; padding:36px 24px 64px; font-family:'Inter','Segoe UI',Arial,sans-serif; color:var(--rw-text); }
+.wrk3-header { margin-bottom:28px; }
+.wrk3-title { font-size:1.7rem; font-weight:900; color:var(--rw-dark); margin:0 0 4px; }
+.wrk3-sub { font-size:0.93rem; color:var(--rw-muted); }
+.wrk3-section-lbl { font-size:0.7rem; text-transform:uppercase; letter-spacing:1.2px; color:var(--rw-muted); font-weight:700; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--rw-border); }
+
+/* ── IMPACT ── */
+.wrk3-impact { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:28px; }
+@media(max-width:700px){ .wrk3-impact { grid-template-columns:1fr 1fr; } }
+.wrk3-impact-item { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:12px; padding:20px 16px; text-align:center; box-shadow:var(--rw-shadow); transition:box-shadow 0.2s,transform 0.2s; }
+.wrk3-impact-item:hover { box-shadow:var(--rw-shadow-lg); transform:translateY(-2px); }
+.wrk3-impact-num { font-size:1.8rem; font-weight:900; color:var(--rw-red); }
+.wrk3-impact-lbl { font-size:0.7rem; color:var(--rw-muted); text-transform:uppercase; letter-spacing:0.6px; margin-top:3px; }
+
+/* ── FEATURED ── */
+.wrk3-featured { background:var(--rw-surface); border:1px solid var(--rw-border); border-left:4px solid var(--rw-red); border-radius:16px; padding:40px; margin-bottom:28px; display:grid; grid-template-columns:1fr auto; gap:36px; align-items:flex-start; box-shadow:var(--rw-shadow); }
+@media(max-width:800px){ .wrk3-featured { grid-template-columns:1fr; padding:24px; } }
+.wrk3-feat-badge { display:inline-flex; align-items:center; gap:6px; background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:20px; padding:4px 14px; font-size:0.72rem; font-weight:800; color:var(--rw-red-deep); text-transform:uppercase; letter-spacing:0.6px; margin-bottom:12px; }
+.wrk3-feat-title { font-size:1.5rem; font-weight:900; color:var(--rw-dark); margin:0 0 6px; line-height:1.25; }
+.wrk3-feat-client { font-size:0.82rem; color:var(--rw-muted); margin-bottom:16px; }
+.wrk3-feat-desc { font-size:0.92rem; line-height:1.7; color:#4a4a4a; margin-bottom:20px; text-align:justify; }
+.wrk3-pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.wrk3-feat-pill { background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:6px; padding:4px 12px; font-size:0.78rem; font-weight:700; color:var(--rw-red-deep); }
+.wrk3-tag { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:5px; padding:3px 10px; font-size:0.74rem; color:#555; font-weight:600; }
+.wrk3-feat-footer { display:flex; align-items:center; justify-content:space-between; margin-top:20px; padding-top:16px; border-top:1px solid var(--rw-border); }
+.wrk3-role-pill { background:var(--rw-dark); color:#fff; border-radius:6px; padding:4px 12px; font-size:0.74rem; font-weight:800; }
+.wrk3-duration { font-size:0.77rem; color:var(--rw-muted); }
+.wrk3-stat-box { display:flex; flex-direction:column; gap:14px; min-width:140px; }
+.wrk3-stat { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:10px; padding:14px 16px; text-align:center; }
+.wrk3-stat-num { font-size:1.6rem; font-weight:900; color:var(--rw-red); line-height:1; }
+.wrk3-stat-lbl { font-size:0.65rem; color:var(--rw-muted); text-transform:uppercase; letter-spacing:0.5px; margin-top:3px; }
+
+/* ── CARD GRID ── */
+.wrk3-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+@media(max-width:700px){ .wrk3-grid { grid-template-columns:1fr; } }
+.wrk3-card { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; padding:24px; box-shadow:var(--rw-shadow); display:flex; flex-direction:column; gap:12px; transition:all 0.22s; }
+.wrk3-card:hover { box-shadow:var(--rw-shadow-lg); border-color:var(--rw-red-mid); transform:translateY(-2px); }
+.wrk3-card-icon { width:46px; height:46px; border-radius:10px; background:var(--rw-red-light); border:1px solid var(--rw-red-mid); display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+.wrk3-card-title { font-size:1rem; font-weight:800; color:var(--rw-dark); line-height:1.3; }
+.wrk3-card-client { font-size:0.75rem; color:var(--rw-red); font-weight:700; text-transform:uppercase; letter-spacing:0.4px; }
+.wrk3-card-details { border:none; margin-top:2px; }
+.wrk3-card-details summary { font-size:0.78rem; font-weight:700; color:var(--rw-red); cursor:pointer; list-style:none; padding:4px 0; display:inline-flex; align-items:center; gap:5px; user-select:none; }
+.wrk3-card-details summary::-webkit-details-marker { display:none; }
+.wrk3-card-details summary::after { content:'↓'; font-size:0.75rem; transition:transform 0.2s; display:inline-block; }
+.wrk3-card-details[open] summary::after { transform:rotate(180deg); }
+.wrk3-card-details summary:hover { color:var(--rw-red-deep); }
+.wrk3-card-desc { font-size:0.84rem; line-height:1.65; color:var(--rw-muted); text-align:justify; padding-top:10px; }
+.wrk3-card-pills { display:flex; flex-wrap:wrap; gap:6px; }
+.wrk3-card-pill { background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:5px; padding:2px 9px; font-size:0.72rem; font-weight:700; color:var(--rw-red-deep); }
+.wrk3-card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:10px; border-top:1px solid var(--rw-border); margin-top:auto; }
+.wrk3-card-role { background:var(--rw-bg); border:1px solid var(--rw-border); color:var(--rw-text); border-radius:5px; padding:3px 9px; font-size:0.72rem; font-weight:700; }
+.wrk3-card-dur { font-size:0.72rem; color:var(--rw-muted); }
+.wrk3-light-tag { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:5px; padding:3px 10px; font-size:0.73rem; color:#555; font-weight:600; }
 </style>
 
-<div class="oj-bg-neutral-1 oj-sm-padding-8x" style="min-height:90vh;">
-  <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-md oj-padding-6x"
-       style="max-width: 1200px; margin: 0 auto;">
-    <h1 class="oj-typography-heading-xl oj-sm-margin-b-4x">Work Experience & Projects</h1>
-    
-    <!-- PROJECT 1: VBCS Timecard Automation -->
-    <oj-collapsible class="oj-sm-margin-b-4x" expanded>
-      <span slot="header">
-        <h2 class="oj-typography-heading-md oj-text-color-primary">VBCS Timecard Automation Platform</h2>
-      </span>
-      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
-        <!-- Content Tile -->
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:480px">
-          <p>
-            <strong>Background & Challenge:</strong>  
-            The VBCS Timecard Automation Platform was conceived to solve a chronic problem in professional services: the management, submission, and approval of timecards for large vendor and supplier ecosystems, particularly in organizations with highly variable billing models such as Time & Material (T&M) and Fixed Price (FP) contracts. At Deloitte, the legacy process for timecard submission involved manual spreadsheet uploads, extensive email exchanges, and slow, error-prone validations. Supplier resources would submit timecards in different formats, and project managers would spend hours each month reconciling and approving them, often resulting in delays to billing cycles and missed SLAs. The sheer volume—over 10,000 timecards per year across three business units—exacerbated the pain points.
-          </p>
-          <p>
-            <strong>Technical Approach & Solution Design:</strong>  
-            Leading the solution, I architected a full-stack application using Oracle Visual Builder Cloud Service (VBCS), ensuring a unified, web-based UI for suppliers, managers, and administrators. The project began by mapping the end-to-end business process and capturing all variations in approval flows, timecard types, compliance checks, and integration needs. I designed a multi-step wizard for timecard entry, incorporating dynamic validations based on contract type, project assignment, and period status. Using REST connectors, I seamlessly integrated with Oracle Fusion Cloud (ERP) for master data (supplier, resource, project) as well as downstream processes (invoice, payments, audits).
-          </p>
-          <p>
-            <strong>Automation & Workflow Innovation:</strong>  
-            A critical innovation was the implementation of an automated approval workflow leveraging Oracle Integration Cloud (OIC) and VBCS business rules. Upon submission, timecards would be validated in real-time, then routed via OIC to the appropriate approvers based on cost center, project, and contract type. Notifications were triggered using Oracle Notification Service APIs, and BI Publisher reports provided near-real-time audit trails for compliance and audit teams. My solution provided in-app dashboards for managers to monitor approval bottlenecks, as well as drilldowns to root causes of rejected or delayed timecards.
-          </p>
-          <p>
-            <strong>Results & Business Impact:</strong>  
-            Over the first 12 months, the platform processed 10,000+ timecards with a consistent 60% reduction in manual reconciliation. Invoice cycles, previously taking up to two weeks, dropped to under 5 days on average. Managers reported a 50% reduction in time spent on approvals. Supplier satisfaction improved due to clear error feedback and transparent processing status. Automated exception handling for non-standard timecards was implemented in a second release, further reducing back-and-forth communications. Analytics from the platform enabled finance to identify trends in overtime, non-compliance, and project-level budget overruns, supporting better decision-making at the executive level.
-          </p>
-          <p>
-            <strong>Key Features & Technology Stack:</strong>
-            <ul class="oj-list-disc oj-sm-padding-s">
-              <li>Multi-role, secure VBCS UI with self-service for suppliers and management.</li>
-              <li>Configurable approval workflows and dynamic business rules for T&M vs FP.</li>
-              <li>REST API integrations with Fusion Cloud for master data, validation, and downstream processing.</li>
-              <li>BI Publisher reporting for full compliance audit trails.</li>
-              <li>Analytics dashboard using Oracle JET charts for process visibility.</li>
-              <li>Responsive, mobile-friendly interface supporting remote supplier access.</li>
-            </ul>
-          </p>
-          <p>
-            <strong>Challenges & Learnings:</strong>  
-            Initial data quality issues required building robust transformation logic in OIC to sanitize supplier submissions. Change management was key: we ran extensive onboarding sessions for suppliers and internal teams, developed step-by-step job aids, and iteratively improved error messaging based on user feedback. Performance optimization was a priority: as transaction volumes grew, I fine-tuned REST queries, leveraged VBCS Data Provider optimizations, and designed indexes in the ATP schema for faster reporting.  
-          </p>
-          <p>
-            <strong>Reflection & Strategic Value:</strong>  
-            This project highlighted the impact of tightly coupled Oracle SaaS and PaaS solutions. By combining process automation, integration, and user-centric design, we delivered both immediate efficiency gains and a scalable platform for future growth. The project received Deloitte’s “Outstanding Automation” award and was showcased in an Oracle VBCS customer success webinar.
-          </p>
-        </div>
-        <!-- Analytics Tile -->
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
-          <oj-chart type="pie"
-            series="[[timecardPieChartSeries]]"
-            animation-on-display="auto"
-            style="height:220px; width:100%;"
-            legend.rendered="on"
-            value-label.rendered="on"
-            value-label.position="outsideSlice">
-          </oj-chart>
-          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
-            <span style="font-weight:500;">Analytics: % timecards processed via automation vs manual</span>
-          </div>
-          <br>  
-          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
-          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Implementation Challenges & Solutions</div>
-          <br>
-          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Challenges encountered and how they were addressed in this automation journey.</div>
-          <oj-table
-            aria-label="Timecard Challenges"
-            data="[[timecardChallengesDataProvider]]"
-            columns='[
-              {"headerText":"Challenge","field":"challenge"},
-              {"headerText":"Resolution","field":"resolution"}
-            ]'
-            layout="fixed"
-            display="grid"
-            style="width:100%;"
-          ></oj-table>
-        </div>
-        <br>
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
-          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Key Project Metrics</div>
-          <br>
-          <div class="oj-typography-body-sm oj-sm-margin-b-2x">This table summarizes annual volume, process improvement, and time savings delivered by the platform.</div>
-          <oj-table
-            aria-label="Timecard Project Details"
-            data="[[timecardHighlightsDataProvider]]"
-            columns='[
-              {"headerText":"Highlight","field":"highlight"},
-              {"headerText":"Impact","field":"impact"}
-            ]'
-            layout="fixed"
-            display="grid"
-            style="width:100%;"
-          ></oj-table>
-        </div>
-        </div>
-        
-      </div>
-      
-    </oj-collapsible>
+<div class="wrk3-page">
+  <div class="wrk3-header">
+    <div class="wrk3-title">Project Portfolio</div>
+    <div class="wrk3-sub">Enterprise Oracle Cloud implementations delivered across Finance, Procurement &amp; HR domains</div>
+  </div>
 
-    <!-- PROJECT 2: Job Management Apps -->
-    <oj-collapsible class="oj-sm-margin-b-4x">
-      <span slot="header">
-        <h2 class="oj-typography-heading-md oj-text-color-primary">Enterprise Job & Assignment Management</h2>
-      </span>
-      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:480px">
-          <p>
-            <strong>Project Context & Need:</strong>  
-            Managing a high-volume, high-velocity environment for job and assignment tracking is mission critical for large consulting practices and shared services organizations. The prior state was fragmented, with different business units using ad-hoc tools, disconnected spreadsheets, and manual lookups in Oracle HCM and Finance systems. The lack of unified job-assignment mapping led to reporting gaps, difficulties in headcount planning, and excessive manual rework during financial closes.
-          </p>
-          <p>
-            <strong>Solution Architecture:</strong>  
-            To address these issues, I led the design and delivery of an enterprise-grade VBCS application suite for job and assignment management. The system normalized data flows between Oracle ATP (for high-speed transactional data), Oracle Fusion HCM (for employee/job master), and BI Publisher (for audit/analytics). I defined a scalable, one-to-many table schema, capturing every job number and mapping it to multiple employee IDs and department IDs, ensuring accurate project resource allocation and departmental accountability. The front end leveraged VBCS reusable fragments and dynamic forms for rapid search, creation, and update of job/assignment records.
-          </p>
-          <p>
-            <strong>Bulk Operations & Integration:</strong>  
-            Bulk insert and update PL/SQL procedures were implemented to handle mass onboarding, job realignments, and organizational changes. JSON payload support allowed seamless integration with Oracle Integration Cloud (OIC) and third-party HR feeds. All updates triggered audit entries in a dedicated history table, enabling traceability for compliance and SOX requirements. Business rules were encoded both in VBCS (for UI validations) and in the ATP layer (for cross-object checks).
-          </p>
-          <p>
-            <strong>Results & Impact:</strong>  
-            The application handled over 5,000 jobs and 15,000 assignments with sub-second search and update. Audit traceability improved by 80%, eliminating data gaps during reconciliation cycles. End users, including HR and finance teams, benefited from real-time validation and dynamic dashboards, which reduced manual lookups by 30% and cut onboarding time for new jobs by half.  
-          </p>
-          <p>
-            <strong>Key Features & UX Innovations:</strong>
-            <ul class="oj-list-disc oj-sm-padding-s">
-              <li>Role-based dashboards (managers, admins, HR) with secure, filtered access</li>
-              <li>Editable tables for bulk update with in-place validation and row-level error handling</li>
-              <li>Dynamic search and filter capabilities for rapid lookup across large datasets</li>
-              <li>Integrated BI Publisher reports for compliance and headcount planning</li>
-              <li>Configurable notifications for assignment changes</li>
-            </ul>
-          </p>
-          <p>
-            <strong>Challenges & Solutions:</strong>  
-            Key hurdles included optimizing REST API queries for sub-second performance (using server-side pagination and indexes), aligning multiple source-of-truth systems (ATP, HCM, external feeds), and building robust error handling for partial failures during bulk operations. The project required close coordination with HR, Finance, and IT, especially to define cross-functional business rules and security.
-          </p>
-          <p>
-            <strong>Strategic Reflection:</strong>  
-            This platform transformed how job and resource planning happens—eliminating data silos, empowering self-service, and providing an extensible framework for future automation. The solution has since been extended to support new business units and integrated with workforce analytics initiatives.
-          </p>
-        </div>
-        <!-- Analytics Tile -->
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
-          <oj-chart type="bar"
-            series="[[jobMgmtBarSeries]]"
-            groups="[[jobMgmtBarGroups]]"
-            animation-on-display="auto"
-            style="height:220px; width:100%;"
-            legend.rendered="on"
-            value-label.rendered="on"
-            value-label.position="outsideBar">
-          </oj-chart>
-          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
-            <span style="font-weight:500;">Analytics: Records managed (jobs vs assignments)</span>
-          </div>
-          <br>
-          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
-          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Key Project Metrics</div>
-          <br>
-          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Volume, audit improvements, and platform reach for assignments management.</div>
-          <oj-table
-            aria-label="Job Management Project Details"
-            data="[[jobMgmtHighlightsDataProvider]]"
-            columns='[
-              {"headerText":"Highlight","field":"highlight"},
-              {"headerText":"Impact","field":"impact"}
-            ]'
-            layout="fixed"
-            display="grid"
-            style="width:100%;"
-          ></oj-table>
-        </div>
-        <br>
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
-          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Implementation Challenges & Solutions</div>
-          <br>
-          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Key hurdles in jobs/assignments management and how we overcame them.</div>
-          <oj-table
-            aria-label="Job Management Challenges"
-            data="[[jobMgmtChallengesDataProvider]]"
-            columns='[
-              {"headerText":"Challenge","field":"challenge"},
-              {"headerText":"Resolution","field":"resolution"}
-            ]'
-            layout="fixed"
-            display="grid"
-            style="width:100%;"
-          ></oj-table>
-        </div>
-          
+  <!-- IMPACT STRIP -->
+  <div class="wrk3-impact">
+    <div class="wrk3-impact-item"><div class="wrk3-impact-num">40+</div><div class="wrk3-impact-lbl">Fields Validated</div></div>
+    <div class="wrk3-impact-item"><div class="wrk3-impact-num">60%</div><div class="wrk3-impact-lbl">Manual Work Eliminated</div></div>
+    <div class="wrk3-impact-item"><div class="wrk3-impact-num">5+</div><div class="wrk3-impact-lbl">Apps Delivered</div></div>
+    <div class="wrk3-impact-item"><div class="wrk3-impact-num">40%</div><div class="wrk3-impact-lbl">Faster UAT Cycles</div></div>
+  </div>
 
-        </div>
+  <!-- FEATURED PROJECT -->
+  <div class="wrk3-featured">
+    <div>
+      <span class="wrk3-feat-badge">⭐ Flagship Delivery</span>
+      <div class="wrk3-feat-title">Program Setup — Custom PaaS Application</div>
+      <div class="wrk3-feat-client">Enterprise Client · Deloitte</div>
+      <div class="wrk3-feat-desc">The standard Oracle Program page offers limited field coverage out of the box and provides no mechanism for maintaining audit history — two requirements that were non-negotiable for the enterprise client. Rather than working around the native page's constraints, the decision was made to architect a fully custom PaaS application from the ground up. <em style="color:var(--rw-dark);font-style:normal;font-weight:700;">Program Setup Information</em> was designed and built on Oracle Visual Builder Cloud Service, replacing the standard Oracle Program page entirely and extending its capabilities to meet the business's real-world complexity. The application is structured around three distinct program types — Parent, Child, and Standalone — each with its own field configuration and validation rules. Hierarchy relationships are enforced at the data level, with Parent-to-Child linkages maintained in Oracle ATP and validated on every create and update operation to ensure the program structure remains consistent and navigable. The home page is built around an advanced filter panel, enabling programme managers and administrators to search across the full program estate using a combination of status, type, date range, responsible person, and programme-specific attributes — giving users the search precision that the standard Oracle page's basic lookup could not provide. The application exposes full View, Create, and Update workflows at the program level. The create and update forms span 40+ fields, covering programme metadata, scheduling information, financial associations, and people-related data. People fields — including Programme Manager, Senior Responsible Officer, and key stakeholder roles — were implemented using complex reusable VBCS fragments, encapsulating person search, selection, and display logic in self-contained components that are reusable across forms and maintainable independently of the parent page. Data sourcing was carefully architected to leverage Oracle's existing master data rather than duplicating it. Standard Oracle REST APIs are used to pull lookups, value sets, and reference data — including programme categories, status codes, and organisational units — ensuring the PaaS application remains aligned with the ERP system of record without maintaining parallel data copies. Core programme records are persisted in Oracle ATP, with PL/SQL procedures handling the validation and storage logic to keep business rules centralised and consistent. The most technically demanding aspect of the application is the cross-field validation layer. Across 40+ fields, validation rules govern permitted value combinations, mandatory field conditions based on programme type, date sequencing constraints, and lookup value restrictions. These validations were implemented at both the UI layer — providing immediate inline feedback to users — and at the database layer, ensuring data integrity is maintained even if programmatic interfaces bypass the UI. Audit history was implemented as a first-class capability: every field-level change is captured with a before-and-after value, the identity of the user, and a precise timestamp — giving compliance teams a complete, navigable history of every programme record change from the point of go-live forward.</div>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-feat-pill">40+ Field Validations</span>
+        <span class="wrk3-feat-pill">3 Program Types</span>
+        <span class="wrk3-feat-pill">Full Audit History</span>
+        <span class="wrk3-feat-pill">Advanced Search &amp; Filters</span>
       </div>
-    
-    </oj-collapsible>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-tag">Oracle VBCS</span>
+        <span class="wrk3-tag">PaaS</span>
+        <span class="wrk3-tag">Standard REST APIs</span>
+        <span class="wrk3-tag">Oracle ATP</span>
+        <span class="wrk3-tag">Lookups &amp; Value Sets</span>
+        <span class="wrk3-tag">Fragments</span>
+        <span class="wrk3-tag">ERP Cloud</span>
+      </div>
+      <div class="wrk3-feat-footer">
+        <span class="wrk3-role-pill">Technical Lead</span>
+      </div>
+    </div>
+    <div class="wrk3-stat-box">
+      <div class="wrk3-stat"><div class="wrk3-stat-num">40+</div><div class="wrk3-stat-lbl">Fields Validated</div></div>
+      <div class="wrk3-stat"><div class="wrk3-stat-num">3</div><div class="wrk3-stat-lbl">Program Types</div></div>
+      <div class="wrk3-stat"><div class="wrk3-stat-num">100%</div><div class="wrk3-stat-lbl">Audit Coverage</div></div>
+    </div>
+  </div>
 
-    <!-- PROJECT 3: Fusion Automation Suite -->
-    <oj-collapsible class="oj-sm-margin-b-4x">
-      <span slot="header">
-        <h2 class="oj-typography-heading-md oj-text-color-primary">Oracle Fusion Automation Suite</h2>
-      </span>
-      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:480px">
-          <p>
-            <strong>Business Need & Context:</strong>  
-            In the context of a large-scale Oracle Fusion Cloud rollout (GL, PPM, SCM), manual regression testing became a bottleneck, with UAT cycles stretching into weeks and recurring defects leaking into production. Our QA and business teams struggled to keep up with rapid patching cycles, customizations, and quarterly Oracle updates, resulting in missed go-lives and increased support costs. There was a clear need to automate end-to-end business process testing to drive both quality and speed.
-          </p>
-          <p>
-            <strong>Solution Design & Delivery:</strong>  
-            I led the architecture and implementation of an automation suite using Oracle Application Testing Suite (OATS), custom PL/SQL validation scripts, and Angular dashboards. We mapped 80+ key business flows across GL, PPM, and SCM, working with business SMEs to define acceptance criteria, test data, and exception scenarios. Over 1,500 automated scripts were developed, leveraging data-driven testing for master data, transactions, and reporting.
-          </p>
-          <p>
-            <strong>Technical Innovations:</strong>  
-            The solution integrated with Oracle ATP for storing test results, log files, and audit trails, ensuring every test run could be traced to the corresponding deployment and patch. We automated report validations via BI Publisher, comparing baseline and post-deployment reports for data integrity. The Angular dashboard provided real-time visibility into test progress, pass/fail rates, and root cause analysis, allowing both QA and functional teams to collaborate effectively.
-          </p>
-          <p>
-            <strong>Business Impact:</strong>  
-            UAT cycles dropped by 40%, and production defect rates fell by 60%. Automated testing enabled us to validate quarterly patches and customizations within 48 hours of release. Regression coverage reached 95%, with daily automation runs detecting issues before they impacted users. The solution was cited by Oracle as a customer best practice and contributed to two major successful go-lives with zero critical defects.
-          </p>
-          <p>
-            <strong>Challenges & Lessons Learned:</strong>  
-            The scale of Oracle Fusion, with frequent updates and customizations, meant test scripts had to be highly modular and maintainable. We established robust version control, script reusability, and “test data factories” to ensure long-term sustainability. User buy-in required clear reporting and evidence of ROI, which we achieved by tracking defect escape rates and cycle times before/after automation. Collaboration between QA, development, and functional teams was key.
-          </p>
-          <p>
-            <strong>Reflection:</strong>  
-            This project demonstrated the transformative value of automation—not only for QA but as an enabler for continuous improvement across the business. It also deepened my expertise in both Oracle Fusion architecture and best practices for large-scale test automation and DevOps.
-          </p>
-        </div>
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
-          <oj-chart type="bar"
-            series="[[automationChartSeries]]"
-            groups="[[automationChartGroups]]"
-            animation-on-display="auto"
-            style="height:220px; width:100%;"
-            legend.rendered="on"
-            value-label.rendered="on"
-            value-label.position="outsideBar">
-          </oj-chart>
-          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
-            <span style="font-weight:500;">Analytics: Regression time before/after automation</span>
-          </div>
-          <br>
-          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
-          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Key Automation Outcomes</div>
-          <br>
-          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Coverage, speed, and business impact of the automation suite.</div>
-          <oj-table
-            aria-label="Fusion Automation Details"
-            data="[[automationHighlightsDataProvider]]"
-            columns='[
-              {"headerText":"Highlight","field":"highlight"},
-              {"headerText":"Impact","field":"impact"}
-            ]'
-            layout="fixed"
-            display="grid"
-            style="width:100%;"
-          ></oj-table>
-        </div>
-        <br>
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12" style="max-width:440px; width:100%; overflow-x:auto;">
-          <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Implementation Challenges & Solutions</div>
-          <br>
-          <div class="oj-typography-body-sm oj-sm-margin-b-2x">Technical and process challenges with our solutions.</div>
-          <oj-table
-            aria-label="Automation Challenges"
-            data="[[automationChallengesDataProvider]]"
-            columns='[
-              {"headerText":"Challenge","field":"challenge"},
-              {"headerText":"Resolution","field":"resolution"}
-            ]'
-            layout="fixed"
-            display="grid"
-            style="width:100%;"
-          ></oj-table>
-        </div>
-        </div>
-      </div>
-      
-    </oj-collapsible>
+  <!-- OTHER PROJECTS -->
+  <div class="wrk3-section-lbl">Other Deliveries</div>
+  <div class="wrk3-grid">
 
-    <!-- INTERNSHIP 1 -->
-    <h1 class="oj-typography-heading-lg oj-sm-margin-b-2x">Internship Experience</h1>
-    <oj-collapsible class="oj-sm-margin-b-4x">
-      <span slot="header">
-        <h2 class="oj-typography-heading-md oj-text-color-primary">Resort Security Computer Vision Project</h2>
-      </span>
-      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:340px">
-          <p>
-            <strong>Overview & Challenge:</strong>  
-            During my final year at NIT Andhra Pradesh, I secured an internship opportunity to work on a real-world computer vision project for a large resort chain in South India. The goal was to enhance security and guest safety by leveraging live CCTV camera feeds for real-time detection of suspicious activities, loitering, and perimeter breaches. Traditionally, security teams monitored dozens of screens 24x7—a process both error-prone and exhausting. The client wanted an AI-powered solution to augment human vigilance and create actionable incident reports.
-          </p>
-          <p>
-            <strong>Solution Architecture:</strong>  
-            My approach involved designing a custom YOLOv3-based detection pipeline, training the model on thousands of annotated frames (including both staged and actual incident data). I developed a Python backend to process live RTSP video streams and perform detection on edge hardware. The application UI, built using PyQT and OpenCV, allowed security staff to visualize detection results in real-time, with configurable alert thresholds and incident categorization. A lightweight PostgreSQL database stored detection logs, timestamps, and video snapshots for audit.
-          </p>
-          <p>
-            <strong>Key Technical Innovations:</strong>
-            <ul class="oj-list-disc oj-sm-padding-s">
-              <li>Data augmentation and transfer learning to achieve 95%+ detection accuracy, even with poor lighting or occlusions</li>
-              <li>Integration with existing CCTV infrastructure (Dahua, Hikvision) using RTSP</li>
-              <li>Real-time alerting via email and SMS using Twilio API</li>
-              <li>Batch upload of suspicious event logs to a central dashboard for management review</li>
-            </ul>
-          </p>
-          <p>
-            <strong>Impact & Results:</strong>  
-            After a four-week pilot at two resort properties, the system was credited with reducing reported perimeter breaches by 20% and improving incident response times by 40%. Security teams were able to focus on genuine threats rather than continuous monitoring, and management received weekly analytics on incident trends and false positive rates.
-          </p>
-          <p>
-            <strong>Challenges & Reflection:</strong>  
-            Key challenges included working with noisy, low-resolution footage, handling privacy concerns, and optimizing inference speed on resource-constrained edge devices. The experience gave me hands-on exposure to the full AI lifecycle—from data collection and labeling to deployment and user training. I also learned the importance of user-centric design: I iterated the UI multiple times based on direct feedback from non-technical security personnel.
-          </p>
-        </div>
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
-          <oj-chart type="pie"
-            series="[[cvInternshipPieChartSeries]]"
-            animation-on-display="auto"
-            style="height:220px; width:100%;"
-            legend.rendered="on"
-            value-label.rendered="on"
-            value-label.position="outsideSlice">
-          </oj-chart>
-          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
-            <span style="font-weight:500;">Analytics: Detection success vs failure</span>
-          </div>
-          <br>
-          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-sm-margin-t-3x" style="max-width:440px; width:100%; overflow-x:auto;">
-        <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Internship Highlights</div>
-        <oj-table
-          aria-label="CV Internship Highlights"
-          data="[[cvInternshipTableDataProvider]]"
-          columns='[
-            {"headerText":"Highlight","field":"highlight"},
-            {"headerText":"Impact","field":"impact"}
-          ]'
-          layout="fixed"
-          display="grid"
-          style="width:100%;"
-        ></oj-table>
+    <!-- JOB ASSIGNMENT SUITE -->
+    <div class="wrk3-card">
+      <div class="wrk3-card-icon">📋</div>
+      <div>
+        <div class="wrk3-card-title">Job Assignment Suite</div>
+        <div class="wrk3-card-client">Enterprise Client · Deloitte</div>
       </div>
-        </div>
+      <div class="wrk3-card-pills">
+        <span class="wrk3-card-pill">Multi-Level Approvals</span>
+        <span class="wrk3-card-pill">BI Publisher Reports</span>
       </div>
-    </oj-collapsible>
+      <details class="wrk3-card-details">
+        <summary>Read full description</summary>
+        <div class="wrk3-card-desc">The Job Assignment Suite was developed as a comprehensive Oracle VBCS application to manage the end-to-end lifecycle of job assignments across a large enterprise workforce. Prior to this solution, the client relied on manual, spreadsheet-driven processes to track and manage thousands of job assignments annually — a workflow riddled with data errors, approval bottlenecks, and zero auditability. The application was built on Oracle Visual Builder Cloud Service, leveraging the Redwood design system to deliver a modern, intuitive user experience aligned with Oracle's latest design language. At its core, the application manages the full assignment lifecycle: initiation, review, approval, and closure. The home page features a rich search interface with advanced filters, enabling operations teams to quickly surface assignments by status, type, worker, or department. Each assignment record captures a comprehensive set of fields — assignment type, effective dates, reporting structure, compensation details, and associated role information — ensuring nothing falls through the cracks of an otherwise fragmented manual process. Integration was a critical component of the architecture. The application connects to Oracle HCM Cloud via standard REST APIs to pull worker and position data in real time, ensuring assignment records are always aligned with the authoritative HR system of record. Oracle Integration Cloud (OIC) was used to orchestrate multi-step integration flows, handling data transformation, error management, and retry logic to ensure reliable, auditable data movement between VBCS and the backend HCM platform. For data persistence, Oracle Autonomous Transaction Processing (ATP) was leveraged as the backend database, storing assignment records, approval audit trails, and workflow state. PL/SQL procedures were written to handle complex business logic — assignment validation rules, duplicate detection, and historical record management. BI Publisher was integrated to generate automated assignment reports, giving managers on-demand access to formatted, printable summaries in PDF and Excel formats for compliance and HR audit purposes. Reports could be triggered directly from within the application. The approval workflow was designed as a configurable, multi-level process, routing assignment records through HR Business Partners and line managers based on assignment type and organisational hierarchy. Each approval action was timestamped and logged, building a complete audit trail that was previously impossible to maintain in the spreadsheet-based process. The application made extensive use of reusable VBCS fragments for worker search, position lookup, and date-range selectors — patterns that were subsequently reused across other applications delivered by the team. Field-level validations enforced business rules inline, catching errors before they could propagate downstream into HCM.</div>
+      </details>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-light-tag">VBCS</span><span class="wrk3-light-tag">ATP</span><span class="wrk3-light-tag">BI Publisher</span><span class="wrk3-light-tag">OIC</span><span class="wrk3-light-tag">HCM</span>
+      </div>
+      <div class="wrk3-card-footer"><span class="wrk3-card-role">Senior Developer</span></div>
+    </div>
 
-    <!-- INTERNSHIP 2 -->
-    <oj-collapsible>
-      <span slot="header">
-        <h2 class="oj-typography-heading-md oj-text-color-primary">Social Media Mining & Sentiment Analysis</h2>
-      </span>
-      <div class="oj-flex oj-flex-wrap oj-gap-4 oj-sm-margin-t-2x">
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-8 info-tile" style="min-height:340px">
-          <p>
-            <strong>Project Overview:</strong>  
-            As a research intern at NIT Warangal, I contributed to a multi-semester project exploring the use of NLP (Natural Language Processing) for mining and analyzing sentiment from social media comment streams—specifically YouTube and Twitter—on trending technology topics. The research aim was to quantify sentiment polarity and track changes in public perception in near real-time, providing actionable insights for corporate and government stakeholders.
-          </p>
-          <p>
-            <strong>Technical Solution:</strong>  
-            I designed and built a Python pipeline leveraging NLTK and TextBlob for tokenization, sentiment scoring, and part-of-speech tagging. The pipeline ingested thousands of comments per day via the YouTube Data API and Twitter streaming API, applying advanced filters to detect spam and off-topic posts. Results were stored in MongoDB, and a web dashboard (Flask + D3.js) displayed sentiment trends, word clouds, and anomaly spikes.
-          </p>
-          <p>
-            <strong>Key Contributions & Innovations:</strong>
-            <ul class="oj-list-disc oj-sm-padding-s">
-              <li>Optimized preprocessing for multilingual comments and emoji-based sentiment signals</li>
-              <li>Implemented batch and stream mode for both historic and live sentiment tracking</li>
-              <li>Developed visualization widgets for real-time sentiment polarity breakdown</li>
-              <li>Published research findings in an IEEE conference and co-authored a paper on sentiment mining in vernacular languages</li>
-            </ul>
-          </p>
-          <p>
-            <strong>Impact:</strong>  
-            The system delivered granular, daily insights on technology adoption trends and public feedback for new product launches. It was used by faculty and industry sponsors to validate marketing strategies and crisis communication campaigns.
-          </p>
-          <p>
-            <strong>Challenges & Takeaways:</strong>  
-            Real-world text mining surfaced challenges such as sarcasm detection, code-mixed language, and API rate limits. The experience gave me deep practical experience with NLP, data visualization, and working in an interdisciplinary, cross-institutional team. It also highlighted the importance of ethical handling of social data and anonymization best practices.
-          </p>
-        </div>
-        <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-flex-item oj-sm-12 oj-md-4" style="text-align:center;">
-          <oj-chart type="pie"
-            series="[[sentimentInternshipPieChartSeries]]"
-            animation-on-display="auto"
-            style="height:220px; width:100%;"
-            legend.rendered="on"
-            value-label.rendered="on"
-            value-label.position="outsideSlice">
-          </oj-chart>
-          <div class="oj-typography-body-sm oj-text-secondary-color oj-sm-margin-t-1x">
-            <span style="font-weight:500;">Analytics: Sentiment polarity breakdown</span>
-          </div>
-          <br>
-          <div class="oj-panel oj-bg-neutral-0 oj-panel-shadow-sm oj-padding-4x oj-sm-margin-t-3x" style="max-width:440px; width:100%; overflow-x:auto;">
-        <div class="oj-typography-body-md oj-text-primary-color oj-sm-margin-b-2x" style="font-weight: 500;">Internship Highlights</div>
-        <oj-table
-          aria-label="Sentiment Internship Highlights"
-          data="[[sentimentInternshipTableDataProvider]]"
-          columns='[
-            {"headerText":"Highlight","field":"highlight"},
-            {"headerText":"Impact","field":"impact"}
-          ]'
-          layout="fixed"
-          display="grid"
-          style="width:100%;"
-        ></oj-table>
+    <!-- UAT AUTOMATION -->
+    <div class="wrk3-card">
+      <div class="wrk3-card-icon">🤖</div>
+      <div>
+        <div class="wrk3-card-title">Fusion UAT Automation Framework</div>
+        <div class="wrk3-card-client">Internal · Deloitte</div>
       </div>
-        </div>
+      <div class="wrk3-card-pills">
+        <span class="wrk3-card-pill">40% Faster UAT</span>
+        <span class="wrk3-card-pill">OIC-Driven Flows</span>
       </div>
-      
-    </oj-collapsible>
+      <details class="wrk3-card-details">
+        <summary>Read full description</summary>
+        <div class="wrk3-card-desc">The Fusion UAT Automation Framework was designed and delivered to address one of the most persistent challenges in Oracle Cloud implementations: the time-consuming, resource-intensive nature of manual User Acceptance Testing. Across Finance, Procurement, and Human Resources modules, the client's testing cycles were consuming weeks of effort per release — a cadence that was unsustainable given the frequency of Oracle Cloud quarterly updates and the growing scope of customisations being maintained. The framework was architected from the ground up to provide reusable, maintainable, and scalable test automation across Oracle Fusion modules. The solution was designed around a data-driven testing approach, where test cases, input data, and expected outcomes were defined in structured templates — decoupling test logic from test data and enabling rapid test suite expansion without engineering effort for each new scenario. At the integration layer, OIC was used to orchestrate automated test execution flows, invoking Oracle Fusion REST APIs to perform end-to-end business transactions — creating purchase orders, submitting invoices, running payroll flows, and validating output against expected system states. Each flow was designed to be independent, idempotent, and loggable, ensuring test results could be reliably reported and reproduced across environments. The framework included a results dashboard built in VBCS, giving test managers real-time visibility into test execution status, pass/fail rates, and defect trends across modules. This replaced the previous approach of manually collating spreadsheet-based test logs. PL/SQL was used extensively within the ATP-backed data layer to manage test data setup and teardown — stored procedures handled data seeding, validation queries, and cleanup routines, keeping the automation framework self-contained and environment-agnostic. Across Finance, the framework covered procure-to-pay cycles, journal entry validation, and period close processes. In Procurement, automated flows tested purchase requisition, approval, and PO generation end-to-end. HR automation covered new hire onboarding, position management, and compensation change scenarios. Each module's test suite was version-controlled and independently executable, allowing regression packs to be run selectively based on the scope of each release. UAT cycle times were reduced by 40% from the first release cycle in which the framework was deployed. The framework was also documented and handed over as a reusable accelerator within the Deloitte Oracle practice — a contribution that continues to benefit subsequent Oracle Cloud engagements.</div>
+      </details>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-light-tag">Oracle Fusion</span><span class="wrk3-light-tag">OIC</span><span class="wrk3-light-tag">VBCS</span><span class="wrk3-light-tag">ATP</span><span class="wrk3-light-tag">PL/SQL</span>
+      </div>
+      <div class="wrk3-card-footer"><span class="wrk3-card-role">Automation Lead</span></div>
+    </div>
+
+    <!-- JE CHECKLIST -->
+    <div class="wrk3-card">
+      <div class="wrk3-card-icon">✅</div>
+      <div>
+        <div class="wrk3-card-title">Journal Entry Checklist Application</div>
+        <div class="wrk3-card-client">Enterprise Client · Deloitte</div>
+      </div>
+      <div class="wrk3-card-pills">
+        <span class="wrk3-card-pill">Approval Workflow</span>
+        <span class="wrk3-card-pill">Audit Compliance</span>
+      </div>
+      <details class="wrk3-card-details">
+        <summary>Read full description</summary>
+        <div class="wrk3-card-desc">The Journal Entry Checklist Application was built to introduce a structured, enforced governance layer into the financial close process for a large enterprise running Oracle Fusion Finance. Prior to this solution, Journal Entries were being prepared and loaded into the Oracle General Ledger without a formalised pre-submission review mechanism. This created risk: entries could be uploaded with errors, missing supporting documentation, or without the sign-off of the appropriate financial controller — all of which introduced audit exposure and downstream reconciliation effort. The application was developed on Oracle Visual Builder Cloud Service, integrating directly with Oracle Fusion Finance via standard REST APIs. Its primary function is to enforce a configurable checklist of pre-submission tasks that must be completed and approved before a Journal Entry batch is permitted to progress to the loading stage. The workflow is initiated when a JE preparer creates a new checklist record linked to a specific JE batch. The preparer works through each required checklist item — attaching supporting documentation, confirming data accuracy, verifying period alignment, and confirming that the appropriate cost centres and accounts are correctly mapped. Each item is individually checked off with a timestamp, creating a granular audit trail that persists independently of the JE record itself. Once all preparer checklist items are completed, the record is routed through a multi-level approval process. The first approval tier is the Finance Team Lead, who reviews the checklist completion evidence and the associated JE data before approving the record to proceed. For JEs above a defined materiality threshold, a secondary approval from the Financial Controller is required, providing an additional layer of governance for high-value transactions. Only after all required approvals have been captured does the application permit the JE batch to be submitted for loading into Oracle ERP — ensuring no entry bypasses the review process. Approvers can reject records back to the preparer at any stage with mandatory comments. All checklist records, approval decisions, attachments, and audit metadata are stored in Oracle ATP, providing a persistent, queryable audit repository. REST API integrations with Oracle Fusion Finance allow the application to pull JE batch details directly into the checklist record, reducing manual data entry and the risk of mismatched information between the checklist and the actual JE in the system.</div>
+      </details>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-light-tag">VBCS</span><span class="wrk3-light-tag">ATP</span><span class="wrk3-light-tag">REST APIs</span><span class="wrk3-light-tag">Oracle Finance</span>
+      </div>
+      <div class="wrk3-card-footer"><span class="wrk3-card-role">Developer</span></div>
+    </div>
+
+    <!-- BI REPORTS -->
+    <div class="wrk3-card">
+      <div class="wrk3-card-icon">📊</div>
+      <div>
+        <div class="wrk3-card-title">BI Publisher Reports Suite</div>
+        <div class="wrk3-card-client">Enterprise Client · Deloitte</div>
+      </div>
+      <div class="wrk3-card-pills">
+        <span class="wrk3-card-pill">Burst Scheduling</span>
+        <span class="wrk3-card-pill">Multi-Format Output</span>
+      </div>
+      <details class="wrk3-card-details">
+        <summary>Read full description</summary>
+        <div class="wrk3-card-desc">Business Intelligence reporting formed a critical output layer across the Oracle Cloud programme, providing Finance, Procurement, and HR teams with formatted, scheduled, and on-demand reports directly from Oracle Fusion data. The BI Publisher reporting suite was designed and built to replace a mix of manual extracts, spreadsheet-based consolidations, and ad hoc query outputs that could not meet the volume, consistency, or formatting requirements of enterprise stakeholders. BI Publisher was selected as the primary reporting engine due to its deep, native integration with Oracle Fusion data models. Reports were built on top of Oracle's delivered data models where available, and on custom SQL and PL/SQL-based data sets where the standard data models did not surface the required fields or joins. This dual approach allowed the reporting layer to cover both standard Oracle transactional flows and the bespoke business logic introduced through custom PaaS extensions. Report templates were designed in RTF and XLS formats, with careful attention to enterprise formatting standards — including conditional formatting, column grouping, and multi-level summarisation where required. Each report was built to support multiple output formats — PDF for formal distribution and sign-off, Excel for operational use and downstream reconciliation, and HTML for browser-based consumption within Oracle Fusion. Across the Finance workstream, BI Publisher reports covered journal entry listings, account balance summaries, period-close checklists, and intercompany transaction reconciliations. Procurement reports addressed purchase order status, open requisition aging, supplier spend analysis, and receipt-to-invoice matching exceptions. HR reports provided headcount summaries, job assignment listings, and position vacancy reports — all formatted to meet business requirements that standard OTBI output could not satisfy. Scheduling and delivery was managed through Oracle Fusion's report scheduler, with reports configured to run at predefined intervals — daily, weekly, or period-end — and distributed to stakeholder distribution lists via email or placed in designated BI Catalog folders for self-service access. Burst scheduling was used for reports requiring recipient-specific data slices, delivering personalised output to each cost centre owner or department manager without manual intervention. All report templates and data models were maintained with version control discipline, and a naming convention was enforced across the BI Catalog to ensure discoverability. Report performance was regularly tuned through query optimisation and the use of bind variables to prevent full-table scans on high-volume transactional tables.</div>
+      </details>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-light-tag">BI Publisher</span><span class="wrk3-light-tag">Oracle Fusion</span><span class="wrk3-light-tag">PL/SQL</span><span class="wrk3-light-tag">RTF Templates</span>
+      </div>
+      <div class="wrk3-card-footer"><span class="wrk3-card-role">Reports Lead</span></div>
+    </div>
+
+    <!-- OTBI REPORTS -->
+    <div class="wrk3-card">
+      <div class="wrk3-card-icon">📈</div>
+      <div>
+        <div class="wrk3-card-title">OTBI Reports &amp; Dashboards</div>
+        <div class="wrk3-card-client">Enterprise Client · Deloitte</div>
+      </div>
+      <div class="wrk3-card-pills">
+        <span class="wrk3-card-pill">Real-Time Analytics</span>
+        <span class="wrk3-card-pill">Embedded Dashboards</span>
+      </div>
+      <details class="wrk3-card-details">
+        <summary>Read full description</summary>
+        <div class="wrk3-card-desc">Oracle Transactional Business Intelligence (OTBI) reporting was deployed as the self-service analytics layer across the Oracle Cloud programme, enabling business users to create, modify, and consume real-time reports directly from Oracle Fusion transactional data without requiring developer involvement for every reporting need. OTBI's pre-built subject areas and real-time data access made it the right tool for operational reporting scenarios where timeliness and business-user autonomy were the primary requirements. The OTBI reporting capability was built out across Finance, Procurement, and HCM subject areas. For Finance, OTBI analyses covered general ledger balances, subledger accounting details, budget versus actual comparisons, and cash flow summaries. The real-time nature of OTBI was particularly valuable here, as period-close reporting required up-to-the-minute accuracy that batch-based BI Publisher reports could not always provide. Across Procurement, OTBI analyses were built to support sourcing and purchasing operations teams with real-time visibility into requisition and purchase order status, supplier performance metrics, and spend category breakdowns. These analyses were surfaced directly within Oracle Fusion pages as embedded analytics, giving procurement officers contextual reporting within their day-to-day workflow rather than requiring them to navigate to a separate reporting environment. For HCM, OTBI analyses covered workforce composition, headcount movement, position fill rates, and assignment status. HR business partners were trained and enabled to build their own variations of these analyses using OTBI's drag-and-drop interface, reducing the dependency on the development team for routine workforce reporting. Report and analysis design followed a structured approach: subject area selection, filter strategy, column selection and formatting, and conditional highlight rules were all considered during design rather than added reactively. Prompted filters were built into shared analyses to support parameterised queries, allowing a single analysis design to serve multiple business audiences with different data slice requirements. Dashboard design was a significant component of the OTBI deliverable. Business-facing dashboards were assembled from individual analyses, combining charts, pivot tables, and summary metrics onto single-screen views that gave business leaders a consolidated picture of their domain. Dashboards were published to relevant Oracle Fusion home pages, ensuring key metrics were visible at login without requiring navigation. Performance was addressed through Oracle's BI Accelerator cache where applicable, and analyses were reviewed to avoid fan-out and double-counting on metric columns before release to production.</div>
+      </details>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-light-tag">OTBI</span><span class="wrk3-light-tag">Oracle Fusion</span><span class="wrk3-light-tag">Finance</span><span class="wrk3-light-tag">Procurement</span><span class="wrk3-light-tag">HCM</span>
+      </div>
+      <div class="wrk3-card-footer"><span class="wrk3-card-role">Reports Lead</span></div>
+    </div>
+
+    <!-- OIC INTEGRATIONS -->
+    <div class="wrk3-card">
+      <div class="wrk3-card-icon">🔗</div>
+      <div>
+        <div class="wrk3-card-title">OIC Integration Layer</div>
+        <div class="wrk3-card-client">Enterprise Client · Deloitte</div>
+      </div>
+      <div class="wrk3-card-pills">
+        <span class="wrk3-card-pill">REST &amp; Event-Driven</span>
+        <span class="wrk3-card-pill">Full Error Observability</span>
+      </div>
+      <details class="wrk3-card-details">
+        <summary>Read full description</summary>
+        <div class="wrk3-card-desc">Oracle Integration Cloud served as the backbone of the integration architecture across the Oracle Cloud programme, connecting VBCS front-end applications, Oracle Fusion ERP modules, external data sources, and downstream reporting systems through a managed, monitored, and governed integration layer. OIC was chosen for its native connectivity to Oracle Fusion APIs, its built-in adapter library, and its visual development environment that enabled rapid integration build and modification. The integration programme covered a wide range of patterns and use cases. Real-time REST integrations were built to support VBCS applications that required live data from Oracle Fusion — pulling worker records from HCM, querying purchase order status from Procurement, and retrieving account and cost centre data from Finance. These integrations were designed as lightweight, low-latency connections, with response payloads shaped to the exact requirements of the calling application to minimise data transfer overhead. Batch integration flows were developed to handle high-volume data movements unsuitable for synchronous real-time calls. Scheduled OIC processes extracted transactional data from Oracle Fusion at defined intervals, transformed and enriched it using XPath and JavaScript mapping, and loaded it into Oracle ATP for consumption by reporting layers and PaaS applications. Error handling was built into every batch flow — failed records were captured, logged to a dedicated error table in ATP, and surfaced through monitoring dashboards to enable rapid identification and resolution of data quality issues. Event-driven integrations were implemented for use cases requiring near-real-time responsiveness. Oracle Fusion Business Events were used as triggers for key transactional milestones — PO approval, JE posting, and HCM position change — with OIC subscribing to these events and orchestrating downstream actions: sending notifications, updating PaaS application data stores, or triggering BI Publisher report bursts. Error observability was treated as a first-class concern throughout the integration design. Each integration was instrumented with structured logging, with business identifiers — PO number, employee ID, JE batch reference — included in every log entry to enable end-to-end traceability. Integration governance was maintained through a standardised naming convention, a shared connection library, and a documented inventory of all active integrations — ensuring new team members could onboard to the integration landscape without relying on tribal knowledge.</div>
+      </details>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-light-tag">OIC</span><span class="wrk3-light-tag">REST APIs</span><span class="wrk3-light-tag">Oracle Fusion</span><span class="wrk3-light-tag">ATP</span><span class="wrk3-light-tag">XPath/JS</span>
+      </div>
+      <div class="wrk3-card-footer"><span class="wrk3-card-role">Integration Lead</span></div>
+    </div>
+
+    <!-- UNIX WRAPPER SCRIPT -->
+    <div class="wrk3-card">
+      <div class="wrk3-card-icon">⚙️</div>
+      <div>
+        <div class="wrk3-card-title">Unix Wrapper Script — BI Report Trigger</div>
+        <div class="wrk3-card-client">Enterprise Client · Deloitte</div>
+      </div>
+      <div class="wrk3-card-pills">
+        <span class="wrk3-card-pill">SOAP API Automation</span>
+        <span class="wrk3-card-pill">Pipeline Integrated</span>
+      </div>
+      <details class="wrk3-card-details">
+        <summary>Read full description</summary>
+        <div class="wrk3-card-desc">The Custom Unix Wrapper Script Solution was an innovative, pragmatic engineering response to a specific operational challenge: the need to trigger Oracle BI Publisher reports programmatically from outside the Oracle Fusion application context, without relying on Oracle's standard scheduling UI or manual report submission. The solution was designed to support automated, event-driven report generation as part of larger data processing pipelines running on the Oracle Cloud Infrastructure Linux environment. Oracle BI Publisher exposes a SOAP-based Web Services API that allows reports to be submitted, parameterised, and retrieved programmatically. The wrapper script solution was built around this API, encapsulating the complexity of SOAP request construction, authentication header management, parameter injection, and response parsing within a set of reusable Unix shell scripts. This allowed other pipeline components — database jobs, OIC flows, and scheduled tasks — to trigger BI Publisher report execution through a simple, standardised shell invocation without needing to embed SOAP logic directly in each calling process. The core wrapper script accepted report path, output format, and parameter values as command-line arguments, constructing the appropriate SOAP payload dynamically using heredoc templating. Authentication was handled via Oracle Fusion's token-based security model, with credentials managed through encrypted credential files to avoid hardcoding sensitive values in the script logic. The script handled the full SOAP request lifecycle — submission, status polling, and output retrieval — with built-in retry logic for transient network failures and timeout handling for long-running report executions. Output handling was a key capability of the wrapper. Reports could be directed to the local filesystem for subsequent processing by downstream scripts, pushed to Oracle ATP via SQL*Loader for archival and audit purposes, or transmitted to designated email distribution lists through the script's integrated notification layer. This flexibility made the wrapper applicable across a wide range of report delivery scenarios without requiring a new script for each use case. Logging was embedded at every stage of the wrapper's execution lifecycle — submission timestamp, parameter values used, execution duration, HTTP response codes, and output file paths were all written to a structured log file consumed by the operations team's monitoring tooling. The solution was integrated into the period-close pipeline as the final step, automatically triggering formatted report generation immediately after Oracle Fusion processing jobs completed — ensuring finance stakeholders received their reports within minutes of the underlying data being available. The wrapper was designed to be configuration-driven, with report paths, parameter definitions, and delivery targets maintained in external configuration files, so new reports could be added to the automated pipeline by updating configuration alone.</div>
+      </details>
+      <div class="wrk3-pill-row">
+        <span class="wrk3-light-tag">Unix Shell</span><span class="wrk3-light-tag">SOAP API</span><span class="wrk3-light-tag">BI Publisher</span><span class="wrk3-light-tag">OCI Linux</span><span class="wrk3-light-tag">SQL*Loader</span>
+      </div>
+      <div class="wrk3-card-footer"><span class="wrk3-card-role">Developer</span></div>
+    </div>
 
   </div>
 </div>

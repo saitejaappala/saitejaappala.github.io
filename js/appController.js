@@ -5,4 +5,86 @@
  * as shown at https://oss.oracle.com/licenses/upl/
  * @ignore
  */
-define(["knockout","ojs/ojcontext","ojs/ojmodule-element-utils","ojs/ojknockouttemplateutils","ojs/ojcorerouter","ojs/ojmodulerouter-adapter","ojs/ojknockoutrouteradapter","ojs/ojurlparamadapter","ojs/ojresponsiveutils","ojs/ojresponsiveknockoututils","ojs/ojarraydataprovider","ojs/ojdrawerpopup","ojs/ojmodule-element","ojs/ojknockout"],(function(e,t,o,a,r,s,n,i,l,c,u){return t.getPageContext().getBusyContext().applicationBootstrapComplete(),new function(){this.KnockoutTemplateUtils=a,this.manner=e.observable("polite"),this.message=e.observable(),announcementHandler=e=>{this.message(e.detail.message),this.manner(e.detail.manner)},document.getElementById("globalBody").addEventListener("announce",announcementHandler,!1);const t=l.getFrameworkQuery(l.FRAMEWORK_QUERY_KEY.SM_ONLY);this.smScreen=c.createMediaQueryObservable(t);const o=l.getFrameworkQuery(l.FRAMEWORK_QUERY_KEY.MD_UP);this.mdScreen=c.createMediaQueryObservable(o);let m=[{path:"",redirect:"home"},{path:"home",detail:{label:"Home",iconClass:"oj-ux-ico-bar-chart"}},{path:"work",detail:{label:"Work",iconClass:"oj-ux-ico-fire"}},{path:"customers",detail:{label:"Blogs",iconClass:"oj-ux-ico-contact-group"}},{path:"about",detail:{label:"About",iconClass:"oj-ux-ico-information-s"}}],d=new r(m,{urlAdapter:new i});d.sync(),this.moduleAdapter=new s(d),this.selection=new n(d),this.navDataProvider=new u(m.slice(1),{keyAttributes:"path"}),self.sideDrawerOn=e.observable(!1),this.mdScreen.subscribe((()=>{self.sideDrawerOn(!1)})),this.toggleDrawer=()=>{self.sideDrawerOn(!self.sideDrawerOn())},this.appName=e.observable("Sai Teja's Redwood Application"),this.userLogin=e.observable("saitejaappala@gmail.com"),this.footerLinks=[{name:"About Oracle",linkId:"aboutOracle",linkTarget:"http://www.oracle.com/us/corporate/index.html#menu-about"},{name:"Contact Us",id:"contactUs",linkTarget:"http://www.oracle.com/us/corporate/contact/index.html"},{name:"Legal Notices",id:"legalNotices",linkTarget:"http://www.oracle.com/us/legal/index.html"},{name:"Terms Of Use",id:"termsOfUse",linkTarget:"http://www.oracle.com/us/legal/terms/index.html"},{name:"Your Privacy Rights",id:"yourPrivacyRights",linkTarget:"http://www.oracle.com/us/legal/privacy/index.html"}]}}));
+/*
+ * Your application specific code will go here
+ */
+define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils', 'ojs/ojcorerouter', 'ojs/ojmodulerouter-adapter', 'ojs/ojknockoutrouteradapter', 'ojs/ojurlparamadapter', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'ojs/ojarraydataprovider',
+        'ojs/ojdrawerpopup', 'ojs/ojmodule-element', 'ojs/ojknockout'],
+  function(ko, Context, moduleUtils, KnockoutTemplateUtils, CoreRouter, ModuleRouterAdapter, KnockoutRouterAdapter, UrlParamAdapter, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider) {
+
+     function ControllerViewModel() {
+
+      this.KnockoutTemplateUtils = KnockoutTemplateUtils;
+
+      // Handle announcements sent when pages change, for Accessibility.
+      this.manner = ko.observable('polite');
+      this.message = ko.observable();
+      announcementHandler = (event) => {
+          this.message(event.detail.message);
+          this.manner(event.detail.manner);
+      };
+
+      document.getElementById('globalBody').addEventListener('announce', announcementHandler, false);
+
+
+      // Media queries for responsive layouts
+      const smQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
+      this.smScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
+      const mdQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.MD_UP);
+      this.mdScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(mdQuery);
+
+      let navData = [
+        { path: '', redirect: 'home' },
+        { path: 'home', detail: { label: 'Home', iconClass: 'oj-ux-ico-bar-chart' } },
+        { path: 'work', detail: { label: 'Work', iconClass: 'oj-ux-ico-fire' } },
+        { path: 'customers', detail: { label: 'Insights', iconClass: 'oj-ux-ico-contact-group' } },
+        { path: 'about', detail: { label: 'About', iconClass: 'oj-ux-ico-information-s' } },
+        { path: 'gallery', detail: { label: 'Moments', iconClass: 'oj-ux-ico-image' } }
+      ];
+
+      // Router setup
+      let router = new CoreRouter(navData, {
+        urlAdapter: new UrlParamAdapter()
+      });
+      router.sync();
+
+      this.moduleAdapter = new ModuleRouterAdapter(router);
+
+      this.selection = new KnockoutRouterAdapter(router);
+
+      // Setup the navDataProvider with the routes, excluding the first redirected
+      // route.
+      this.navDataProvider = new ArrayDataProvider(navData.slice(1), {keyAttributes: "path"});
+
+      // Drawer
+      self.sideDrawerOn = ko.observable(false);
+
+      // Close drawer on medium and larger screens
+      this.mdScreen.subscribe(() => { self.sideDrawerOn(false) });
+
+      // Called by navigation drawer toggle button and after selection of nav drawer item
+      this.toggleDrawer = () => {
+        self.sideDrawerOn(!self.sideDrawerOn());
+      }
+
+      // Header
+      // Application Name used in Branding Area
+      this.appName = ko.observable("Sai Teja Appala");
+      // User Info used in Global Navigation area
+      this.userLogin = ko.observable("Oracle Cloud Consultant");
+
+      // Footer
+      this.footerLinks = [
+        {name: 'About Oracle', linkId: 'aboutOracle', linkTarget:'http://www.oracle.com/us/corporate/index.html#menu-about'},
+        { name: "Contact Us", id: "contactUs", linkTarget: "http://www.oracle.com/us/corporate/contact/index.html" },
+        { name: "Legal Notices", id: "legalNotices", linkTarget: "http://www.oracle.com/us/legal/index.html" },
+        { name: "Terms Of Use", id: "termsOfUse", linkTarget: "http://www.oracle.com/us/legal/terms/index.html" },
+        { name: "Your Privacy Rights", id: "yourPrivacyRights", linkTarget: "http://www.oracle.com/us/legal/privacy/index.html" },
+      ];
+     }
+     // release the application bootstrap busy state
+     Context.getPageContext().getBusyContext().applicationBootstrapComplete();
+
+     return new ControllerViewModel();
+  }
+);

@@ -1,276 +1,323 @@
-<!-- home.html -->
 <style>
-body {
-  background: #f7f6f4;
-  margin: 0;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+:root {
+  --rw-dark:#22272B; --rw-red:#C74634; --rw-red-light:#FFF5F3; --rw-red-mid:#F5C5BA;
+  --rw-red-deep:#9B2915; --rw-bg:#F6F6F6; --rw-surface:#FFFFFF; --rw-border:#E8DED9;
+  --rw-text:#22272B; --rw-muted:#737373;
+  --rw-shadow:0 4px 20px rgba(0,0,0,0.07); --rw-shadow-lg:0 8px 36px rgba(199,70,52,0.12);
 }
+.rw-page { max-width:1100px; margin:0 auto; padding:28px 24px 64px; font-family:'Inter','Segoe UI',Arial,sans-serif; color:var(--rw-text); }
 
-/* Main Centered Container - between the "red lines" */
-.rdw-main-container {
-  max-width: 1300px;     /* Adjust to match red lines in your screenshot */
-  margin: 0 auto;        /* Center horizontally */
-  padding-top: 18px;
-  padding-left: 0;
-  padding-right: 0;
-}
+/* ── TOP-LEFT TAGLINE ── */
+.rw-page-tag { display:flex; align-items:center; gap:7px; margin-bottom:16px; }
+.rw-page-tag-line { width:28px; height:2px; background:var(--rw-red); border-radius:2px; flex-shrink:0; }
+.rw-page-tag-text { font-size:0.78rem; color:var(--rw-muted); font-style:italic; }
 
-.rdw-main-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  gap: 2vw;
-}
+/* ── HERO ── */
+.rw-hero { background:var(--rw-surface); border-radius:16px; box-shadow:var(--rw-shadow); border:1px solid var(--rw-border); display:grid; grid-template-columns:1fr 240px; overflow:hidden; margin-bottom:24px; }
+.rw-hero-body { padding:36px 44px; }
+.rw-hero-eyebrow { display:inline-flex; align-items:center; gap:6px; background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:6px; padding:4px 12px; font-size:0.72rem; font-weight:700; color:var(--rw-red-deep); text-transform:uppercase; letter-spacing:0.7px; margin-bottom:16px; }
+.rw-hero-name { font-size:2.4rem; font-weight:900; color:var(--rw-dark); line-height:1.1; margin:0 0 12px; }
+.rw-hero-role { font-size:1.05rem; color:var(--rw-red); font-weight:700; margin-bottom:4px; }
+.rw-hero-company { font-size:0.88rem; color:var(--rw-muted); margin-bottom:8px; }
+.rw-hero-exp { display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:var(--rw-dark); font-weight:700; margin-bottom:18px; background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:6px; padding:4px 12px; }
+.rw-hero-exp-dot { width:7px; height:7px; border-radius:50%; background:#22C55E; animation:rwPulse2 2s ease-in-out infinite; flex-shrink:0; }
+@keyframes rwPulse2 { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
+.rw-hero-bio { font-size:0.95rem; line-height:1.75; color:#4a4a4a; margin-bottom:18px; text-align:justify; }
+.rw-hero-highlights { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:24px; }
+.rw-chip { display:inline-flex; align-items:center; gap:4px; background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:20px; padding:4px 11px; font-size:0.74rem; font-weight:600; color:var(--rw-text); }
+.rw-hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
+.rw-btn-primary { background:var(--rw-red); color:#fff !important; padding:11px 26px; border-radius:8px; font-size:0.88rem; font-weight:700; text-decoration:none; border:none; cursor:pointer; transition:background 0.18s,transform 0.15s; display:inline-flex; align-items:center; gap:7px; }
+.rw-btn-primary:hover { background:var(--rw-red-deep); transform:translateY(-1px); color:#fff !important; }
+.rw-btn-outline { background:transparent; color:var(--rw-dark); padding:10px 24px; border-radius:8px; font-size:0.88rem; font-weight:700; text-decoration:none; border:2px solid var(--rw-border); display:inline-flex; align-items:center; gap:7px; transition:border-color 0.18s,color 0.18s,transform 0.15s; }
+.rw-btn-outline:hover { border-color:var(--rw-red); color:var(--rw-red); transform:translateY(-1px); }
+.rw-hero-photo { background:linear-gradient(160deg,var(--rw-dark),#3a3f44); display:flex; align-items:flex-end; overflow:hidden; }
+.rw-hero-photo img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+@media(max-width:800px){ .rw-hero{grid-template-columns:1fr;} .rw-hero-photo{height:220px;} .rw-hero-body{padding:28px 24px;} }
 
-.rdw-profile-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 220px;
-  max-width: 300px;
-  flex-shrink: 0;
-  gap: 16px;
-}
+/* ── SME TRACKER — KEY FIX: heading+badge share one row, desc is FULL WIDTH ── */
+.rw-tracker { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; box-shadow:var(--rw-shadow); padding:28px 32px; margin-bottom:24px; }
+.rw-tracker-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.rw-tracker-heading { font-size:1rem; font-weight:800; color:var(--rw-dark); margin:0; white-space:nowrap; }
+.rw-tracker-badge { display:inline-flex; align-items:center; gap:5px; background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:6px; padding:5px 14px; font-size:0.74rem; font-weight:700; color:var(--rw-red-deep); white-space:nowrap; flex-shrink:0; }
+/* description is a separate block — spans FULL width of the card */
+.rw-tracker-desc { font-size:0.88rem; color:var(--rw-muted); line-height:1.72; text-align:justify; margin-bottom:28px; width:100%; }
+.rw-tracker-steps { display:flex; align-items:flex-start; max-width:480px; }
+.rw-step { display:flex; flex-direction:column; align-items:center; flex:1; position:relative; z-index:1; }
+.rw-step-dot { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-weight:900; border:2px solid; flex-shrink:0; }
+.rw-step-line { position:absolute; top:18px; left:60%; width:80%; height:2px; z-index:0; }
+.rw-step:last-child .rw-step-line { display:none; }
+.rw-step-done .rw-step-dot { background:var(--rw-dark); border-color:var(--rw-dark); color:#fff; }
+.rw-step-done .rw-step-line { background:var(--rw-dark); }
+.rw-step-active .rw-step-dot { background:var(--rw-red); border-color:var(--rw-red); color:#fff; box-shadow:0 0 0 5px rgba(199,70,52,0.15); animation:rwPulse 2s ease-in-out infinite; }
+@keyframes rwPulse { 0%,100%{ box-shadow:0 0 0 5px rgba(199,70,52,0.15); } 50%{ box-shadow:0 0 0 10px rgba(199,70,52,0.07); } }
+.rw-step-label { font-size:0.72rem; font-weight:700; color:var(--rw-muted); text-align:center; margin-top:10px; line-height:1.35; }
+.rw-step-done .rw-step-label { color:var(--rw-dark); }
+.rw-step-active .rw-step-label { color:var(--rw-red); font-weight:800; }
+.rw-step-active-tag { font-size:0.62rem; color:var(--rw-red); font-weight:800; text-transform:uppercase; letter-spacing:0.4px; margin-top:3px; }
 
-.rdw-profile-pic-rect {
-  background: #fff;
-  border-radius: 13px;
-  box-shadow: 0 4px 32px 0 rgba(35, 38, 59, 0.09);
-  width: 230px;
-  height: 230px;
-  min-width: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin-bottom: 0;
-  border: none;
-}
-.rdw-profile-pic-rect img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 11px;
-  box-shadow: none;
-  border: none;
-  display: block;
-}
+/* ── METRICS ── */
+.rw-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+@media(max-width:700px){ .rw-metrics{grid-template-columns:1fr 1fr;} }
+.rw-metric { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:12px; padding:20px 16px; text-align:center; box-shadow:var(--rw-shadow); transition:box-shadow 0.2s,transform 0.2s; }
+.rw-metric:hover { box-shadow:var(--rw-shadow-lg); transform:translateY(-2px); }
+.rw-metric-num { font-size:2rem; font-weight:900; color:var(--rw-red); line-height:1; }
+.rw-metric-label { font-size:0.7rem; color:var(--rw-muted); text-transform:uppercase; letter-spacing:0.7px; margin-top:4px; }
 
-.rdw-profile-stats {
-  width: 230px;
-  height: 230px;
-  min-width: 180px;
-  margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-}
-.rdw-profile-stat-row {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.rdw-profile-stat {
-  flex: 1 1 100px;
-  background: #fbeee7;
-  border-radius: 10px;
-  border: 1px solid #f7d3c1;
-  box-shadow: 0 1px 8px rgba(230,90,41,0.04);
-  min-width: 110px;
-  text-align: center;
-  padding: 15px 10px 9px 10px;
-  color: #a04a24;
-  font-size: 1.09rem;
-}
-.rdw-profile-stat strong {
-  display: block;
-  font-size: 1.43rem;
-  color: #b72113;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
+/* ── SECTION TITLE ── */
+.rw-section-title { font-size:0.7rem; text-transform:uppercase; letter-spacing:1.2px; color:var(--rw-muted); font-weight:700; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--rw-border); }
 
-.rdw-info-tile {
-  background: #fff;
-  border-radius: 13px;
-  box-shadow: 0 4px 32px 0 rgba(35, 38, 59, 0.09);
-  padding: 32px 36px 26px 36px;
-  flex: 1 1 0;
-  min-width: 340px;
-  max-width: 900px;
-  color: #212121;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid #e14b4b18;
-}
+/* ── SERVICES ── */
+.rw-services { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:24px; }
+@media(max-width:800px){ .rw-services{grid-template-columns:1fr 1fr;} }
+@media(max-width:500px){ .rw-services{grid-template-columns:1fr;} }
+.rw-service-card { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; padding:22px 20px; box-shadow:var(--rw-shadow); transition:box-shadow 0.2s,border-color 0.2s,transform 0.2s; }
+.rw-service-card:hover { box-shadow:var(--rw-shadow-lg); border-color:var(--rw-red-mid); transform:translateY(-2px); }
+.rw-service-icon { width:44px; height:44px; border-radius:10px; background:var(--rw-red-light); border:1px solid var(--rw-red-mid); display:flex; align-items:center; justify-content:center; font-size:1.25rem; margin-bottom:14px; }
+.rw-service-title { font-size:0.97rem; font-weight:800; color:var(--rw-dark); margin-bottom:6px; }
+.rw-service-desc { font-size:0.83rem; color:var(--rw-muted); line-height:1.6; text-align:justify; }
+.rw-service-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:12px; }
+.rw-service-tag { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:4px; padding:2px 8px; font-size:0.7rem; color:#555; font-weight:600; }
 
-.rdw-info-tile h1 {
-  font-size: 2.6rem;
-  font-weight: 900;
-  margin-bottom: 10px;
-  margin-top: 0;
-  color: #b72113;
-  letter-spacing: -0.5px;
-}
-.rdw-info-tile h2 {
-  font-size: 1.19rem;
-  font-weight: 700;
-  margin: 23px 0 8px 0;
-  color: #655C5C;
-}
-.rdw-info-tile p {
-  font-size: 1.08rem;
-  margin: 13px 0 2px 0;
-  line-height: 1.58;
-  text-align: justify;
-}
-.rdw-info-tile p + p {
-  margin-top: 8px;
-}
+/* ── FEATURED PROJECT ── */
+.rw-featured { background:var(--rw-surface); border:1px solid var(--rw-border); border-left:4px solid var(--rw-red); border-radius:16px; padding:36px 40px; margin-bottom:24px; display:grid; grid-template-columns:1fr 140px; gap:32px; align-items:flex-start; box-shadow:var(--rw-shadow); }
+@media(max-width:700px){ .rw-featured{grid-template-columns:1fr;padding:24px;} }
+.rw-feat-badge { display:inline-flex; align-items:center; gap:6px; background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:20px; padding:4px 14px; font-size:0.72rem; font-weight:800; color:var(--rw-red-deep); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px; }
+.rw-feat-title { font-size:1.35rem; font-weight:900; color:var(--rw-dark); margin:0 0 6px; line-height:1.25; }
+.rw-feat-client { font-size:0.82rem; color:var(--rw-muted); margin-bottom:14px; }
+.rw-feat-desc { font-size:0.92rem; line-height:1.72; color:#4a4a4a; margin-bottom:18px; text-align:justify; }
+.rw-feat-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.rw-feat-pill { background:var(--rw-red-light); border:1px solid var(--rw-red-mid); border-radius:6px; padding:4px 12px; font-size:0.78rem; font-weight:700; color:var(--rw-red-deep); }
+.rw-feat-stack { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
+.rw-feat-tag { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:5px; padding:3px 10px; font-size:0.74rem; color:#555; font-weight:600; }
+.rw-feat-footer { display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid var(--rw-border); }
+.rw-feat-link { font-size:0.82rem; font-weight:700; color:var(--rw-red); text-decoration:none; }
+.rw-feat-link:hover { color:var(--rw-red-deep); text-decoration:underline; }
+.rw-feat-role-pill { background:var(--rw-dark); color:#fff; border-radius:6px; padding:4px 12px; font-size:0.74rem; font-weight:800; }
+.rw-feat-stats { display:flex; flex-direction:column; gap:12px; }
+.rw-feat-stat { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:10px; padding:14px 12px; text-align:center; }
+.rw-feat-stat-num { font-size:1.4rem; font-weight:900; color:var(--rw-red); line-height:1; }
+.rw-feat-stat-lbl { font-size:0.63rem; color:var(--rw-muted); text-transform:uppercase; letter-spacing:0.5px; margin-top:3px; }
 
-.rdw-info-tile ul {
-  margin: 8px 0 14px 20px;
-  padding-left: 0;
-}
-.rdw-info-tile li {
-  margin-bottom: 6px;
-  font-size: 1.05rem;
-}
-.rdw-info-tile .skills {
-  margin: 0 0 10px 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.rdw-info-tile .skill-chip {
-  background: #f4ece6;
-  border-radius: 8px;
-  padding: 2px 11px;
-  font-size: 0.98rem;
-  border: 1px solid #e6e6e6;
-  margin-bottom: 3px;
-}
-.rdw-info-tile strong {
-  font-weight: 700;
-}
-.rdw-info-tile .links {
-  margin-top: 16px;
-}
-.rdw-info-tile .links a {
-  color: #0077b6;
-  text-decoration: underline;
-  margin-right: 18px;
-  font-size: 1.07rem;
-}
-@media (max-width: 1400px) {
-  .rdw-main-container { max-width: 98vw; }
-}
-@media (max-width: 1024px) {
-  .rdw-main-content {
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-    align-items: stretch;
-    padding: 10px 0 0 0;
-  }
-  .rdw-profile-block, .rdw-info-tile {
-    max-width: 99vw;
-    min-width: unset;
-    margin: 0 auto;
-  }
-  .rdw-profile-pic-rect {
-    height: 170px;
-    width: 50vw;
-    max-width: 220px;
-  }
-  .rdw-info-tile {
-    padding: 22px 8vw 18px 8vw;
-  }
-}
+/* ── CTA ── */
+.rw-cta { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; padding:32px 36px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; box-shadow:var(--rw-shadow); }
+.rw-cta-text h3 { font-size:1.1rem; font-weight:800; color:var(--rw-dark); margin:0 0 5px; }
+.rw-cta-text p { font-size:0.88rem; color:var(--rw-muted); margin:0; }
+.rw-cta-actions { display:flex; gap:10px; flex-wrap:wrap; }
 </style>
 
-<div class="rdw-main-container">
-  <div class="rdw-main-content">
-    <!-- Profile Section (picture + stats below) -->
-    <div class="rdw-profile-block">
-      <div class="rdw-profile-pic-rect">
-        <img src="css/images/SAITEJA.jpg" alt="Sai Teja Appala profile image" />
+<div class="rw-page">
+
+  <!-- HERO -->
+  <div class="rw-hero">
+    <div class="rw-hero-body">
+      <div class="rw-hero-name">Sai Teja Appala</div>
+      <div class="rw-hero-role">Senior Oracle PaaS Consultant</div>
+      <div class="rw-hero-company">Deloitte · Hyderabad, India</div>
+      <div class="rw-hero-exp">
+        <span class="rw-hero-exp-dot"></span>
+        <span id="rwExpLabel">calculating...</span>&nbsp;of Oracle Cloud delivery at Deloitte
       </div>
-      <div class="rdw-profile-stats">
-        <div class="rdw-profile-stat-row">
-          <div class="rdw-profile-stat"><strong>5</strong>Years Exp</div>
-          <div class="rdw-profile-stat"><strong>3x</strong>Outstanding Awards</div>
-        </div>
-        <div class="rdw-profile-stat-row">
-          <div class="rdw-profile-stat"><strong>15,00+</strong>Test Cases Automated</div>
-          <div class="rdw-profile-stat"><strong>5+</strong>End-to-End Implementations</div>
-          <div class="rdw-profile-stat"><strong>3</strong>Certifications</div>
-        </div>
+      <div class="rw-hero-bio">I architect and deliver Oracle Cloud platforms that drive measurable enterprise transformation — specializing in VBCS, OIC, ATP, and BI Publisher across Finance, Procurement, and HR. At Deloitte, I lead the Reports and Extensions Track on Oracle Cloud programs for Fortune 500 clients, reducing manual workloads by 60% and accelerating business cycles by 80% through cloud-native automation and seamless ERP integration. I bridge technical and functional teams, champion Redwood design, and mentor upcoming talent — turning complex enterprise requirements into scalable, intuitive Oracle Cloud solutions.</div>
+      <div class="rw-hero-highlights">
+        <span class="rw-chip">⚙️ Oracle VBCS</span>
+        <span class="rw-chip">🔗 OIC Integration</span>
+        <span class="rw-chip">🗄️ ATP · PL/SQL</span>
+        <span class="rw-chip">📊 BI Publisher</span>
+        <span class="rw-chip">🏢 Oracle Fusion ERP</span>
+        <span class="rw-chip">🤖 AI Agents</span>
+      </div>
+      <div class="rw-hero-actions">
+        <button class="rw-btn-primary" id="rwGoWork">View My Work →</button>
+        <a class="rw-btn-outline" href="mailto:saitejaappala@gmail.com">Get In Touch</a>
       </div>
     </div>
-    <!-- Details Tile -->
-    <div class="rdw-info-tile">
-      <h1>Sai Teja Appala</h1>
-      <p>
-        <strong>Senior Oracle PaaS Consultant</strong> with over 5 years of dedicated experience in architecting, developing, and delivering highly scalable solutions on Oracle Cloud Infrastructure (OCI). I specialize in driving the digital transformation journey of large enterprises, focusing on creating robust applications using <strong>Oracle Visual Builder (VBCS)</strong>, <strong>Integration Cloud (OIC)</strong>, <strong>Autonomous Transaction Processing (ATP)</strong>, and <strong>BI Publisher</strong>. My career has centered on building cloud-native platforms that streamline business processes and foster automation at scale.
-      </p>
-      <p>
-        At Deloitte, I led cross-functional teams to deliver enterprise-grade timecard solutions, advanced job assignment automation, and seamless ERP integrations—achieving up to 60% reduction in manual workloads and 80% faster business cycle times. My experience spans not only designing secure REST and SOAP integrations but also optimizing finance, procurement, and analytics operations for maximum business impact. Recognized for my ability to bridge technical and functional teams, I am passionate about cloud strategy, platform reliability, and mentoring upcoming tech talent. Beyond project delivery, I invest in continuous learning, keep up with Redwood design, and advocate for building intuitive and accessible enterprise UIs.
-      </p>
-      <div class="skills">
-        <span class="skill-chip">Oracle VBCS</span>
-        <span class="skill-chip">OIC</span>
-        <span class="skill-chip">PL/SQL</span>
-        <span class="skill-chip">REST/SOAP APIs</span>
-        <span class="skill-chip">BI Publisher</span>
-        <span class="skill-chip">ATP</span>
-        <span class="skill-chip">Automation</span>
-        <span class="skill-chip">UI/UX Design</span>
-        <span class="skill-chip">Cloud ERP</span>
-        <span class="skill-chip">Oracle Redwood</span>
-      </div>
-      <!-- ... Rest of your info ... -->
-       <h2>Certifications</h2>
-    <ul>
-      <li>Oracle Cloud Platform Application Integration Specialist</li>
-      <li>Oracle Autonomous Database Cloud 2019 Specialist</li>
-      <li>Scrum Fundamentals Certified</li>
-    </ul>
-    <h2>Recent Projects</h2>
-    <ul>
-      <li><strong>Timecard Automation Platform</strong>: Built for a Fortune 500 client, automating PO, approval, and receipting flows via VBCS and OIC.</li>
-      <li><strong>Job Assignment Suite</strong>: Dynamic Redwood-based application for managing 15,000+ assignments per year using ATP and BI Reports.</li>
-      <li><strong>Fusion Test Automation Framework</strong>: Led UAT automation across Oracle Fusion modules, reducing cycles by 40%.</li>
-    </ul>
-    <h2>Key Achievements</h2>
-    <ul>
-      <li>Enabled a 60% reduction in manual reconciliation with automated job management (handled 15,000+ assignments annually)</li>
-      <li>Rolled out supplier-facing platforms now adopted by 50+ vendors in 6 countries</li>
-      <li>Awarded two “Outstanding” and one “Diamond” for leadership in enterprise automation</li>
-    </ul>
-    <h2>Leadership & Campus Roles</h2>
-    <ul>
-      <li>Secretary General, Alumni Association, NIT Andhra Pradesh</li>
-      <li>Social Networking Head, DSC Google Developers</li>
-      <li>TEDx NIT AP Branding Lead, Vulcanzy Fest Hospitality Head</li>
-      <li>Nodal Officer, NIT Conclave</li>
-    </ul>
-    <h2>Professional Interests</h2>
-    <ul>
-      <li>Cloud architecture, Oracle integrations, Redwood UI/UX</li>
-      <li>Automation, analytics, and enterprise productivity</li>
-      <li>Mentoring, tech communities, and business transformation</li>
-    </ul>
-    <div class="links">
-      <a href="resume.pdf" target="_blank">View Resume</a>
-      <a href="mailto:saitejaappala@gmail.com">Email</a>
-      <a href="https://github.com/saitejaappala" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/saitejaappala/" target="_blank">LinkedIn</a>
-      <a href="https://redwood.oracle.com/" target="_blank">Redwood Design</a>
+    <div class="rw-hero-photo">
+      <img src="css/images/SAITEJA.jpg" alt="Sai Teja Appala" />
     </div>
   </div>
+
+  <!-- SME JOURNEY TRACKER — 3 STEPS ONLY -->
+  <div class="rw-tracker">
+    <!-- heading + badge: same row -->
+    <div class="rw-tracker-head">
+      <div class="rw-tracker-heading">My Oracle Cloud Journey</div>
+      <div class="rw-tracker-badge">🎯 In Progress</div>
+    </div>
+    <!-- description: full width, no sharing with badge -->
+    <div class="rw-tracker-desc">A career built on depth, not just breadth. Starting as an Analyst, I developed the technical foundation — PL/SQL, REST integrations, and VBCS fundamentals — while delivering real outcomes from day one. As a Consultant, that foundation matured into ownership: architecting OIC integrations, leading full-cycle VBCS builds, and driving BI Publisher reporting across Finance and Procurement. Today, as Senior Consultant at Deloitte, I lead the Reports and Extensions Track on Oracle Cloud programs for Fortune 500 organizations — owning the delivery of VBCS applications, OIC integrations, BI Publisher reports, and PL/SQL extensions that bring the ERP to life for business users.</div>
+    <!-- 3 steps -->
+    <div class="rw-tracker-steps">
+      <div class="rw-step rw-step-done">
+        <div class="rw-step-dot">✓</div>
+        <div class="rw-step-line"></div>
+        <div class="rw-step-label">Analyst</div>
+      </div>
+      <div class="rw-step rw-step-done">
+        <div class="rw-step-dot">✓</div>
+        <div class="rw-step-line"></div>
+        <div class="rw-step-label">Consultant</div>
+      </div>
+      <div class="rw-step rw-step-active">
+        <div class="rw-step-dot">⚡</div>
+        <div class="rw-step-label">Senior<br/>Consultant</div>
+        <div class="rw-step-active-tag">← Now</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="rw-metrics">
+    <div class="rw-metric"><div class="rw-metric-num" id="rwMetricExp">5+</div><div class="rw-metric-label">Yrs at Deloitte</div></div>
+    <div class="rw-metric"><div class="rw-metric-num">15K+</div><div class="rw-metric-label">Records / Quarter</div></div>
+    <div class="rw-metric"><div class="rw-metric-num">60%</div><div class="rw-metric-label">Manual Work Eliminated</div></div>
+    <div class="rw-metric"><div class="rw-metric-num">4</div><div class="rw-metric-label">Oracle Skills</div></div>
+  </div>
+
+  <!-- WHAT I DO -->
+  <div class="rw-section-title">What I Do</div>
+  <div class="rw-services">
+    <div class="rw-service-card">
+      <div class="rw-service-icon">🖥️</div>
+      <div class="rw-service-title">VBCS Application Development</div>
+      <div class="rw-service-desc">End-to-end Oracle Visual Builder apps built on the Redwood design system — enterprise-grade UX, offline-capable, and production-ready at scale.</div>
+      <div class="rw-service-tags"><span class="rw-service-tag">VBCS</span><span class="rw-service-tag">Oracle JET</span><span class="rw-service-tag">Redwood UI</span></div>
+    </div>
+    <div class="rw-service-card">
+      <div class="rw-service-icon">🔗</div>
+      <div class="rw-service-title">OIC Integration Architecture</div>
+      <div class="rw-service-desc">Robust integration layers on Oracle Integration Cloud — REST, SOAP, and event-driven patterns across Finance, HR, and Procurement modules.</div>
+      <div class="rw-service-tags"><span class="rw-service-tag">OIC</span><span class="rw-service-tag">REST / SOAP</span><span class="rw-service-tag">ERP Cloud</span></div>
+    </div>
+    <div class="rw-service-card">
+      <div class="rw-service-icon">📊</div>
+      <div class="rw-service-title">Reporting &amp; Data Automation</div>
+      <div class="rw-service-desc">BI Publisher reports, ATP-backed pipelines, and PL/SQL automation replacing manual processes at Fortune 500 scale with measurable ROI.</div>
+      <div class="rw-service-tags"><span class="rw-service-tag">BI Publisher</span><span class="rw-service-tag">ATP</span><span class="rw-service-tag">PL/SQL</span></div>
+    </div>
+    <div class="rw-service-card">
+      <div class="rw-service-icon">🤖</div>
+      <div class="rw-service-title">UAT &amp; Test Automation</div>
+      <div class="rw-service-desc">Reusable test frameworks across Oracle Fusion — cutting UAT cycle times by 40% and enabling continuous regression testing on every release.</div>
+      <div class="rw-service-tags"><span class="rw-service-tag">Oracle Fusion</span><span class="rw-service-tag">Test Automation</span></div>
+    </div>
+    <div class="rw-service-card">
+      <div class="rw-service-icon">🏢</div>
+      <div class="rw-service-title">ERP Cloud Delivery</div>
+      <div class="rw-service-desc">Leading cross-functional Oracle Fusion ERP implementations — Finance, Procurement, and HCM — from blueprint through to hypercare.</div>
+      <div class="rw-service-tags"><span class="rw-service-tag">Oracle Fusion ERP</span><span class="rw-service-tag">HCM</span></div>
+    </div>
+    <div class="rw-service-card">
+      <div class="rw-service-icon">⚙️</div>
+      <div class="rw-service-title">Solution Architecture</div>
+      <div class="rw-service-desc">Translating business requirements into scalable Oracle Cloud architectures — integration design, data modelling, and long-term platform governance.</div>
+      <div class="rw-service-tags"><span class="rw-service-tag">Architecture</span><span class="rw-service-tag">OCI</span><span class="rw-service-tag">Governance</span></div>
+    </div>
+  </div>
+
+  <!-- FEATURED PROJECT -->
+  <div class="rw-section-title">Flagship Project</div>
+  <div class="rw-featured">
+    <div>
+      <span class="rw-feat-badge">⭐ Flagship Delivery · Technical Lead</span>
+      <div class="rw-feat-title">Program Setup — Custom PaaS Application</div>
+      <div class="rw-feat-client">Enterprise Client · Deloitte · 2023–2024</div>
+      <div class="rw-feat-desc">When the standard Oracle Program page couldn't support the field depth or audit trail the business required, I architected a custom PaaS replacement from scratch. Program Setup Information — built on Oracle VBCS — handles all three program types (Parent, Child, Standalone) with hierarchy management, an advanced filter-driven search home screen, and full View, Create, and Update workflows. Data flows from Standard Oracle REST APIs, lookups, and value sets into Oracle ATP. With 40+ cross-field validations and complex people fragments, it's one of the most technically demanding apps I've delivered — and the one that finally gave the business the complete audit history the native page never could.</div>
+      <div class="rw-feat-pills">
+        <span class="rw-feat-pill">40+ Field Validations </span>
+        <span class="rw-feat-pill"> 3 Program Types</span>
+        <span class="rw-feat-pill">Full Audit History </span>
+        <span class="rw-feat-pill">Advanced Search & Filters</span>
+      </div>
+      <div class="rw-feat-stack">
+        <span class="rw-feat-tag">Oracle VBCS</span><span class="rw-feat-tag">PaaS</span><span class="rw-feat-tag">Standard REST APIs</span><span class="rw-feat-tag">Oracle ATP</span><span class="rw-feat-tag">Lookups &amp; Value Sets</span><span class="rw-feat-tag">Fragments</span><span class="rw-feat-tag">ERP Cloud</span>
+      </div>
+      <div class="rw-feat-footer">
+        <a class="rw-feat-link" href="mailto:saitejaappala@gmail.com">Request case study →</a>
+        <span class="rw-feat-role-pill">Technical Lead</span>
+      </div>
+    </div>
+    <div class="rw-feat-stats">
+      <div class="rw-feat-stat"><div class="rw-feat-stat-num">40+</div><div class="rw-feat-stat-lbl">Fields Validated</div></div>
+      <div class="rw-feat-stat"><div class="rw-feat-stat-num">3</div><div class="rw-feat-stat-lbl">Program Types </div></div>
+      <div class="rw-feat-stat"><div class="rw-feat-stat-num">100%</div><div class="rw-feat-stat-lbl">Audit Coverage</div></div>
+      <div class="rw-feat-stat"><div class="rw-feat-stat-num">50000+</div><div class="rw-feat-stat-lbl">Records</div></div>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="rw-cta">
+    <div class="rw-cta-text">
+      <h3>Let's build something that lasts on Oracle Cloud</h3>
+      <p>Open to architecture discussions, complex delivery challenges, Oracle Cloud strategy, and thought leadership opportunities across the enterprise ecosystem.</p>
+    </div>
+    <div class="rw-cta-actions">
+      <a class="rw-btn-primary" href="css/images/Sai Teja Appala Resume.pdf" target="_blank">📄 View Resume</a>
+      <a class="rw-btn-outline" href="mailto:saitejaappala@gmail.com">Let's Connect</a>
+    </div>
+  </div>
+
 </div>
+
+<script>
+(function(){
+  /* ── DYNAMIC EXPERIENCE ── */
+  var start  = new Date(2020, 8, 1);
+  var now    = new Date();
+  var months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  var yrs    = Math.floor(months / 12);
+  var mos    = months % 12;
+  var long   = yrs + ' year' + (yrs !== 1 ? 's' : '') + (mos > 0 ? ' ' + mos + ' month' + (mos !== 1 ? 's' : '') : '');
+  var short  = yrs + (mos > 0 ? '.' + mos : '') + '+';
+  /* defer DOM updates — JET view is async; elements not ready at script parse time */
+  function rwApplyExp(){
+    var eEl = document.getElementById('rwExpLabel');   if(eEl) eEl.textContent = long;
+    var mEl = document.getElementById('rwMetricExp');  if(mEl) mEl.textContent = short;
+  }
+  if(document.getElementById('rwExpLabel')){ rwApplyExp(); }
+  else { setTimeout(rwApplyExp, 300); }
+
+  /* ── VIEW MY WORK ── */
+  function rwGoWork(){
+    window.location.href = '?ojr=work';
+  }
+  function rwBindGoWork(){
+    var wb = document.getElementById('rwGoWork');
+    if(wb) wb.addEventListener('click', rwGoWork);
+    else setTimeout(rwBindGoWork, 300);
+  }
+  rwBindGoWork();
+
+  /* ── SAIBOT ── */
+  var answers = {
+    'What is your specialization?':   'I specialize in Oracle Cloud PaaS — VBCS for enterprise UIs, OIC for integration orchestration, and ATP/PL/SQL for the data layer. I bridge Oracle platform capabilities and real business outcomes at Fortune 500 scale. 🔗',
+    'Tell me about a key project':    'Program Setup Information — a custom PaaS app built on Oracle VBCS to replace and extend the standard Oracle Program page. Supports Parent, Child, and Standalone programs with hierarchy management, advanced search filters, full audit history, and 40+ cross-field validations. Data sourced from Standard REST APIs and persisted in Oracle ATP. 🏗️',
+    'What is your career goal?':      'My goal is to become a recognized Oracle Cloud domain expert — going beyond delivery into thought leadership, architecture pattern publishing, and shaping how enterprises adopt Oracle Cloud at scale. Every project builds toward that. 🎯',
+    'Why VBCS over other tools?':     'VBCS is Oracle-native, Redwood-ready, and integrates seamlessly with OIC and Fusion. For Oracle Cloud organizations it eliminates the mismatch between UI and backend, and Oracle backs it long-term. Strategic choice, not convenience. ✅',
+    'How do you approach OIC design?':'Start with the integration pattern — real-time, batch, or event-driven. Pick the right adapter (REST, SOAP, DB). Design for error observability first; monitoring matters as much as building. Always reuse patterns across modules. ⚙️'
+  };
+
+  window.rwAsk = function(btn, q){
+    var msgs = document.getElementById('rwChatMsgs');
+    if(!msgs) return;
+    var uMsg = document.createElement('div');
+    uMsg.className = 'rw-cmsg rw-cmsg-user';
+    uMsg.textContent = q;
+    msgs.appendChild(uMsg);
+    var typing = document.createElement('div');
+    typing.className = 'rw-chat-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    btn.disabled = true;
+    setTimeout(function(){
+      typing.remove();
+      var bMsg = document.createElement('div');
+      bMsg.className = 'rw-cmsg rw-cmsg-bot';
+      bMsg.textContent = answers[q] || 'Great question! Reach out at saitejaappala@gmail.com for a deeper conversation. 📬';
+      msgs.appendChild(bMsg);
+      msgs.scrollTop = msgs.scrollHeight;
+      btn.disabled = false;
+    }, 1100);
+  };
+})();
+</script>
