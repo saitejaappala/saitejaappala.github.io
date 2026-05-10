@@ -1,0 +1,115 @@
+<style>
+:root {
+  --rw-dark:#22272B; --rw-red:#C74634; --rw-red-light:#FFF5F3;
+  --rw-red-mid:#F5C5BA; --rw-red-deep:#9B2915; --rw-bg:#F6F6F6;
+  --rw-surface:#FFFFFF; --rw-border:#E8DED9; --rw-muted:#737373;
+  --rw-shadow:0 2px 12px rgba(0,0,0,0.07); --rw-shadow-lg:0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* ── PAGE LAYOUT ── */
+.gal-page { max-width:1100px; margin:0 auto; padding:28px 20px 60px; }
+
+/* ── HEADER ── */
+.gal-hero { margin-bottom:28px; }
+.gal-hero-top { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:6px; }
+.gal-title { font-size:1.7rem; font-weight:900; color:var(--rw-dark); letter-spacing:-0.5px; margin:0; }
+.gal-title span { color:var(--rw-red); }
+.gal-subtitle { font-size:0.88rem; color:var(--rw-muted); margin:0; }
+.gal-count-badge { background:var(--rw-red-light); border:1px solid var(--rw-red-mid); color:var(--rw-red); font-size:0.75rem; font-weight:700; padding:5px 14px; border-radius:20px; white-space:nowrap; }
+
+/* ── FILTER TABS ── */
+.gal-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+.gal-filter { background:var(--rw-surface); border:1.5px solid var(--rw-border); color:var(--rw-muted); font-size:0.78rem; font-weight:700; padding:6px 16px; border-radius:20px; cursor:pointer; transition:all 0.18s; text-transform:uppercase; letter-spacing:0.4px; }
+.gal-filter:hover { border-color:var(--rw-red-mid); color:var(--rw-red); background:var(--rw-red-light); }
+.gal-filter.active { background:var(--rw-red); border-color:var(--rw-red); color:#fff; }
+
+/* ── MASONRY GRID ── */
+.gal-masonry { column-count:4; column-gap:12px; }
+@media(max-width:1000px){ .gal-masonry { column-count:3; } }
+@media(max-width:650px){ .gal-masonry { column-count:2; } }
+
+.gal-item { break-inside:avoid; margin-bottom:12px; position:relative; overflow:hidden; border-radius:12px; cursor:pointer; background:var(--rw-bg); }
+.gal-item::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, transparent 50%, rgba(34,39,43,0.65) 100%); opacity:0; transition:opacity 0.25s; border-radius:12px; }
+.gal-item:hover::after { opacity:1; }
+.gal-img { width:100%; display:block; border-radius:12px; transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94); }
+.gal-item:hover .gal-img { transform:scale(1.05); }
+.gal-overlay { position:absolute; bottom:10px; left:10px; right:10px; opacity:0; transition:opacity 0.25s; z-index:2; display:flex; align-items:center; gap:6px; }
+.gal-item:hover .gal-overlay { opacity:1; }
+.gal-tag { background:rgba(199,70,52,0.88); color:#fff; font-size:0.62rem; font-weight:700; padding:3px 9px; border-radius:5px; letter-spacing:0.3px; backdrop-filter:blur(4px); }
+
+/* ── DIVIDER ── */
+.gal-divider { height:1px; background:var(--rw-border); margin:6px 0 24px; }
+</style>
+
+<div class="gal-page">
+
+  <!-- HEADER -->
+  <div class="gal-hero">
+    <div class="gal-hero-top">
+      <div>
+        <h1 class="gal-title">Life in <span>Pictures</span></h1>
+        <p class="gal-subtitle">Travels · Bike rides · Food · Moments — a slice of life outside the office</p>
+      </div>
+      <span class="gal-count-badge">📸 53 photos</span>
+    </div>
+  </div>
+  <div class="gal-divider"></div>
+
+  <!-- MASONRY GALLERY -->
+  <div class="gal-masonry">
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234248_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234301_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234311_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234320_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234329_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234338_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234346_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234355_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234403_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234412_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234417_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234424_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234430_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234435_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234441_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234447_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234454_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234502_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234510_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234525_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234531_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234538_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234544_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234551_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234559_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234611_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234617_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234628_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234634_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234641_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234712_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Nature</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234718_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234728_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234735_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234742_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234748_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234756_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234804_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234813_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234819_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234828_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Nature</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234837_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234849_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234859_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234906_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234915_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234922_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234930_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_234944_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_235001_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Nature</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_235014_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Travel</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_235020_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Moments</span></div></div>
+    <div class="gal-item"><img class="gal-img" src="pictures/Screenshot_20260510_235028_Instagram.jpg" alt="" loading="lazy"><div class="gal-overlay"><span class="gal-tag">Rides</span></div></div>
+  </div>
+
+</div>

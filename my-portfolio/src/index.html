@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<!--
+ Copyright (c) 2014, 2025, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+-->
+<html lang="en-us">
+  <head>
+    <title>Oracle JET Redwood SPA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1">
+    <link rel="icon" href="css/images/JET-Favicon-Red-32x32.png" type="image/x-icon" />
+    <!-- Redwood theme -->
+    <link rel="stylesheet" href="css/redwood/18.1.2/web/redwood.css" id="basestyles" />
+    <link rel="stylesheet" href="css/theme-redwood/18.1.2/web/theme.css" id="themestyle" />
+    <!-- Icon font -->
+    <link rel="stylesheet" id="uxiconFont" href="https://static.oracle.com/cdn/fnd/gallery/2404.0.0/images/iconfont/ojuxIconFont.min.css" />
+    <!-- App-specific CSS -->
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
+
+    <!-- Custom: Make header/tab bar/logo text/icons white and invert logo color -->
+    <style>
+      .oj-web-applayout-header,
+      .oj-web-applayout-header * {
+        color: #fff !important;
+        fill: #fff !important;
+      }
+      .oj-web-applayout-header img,
+      .oj-web-applayout-header .demo-oracle-icon {
+        filter: brightness(0) invert(1);
+      }
+      .oj-web-applayout-navbar,
+      .oj-web-applayout-navbar * {
+        color: #fff !important;
+        fill: #fff !important;
+      }
+      #rdwModal .rdw-body,
+      #rdwModal .rdw-body * {
+        color: #22272B !important;
+        fill: #22272B !important;
+      }
+      #rdwModal .rdw-body code { color: #22272B !important; }
+    </style>
+  </head>
+  <body class="oj-web-applayout-body">
+    <!-- Navigation item template -->
+    <script type="text/html" id="navTemplate">
+      <li><a href="#">
+        <span :class="[[$data.detail.iconClass]]"></span>
+        <oj-bind-text value="[[$data.detail.label]]"></oj-bind-text>
+      </a></li>
+    </script>
+
+    <div id="globalBody">
+      <div id="announce" tabindex="-1" class="send-off-screen" :aria-live="[[manner]]" aria-atomic="true">
+        <p id="ariaLiveMessage"><oj-bind-text value="[[message]]"></oj-bind-text></p>
+      </div>
+
+      <!-- Drawer for small screens -->
+      <oj-drawer-popup id="navDrawer" edge="start" opened="{{sideDrawerOn}}"
+        modality="modeless" role="navigation"
+        class="oj-bg-neutral-170 oj-color-invert">
+        <oj-navigation-list id="navDrawerList" data="[[navDataProvider]]"
+          item.renderer="[[KnockoutTemplateUtils.getRenderer('navTemplate', true)]]"
+          on-click="[[toggleDrawer]]"
+          selection="{{selection.path}}">
+        </oj-navigation-list>
+      </oj-drawer-popup>
+      
+      <div id="pageContent" class="oj-web-applayout-page" style="background: #F6F6F6; min-height: 100vh;">
+        <!-- HEADER: Redwood dark -->
+        <header role="banner" class="oj-web-applayout-header" style="background-color: #22272B; padding-top:8px; padding-bottom:8px;">
+          <div class="oj-web-applayout-max-width oj-flex-bar" style="align-items:center;">
+            <!-- Drawer toggle button for mobile -->
+            <div class="oj-flex-bar-start oj-md-hide">
+              <oj-button id="drawerToggleButton" class="oj-button-lg" on-oj-action="[[toggleDrawer]]" chroming="borderless" display="icons">
+                <span slot="startIcon" class="oj-web-applayout-offcanvas-icon"></span>
+                <span>Application Navigation</span>
+              </oj-button>
+            </div>
+            <div class="oj-flex-bar-middle" style="display:flex; flex-direction:column; align-items:flex-start; gap:5px;">
+              <h1 class="oj-sm-only-hide oj-web-applayout-header-title" title="Application Name" style="margin:0; line-height:1.2;"><oj-bind-text value="[[appName]]"></oj-bind-text></h1>
+              <a id="rdwOpenBtn" href="#" style="font-size:0.55rem; color:#F5C5BA !important; text-decoration:none; letter-spacing:0.5px; font-weight:600; display:inline-flex; align-items:center; gap:4px; line-height:1; padding-bottom:2px; border-bottom:1px dashed rgba(245,197,186,0.4);">✦ Built with Oracle Redwood design philosophy</a>
+            </div>
+            <div class="oj-flex-bar-end"></div>
+          </div>
+
+          <!-- REDWOOD INFO MODAL -->
+          <div id="rdwModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(20,24,28,0.82); backdrop-filter:blur(4px); align-items:center; justify-content:center;">
+            <div style="background:#fff; border-radius:16px; max-width:760px; width:92vw; max-height:88vh; overflow-y:auto; box-shadow:0 24px 80px rgba(0,0,0,0.35); position:relative;">
+              <div style="background:#22272B; border-radius:16px 16px 0 0; padding:22px 28px 18px; display:flex; align-items:center; justify-content:space-between;">
+                <div>
+                  <div style="font-size:1.15rem; font-weight:800; color:#fff !important; letter-spacing:-0.3px;">Oracle Redwood Design System</div>
+                  <div style="font-size:0.78rem; color:#F5C5BA !important; margin-top:3px;">How this portfolio is built on Oracle's design philosophy</div>
+                </div>
+                <button id="rdwCloseBtn" style="background:rgba(255,255,255,0.12); border:none; color:#fff !important; width:32px; height:32px; border-radius:50%; font-size:1rem; cursor:pointer; flex-shrink:0;">✕</button>
+              </div>
+              <div class="rdw-body" style="padding:24px 28px 28px;">
+                <p style="font-size:0.87rem; color:#444 !important; line-height:1.7; margin:0 0 22px;">Oracle Redwood is Oracle's human-centered design system — built around clarity, accessibility, and consistency across enterprise applications. This portfolio deliberately adopts Redwood's visual language and UX patterns to demonstrate real-world Oracle Cloud UI/UX fluency.</p>
+                <div style="font-size:0.7rem; font-weight:800; color:#C74634 !important; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px;">Design Principles Applied</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:22px;">
+                  <div style="background:#FFF5F3; border:1px solid #F5C5BA; border-left:3px solid #C74634; border-radius:10px; padding:12px 14px;"><div style="font-size:0.8rem; font-weight:700; color:#22272B !important; margin-bottom:4px;">🎯 Clarity First</div><div style="font-size:0.75rem; color:#555 !important; line-height:1.55;">Every section has a clear information hierarchy — section labels, titles, descriptions — with no visual clutter competing for attention.</div></div>
+                  <div style="background:#FFF5F3; border:1px solid #F5C5BA; border-left:3px solid #C74634; border-radius:10px; padding:12px 14px;"><div style="font-size:0.8rem; font-weight:700; color:#22272B !important; margin-bottom:4px;">⚖️ Consistent Scale</div><div style="font-size:0.75rem; color:#555 !important; line-height:1.55;">Spacing, border-radius, and type sizes follow a strict scale — 8px base grid — matching Redwood's spatial rhythm.</div></div>
+                  <div style="background:#FFF5F3; border:1px solid #F5C5BA; border-left:3px solid #C74634; border-radius:10px; padding:12px 14px;"><div style="font-size:0.8rem; font-weight:700; color:#22272B !important; margin-bottom:4px;">🌈 Purposeful Color</div><div style="font-size:0.75rem; color:#555 !important; line-height:1.55;">Redwood Red (#C74634) used exclusively for primary actions and emphasis — never decoratively. Neutrals carry everything else.</div></div>
+                  <div style="background:#FFF5F3; border:1px solid #F5C5BA; border-left:3px solid #C74634; border-radius:10px; padding:12px 14px;"><div style="font-size:0.8rem; font-weight:700; color:#22272B !important; margin-bottom:4px;">🤝 Human-Centered</div><div style="font-size:0.75rem; color:#555 !important; line-height:1.55;">Progressive disclosure throughout — teasers, expand/collapse, and "view all" patterns reduce information overwhelm.</div></div>
+                </div>
+                <div style="font-size:0.7rem; font-weight:800; color:#C74634 !important; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px;">Redwood Color Tokens</div>
+                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;">
+                  <div style="display:flex; align-items:center; gap:7px; background:#F6F6F6; border:1px solid #E8DED9; border-radius:8px; padding:7px 12px;"><div style="width:16px; height:16px; background:#C74634; border-radius:4px; flex-shrink:0;"></div><div><div style="font-size:0.72rem; font-weight:700; color:#22272B !important;">Redwood Red</div><div style="font-size:0.65rem; color:#737373 !important;">#C74634</div></div></div>
+                  <div style="display:flex; align-items:center; gap:7px; background:#F6F6F6; border:1px solid #E8DED9; border-radius:8px; padding:7px 12px;"><div style="width:16px; height:16px; background:#9B2915; border-radius:4px; flex-shrink:0;"></div><div><div style="font-size:0.72rem; font-weight:700; color:#22272B !important;">Red Deep</div><div style="font-size:0.65rem; color:#737373 !important;">#9B2915</div></div></div>
+                  <div style="display:flex; align-items:center; gap:7px; background:#F6F6F6; border:1px solid #E8DED9; border-radius:8px; padding:7px 12px;"><div style="width:16px; height:16px; background:#FFF5F3; border:1px solid #ccc; border-radius:4px; flex-shrink:0;"></div><div><div style="font-size:0.72rem; font-weight:700; color:#22272B !important;">Red Light</div><div style="font-size:0.65rem; color:#737373 !important;">#FFF5F3</div></div></div>
+                  <div style="display:flex; align-items:center; gap:7px; background:#F6F6F6; border:1px solid #E8DED9; border-radius:8px; padding:7px 12px;"><div style="width:16px; height:16px; background:#22272B; border-radius:4px; flex-shrink:0;"></div><div><div style="font-size:0.72rem; font-weight:700; color:#22272B !important;">Neutral Dark</div><div style="font-size:0.65rem; color:#737373 !important;">#22272B</div></div></div>
+                  <div style="display:flex; align-items:center; gap:7px; background:#F6F6F6; border:1px solid #E8DED9; border-radius:8px; padding:7px 12px;"><div style="width:16px; height:16px; background:#F6F6F6; border:1px solid #ccc; border-radius:4px; flex-shrink:0;"></div><div><div style="font-size:0.72rem; font-weight:700; color:#22272B !important;">Page BG</div><div style="font-size:0.65rem; color:#737373 !important;">#F6F6F6</div></div></div>
+                  <div style="display:flex; align-items:center; gap:7px; background:#F6F6F6; border:1px solid #E8DED9; border-radius:8px; padding:7px 12px;"><div style="width:16px; height:16px; background:#737373; border-radius:4px; flex-shrink:0;"></div><div><div style="font-size:0.72rem; font-weight:700; color:#22272B !important;">Muted</div><div style="font-size:0.65rem; color:#737373 !important;">#737373</div></div></div>
+                </div>
+                <div style="font-size:0.7rem; font-weight:800; color:#C74634 !important; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:10px;">Redwood Components &amp; Patterns</div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:22px;">
+                  <div style="display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; padding:10px 14px; background:#F6F6F6; border-radius:10px; border:1px solid #E8DED9;"><div style="font-size:0.76rem; font-weight:700; color:#22272B !important;">Tab Bar Navigation</div><div style="font-size:0.74rem; color:#555 !important; line-height:1.55;">Oracle JET <code style="background:#E8DED9; padding:1px 5px; border-radius:3px; font-size:0.68rem; color:#22272B !important;">oj-tab-bar</code> with Redwood dark header — matching Oracle Fusion ERP navigation. Active tab underlined in Redwood Red.</div></div>
+                  <div style="display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; padding:10px 14px; background:#F6F6F6; border-radius:10px; border:1px solid #E8DED9;"><div style="font-size:0.76rem; font-weight:700; color:#22272B !important;">Card Surface</div><div style="font-size:0.74rem; color:#555 !important; line-height:1.55;">White cards on grey page background — the core Redwood surface pattern. 14px border-radius and 1px border, never hard shadows.</div></div>
+                  <div style="display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; padding:10px 14px; background:#F6F6F6; border-radius:10px; border:1px solid #E8DED9;"><div style="font-size:0.76rem; font-weight:700; color:#22272B !important;">Section Labels</div><div style="font-size:0.74rem; color:#555 !important; line-height:1.55;">Uppercase tight-tracked labels above every section — mirroring Oracle Fusion's panel header pattern used in VBCS form layouts.</div></div>
+                  <div style="display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; padding:10px 14px; background:#F6F6F6; border-radius:10px; border:1px solid #E8DED9;"><div style="font-size:0.76rem; font-weight:700; color:#22272B !important;">Left Border Accent</div><div style="font-size:0.74rem; color:#555 !important; line-height:1.55;">Featured cards use a 4px Redwood Red left border — the standard Redwood highlight for selected or featured items.</div></div>
+                  <div style="display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; padding:10px 14px; background:#F6F6F6; border-radius:10px; border:1px solid #E8DED9;"><div style="font-size:0.76rem; font-weight:700; color:#22272B !important;">Skill Progress Bars</div><div style="font-size:0.74rem; color:#555 !important; line-height:1.55;">Styled after Oracle JET <code style="background:#E8DED9; padding:1px 5px; border-radius:3px; font-size:0.68rem; color:#22272B !important;">oj-progress-bar</code> — neutral grey track, Redwood Red fill.</div></div>
+                  <div style="display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; padding:10px 14px; background:#F6F6F6; border-radius:10px; border:1px solid #E8DED9;"><div style="font-size:0.76rem; font-weight:700; color:#22272B !important;">Pill / Tag Chips</div><div style="font-size:0.74rem; color:#555 !important; line-height:1.55;">Tech and interest tags styled as Oracle JET <code style="background:#E8DED9; padding:1px 5px; border-radius:3px; font-size:0.68rem; color:#22272B !important;">oj-chip</code> — dot indicator, hover matching Redwood chip interactions.</div></div>
+                  <div style="display:grid; grid-template-columns:130px 1fr; gap:12px; align-items:start; padding:10px 14px; background:#F6F6F6; border-radius:10px; border:1px solid #E8DED9;"><div style="font-size:0.76rem; font-weight:700; color:#22272B !important;">SPA Routing</div><div style="font-size:0.74rem; color:#555 !important; line-height:1.55;">Built on Oracle JET's <code style="background:#E8DED9; padding:1px 5px; border-radius:3px; font-size:0.68rem; color:#22272B !important;">oj-module</code> + <code style="background:#E8DED9; padding:1px 5px; border-radius:3px; font-size:0.68rem; color:#22272B !important;">CoreRouter</code> — same architecture as Oracle VBCS applications.</div></div>
+                </div>
+                <div style="background:#22272B; border-radius:10px; padding:12px 16px; display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:1.1rem;">🔗</span>
+                  <span style="font-size:0.75rem; color:#F5C5BA !important; line-height:1.6;">This portfolio is itself a demonstration of Oracle PaaS competency — built using Oracle JET, styled with the Redwood Design System, and structured exactly as a VBCS application would be architected in a real Oracle Cloud engagement.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script>
+          (function(){
+            var btn=document.getElementById('rdwOpenBtn');
+            var modal=document.getElementById('rdwModal');
+            var close=document.getElementById('rdwCloseBtn');
+            if(btn&&modal&&close){
+              btn.addEventListener('click',function(e){e.preventDefault();modal.style.display='flex';});
+              close.addEventListener('click',function(){modal.style.display='none';});
+              modal.addEventListener('click',function(e){if(e.target===modal)modal.style.display='none';});
+              document.addEventListener('keydown',function(e){if(e.key==='Escape')modal.style.display='none';});
+            }
+          })();
+          </script>
+          <!-- REDWOOD DARK TAB BAR -->
+          <div role="navigation"
+            class="oj-web-applayout-max-width oj-web-applayout-navbar"
+            style="background: #22272B;">
+            <oj-tab-bar
+              id="navTabBar"
+              class="oj-sm-only-hide oj-md-condense oj-md-justify-content-flex-end"
+              data="[[navDataProvider]]"
+              edge="top"
+              item.renderer="[[KnockoutTemplateUtils.getRenderer('navTemplate', true)]]"
+              selection="{{selection.path}}">
+            </oj-tab-bar>
+          </div>
+        </header>
+        <!-- MAIN CONTENT (oj-module renders the current page) -->
+        <oj-module role="main" class="oj-web-applayout-max-width oj-web-applayout-content" config="[[moduleAdapter.koObservableConfig]]">
+        </oj-module>
+        <!-- FOOTER 
+        <footer class="oj-web-applayout-footer oj-bg-neutral-10" role="contentinfo">
+          <div class="oj-web-applayout-footer-item oj-web-applayout-max-width">
+            <ul>
+              <oj-bind-for-each data="[[footerLinks]]">
+                <template>
+                  <li>
+                    <a :id="[[$current.data.linkId]]" :href="[[$current.data.linkTarget]]">
+                      <oj-bind-text value="[[$current.data.name]]"></oj-bind-text>
+                    </a>
+                  </li>
+                </template>
+              </oj-bind-for-each>
+            </ul>
+          </div>
+          <div class="oj-web-applayout-footer-item oj-web-applayout-max-width oj-text-color-secondary oj-typography-body-sm">
+            Copyright © 2014, 2025 Oracle and/or its affiliates All rights reserved.
+          </div>
+        </footer> -->
+      </div>
+    </div>
+
+    <!-- JET main JS -->
+    <script type="text/javascript" src="js/libs/require/require.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <!-- ══════════════════════════════════════════════
+         SAIBOT — Global floating chat widget
+         Appears on every page, bottom-right corner
+    ══════════════════════════════════════════════ -->
+    <style>
+      /* ── Floating trigger button ── */
+      #saibot-btn {
+        position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+        width: 58px; height: 58px; border-radius: 50%;
+        background: #C74634; border: none; cursor: pointer;
+        box-shadow: 0 4px 20px rgba(199,70,52,0.45);
+        display: flex; align-items: center; justify-content: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      #saibot-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(199,70,52,0.6); }
+      #saibot-btn svg { width: 26px; height: 26px; fill: #fff; transition: opacity 0.2s; }
+      /* pulse ring when panel is closed */
+      #saibot-btn::after {
+        content: ''; position: absolute; inset: -4px; border-radius: 50%;
+        border: 2px solid rgba(199,70,52,0.4);
+        animation: sbPulseRing 2.4s ease-out infinite;
+      }
+      @keyframes sbPulseRing {
+        0%   { transform: scale(1); opacity: 0.7; }
+        70%  { transform: scale(1.35); opacity: 0; }
+        100% { transform: scale(1.35); opacity: 0; }
+      }
+      #saibot-btn.sb-open::after { display: none; }
+
+      /* ── Unread badge ── */
+      #saibot-badge {
+        position: fixed; bottom: 72px; right: 24px; z-index: 10000;
+        background: #22272B; color: #fff; font-size: 0.7rem; font-weight: 700;
+        padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+        font-family: 'Inter','Segoe UI',Arial,sans-serif;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+        opacity: 1; transition: opacity 0.3s;
+      }
+      #saibot-badge.sb-hidden { opacity: 0; pointer-events: none; }
+
+      /* ── Chat panel ── */
+      #saibot-panel {
+        position: fixed; bottom: 100px; right: 28px; z-index: 9998;
+        width: 360px; border-radius: 16px; overflow: hidden;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+        font-family: 'Inter','Segoe UI',Arial,sans-serif;
+        display: flex; flex-direction: column;
+        transform: translateY(20px) scale(0.97); opacity: 0;
+        pointer-events: none;
+        transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+      }
+      #saibot-panel.sb-open {
+        transform: translateY(0) scale(1); opacity: 1; pointer-events: all;
+      }
+      @media(max-width: 420px){
+        #saibot-panel { width: calc(100vw - 24px); right: 12px; bottom: 90px; }
+      }
+
+      /* Panel header */
+      .sb-head {
+        background: #22272B; padding: 14px 18px;
+        display: flex; align-items: center; gap: 12px;
+      }
+      .sb-av {
+        width: 38px; height: 38px; border-radius: 50%;
+        background: #C74634; display: flex; align-items: center; justify-content: center;
+        font-size: 1.1rem; flex-shrink: 0; position: relative;
+      }
+      .sb-av-dot {
+        position: absolute; bottom: 1px; right: 1px; width: 9px; height: 9px;
+        border-radius: 50%; background: #22C55E; border: 2px solid #22272B;
+      }
+      .sb-head-name { font-size: 0.9rem; font-weight: 800; color: #fff; }
+      .sb-head-sub  { font-size: 0.67rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+      .sb-close {
+        margin-left: auto; background: transparent; border: none; cursor: pointer;
+        color: rgba(255,255,255,0.5); font-size: 1.2rem; line-height: 1; padding: 4px;
+        transition: color 0.15s;
+      }
+      .sb-close:hover { color: #fff; }
+
+      /* Messages area */
+      .sb-msgs {
+        background: #fafafa; padding: 14px 16px;
+        height: 240px; overflow-y: auto;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .sb-msgs::-webkit-scrollbar { width: 3px; }
+      .sb-msgs::-webkit-scrollbar-thumb { background: #F5C5BA; border-radius: 2px; }
+      .sb-msg {
+        max-width: 88%; padding: 9px 13px; border-radius: 12px;
+        font-size: 0.8rem; line-height: 1.55;
+      }
+      .sb-msg-bot  { background: #FFF5F3; border: 1px solid #F5C5BA; color: #22272B; align-self: flex-start; border-radius: 4px 12px 12px 12px; }
+      .sb-msg-user { background: #22272B; color: rgba(255,255,255,0.9); align-self: flex-end; border-radius: 12px 4px 12px 12px; }
+      .sb-typing {
+        display: flex; gap: 4px; align-items: center; padding: 9px 13px;
+        background: #FFF5F3; border: 1px solid #F5C5BA;
+        border-radius: 4px 12px 12px 12px; width: fit-content; align-self: flex-start;
+      }
+      .sb-typing span {
+        width: 5px; height: 5px; border-radius: 50%; background: #C74634;
+        animation: sbDot 1.2s ease-in-out infinite; display: inline-block;
+      }
+      .sb-typing span:nth-child(2){ animation-delay: 0.2s; }
+      .sb-typing span:nth-child(3){ animation-delay: 0.4s; }
+      @keyframes sbDot { 0%,80%,100%{transform:scale(0.6);opacity:0.4;} 40%{transform:scale(1);opacity:1;} }
+
+      /* Quick questions */
+      .sb-qs {
+        padding: 10px 14px 14px;
+        display: flex; flex-direction: column; gap: 5px;
+        background: #fff; border-top: 1px solid #E8DED9;
+      }
+      .sb-q {
+        background: #F6F6F6; border: 1px solid #E8DED9; border-radius: 7px;
+        padding: 7px 12px; font-size: 0.75rem; color: #22272B;
+        cursor: pointer; transition: all 0.18s; text-align: left;
+        width: 100%; font-family: inherit;
+      }
+      .sb-q:hover  { background: #FFF5F3; border-color: #F5C5BA; color: #9B2915; }
+      .sb-q:disabled { opacity: 0.5; cursor: not-allowed; }
+      .sb-footer { background: #fff; padding: 6px 14px 10px; text-align: center; }
+      .sb-footer-txt { font-size: 0.64rem; color: #bbb; }
+    </style>
+
+    <!-- Unread hint badge (disappears once opened) -->
+    <div id="saibot-badge">💬 Ask SaiBot anything</div>
+
+    <!-- Trigger button -->
+    <button id="saibot-btn" title="Chat with SaiBot" aria-label="Open SaiBot chat">
+      <!-- Chat bubble icon (closed state) -->
+      <svg id="sb-icon-chat" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/>
+      </svg>
+      <!-- X icon (open state, hidden by default) -->
+      <svg id="sb-icon-close" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+
+    <!-- Chat panel -->
+    <div id="saibot-panel" role="dialog" aria-label="SaiBot chat">
+      <div class="sb-head">
+        <div class="sb-av">🤖<div class="sb-av-dot"></div></div>
+        <div>
+          <div class="sb-head-name">SaiBot</div>
+          <div class="sb-head-sub">Oracle Cloud AI Agent · Online</div>
+        </div>
+        <button class="sb-close" id="saibot-close" aria-label="Close">✕</button>
+      </div>
+      <div class="sb-msgs" id="saibot-msgs">
+        <div class="sb-msg sb-msg-bot">Hi! I'm SaiBot 👋 I can tell you about Sai Teja's Oracle Cloud expertise, projects, and career. Pick a question below!</div>
+      </div>
+      <div class="sb-qs" id="saibot-qs">
+        <button class="sb-q" onclick="sbAsk(this,'What is your specialization?')">💡 What is your specialization?</button>
+        <button class="sb-q" onclick="sbAsk(this,'Tell me about a key project')">📦 Tell me about a key project</button>
+        <button class="sb-q" onclick="sbAsk(this,'What is your career goal?')">🎯 What is your career goal?</button>
+        <button class="sb-q" onclick="sbAsk(this,'Why VBCS over other tools?')">🔍 Why VBCS over other tools?</button>
+        <button class="sb-q" onclick="sbAsk(this,'How do you approach OIC design?')">⚙️ How do you approach OIC design?</button>
+      </div>
+      <div class="sb-footer"><span class="sb-footer-txt">Powered by SaiBot · saitejaappala@gmail.com</span></div>
+    </div>
+
+    <script>
+    (function(){
+      var btn    = document.getElementById('saibot-btn');
+      var panel  = document.getElementById('saibot-panel');
+      var badge  = document.getElementById('saibot-badge');
+      var msgs   = document.getElementById('saibot-msgs');
+      var closeB = document.getElementById('saibot-close');
+      var iconChat  = document.getElementById('sb-icon-chat');
+      var iconClose = document.getElementById('sb-icon-close');
+      var isOpen = false;
+
+      function openPanel(){
+        isOpen = true;
+        panel.classList.add('sb-open');
+        btn.classList.add('sb-open');
+        iconChat.style.display  = 'none';
+        iconClose.style.display = 'block';
+        badge.classList.add('sb-hidden');
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+      function closePanel(){
+        isOpen = false;
+        panel.classList.remove('sb-open');
+        btn.classList.remove('sb-open');
+        iconChat.style.display  = 'block';
+        iconClose.style.display = 'none';
+      }
+
+      btn.addEventListener('click', function(){ isOpen ? closePanel() : openPanel(); });
+      if(closeB) closeB.addEventListener('click', closePanel);
+
+      /* Close on outside click */
+      document.addEventListener('click', function(e){
+        if(isOpen && !panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)){
+          closePanel();
+        }
+      });
+
+      /* Answers knowledge base */
+      var answers = {
+        'What is your specialization?':
+          'I specialize in Oracle Cloud PaaS — VBCS for enterprise UIs, OIC for integration orchestration, and ATP + PL/SQL for the data layer. I bridge Oracle platform capabilities and real business outcomes at Fortune 500 scale. 🔗',
+        'Tell me about a key project':
+          'The Timecard Automation Platform — 15,000+ entries per quarter across 6 geographies, 60% manual effort eliminated. Built on VBCS + OIC with an ATP backend, fully integrated into Oracle ERP Cloud. Reduced reconciliation from days to hours. ⏱️',
+        'What is your career goal?':
+          'My goal is to become a recognized Oracle Cloud domain expert — going beyond delivery into thought leadership, architecture pattern publishing, and shaping how enterprises adopt Oracle Cloud at scale. Every project builds toward that. 🎯',
+        'Why VBCS over other tools?':
+          'VBCS is Oracle-native, Redwood-ready, and integrates seamlessly with OIC and Fusion. For Oracle Cloud organizations it eliminates the mismatch between UI and backend, and Oracle backs it long-term. Strategic choice, not just convenience. ✅',
+        'How do you approach OIC design?':
+          'Start with the integration pattern — real-time, batch, or event-driven. Pick the right adapter (REST, SOAP, DB). Design for error observability first; monitoring matters as much as building. Always reuse patterns across modules. ⚙️'
+      };
+
+      window.sbAsk = function(btn, q){
+        if(!msgs) return;
+        /* User message */
+        var uEl = document.createElement('div');
+        uEl.className = 'sb-msg sb-msg-user';
+        uEl.textContent = q;
+        msgs.appendChild(uEl);
+        /* Typing indicator */
+        var typEl = document.createElement('div');
+        typEl.className = 'sb-typing';
+        typEl.innerHTML = '<span></span><span></span><span></span>';
+        msgs.appendChild(typEl);
+        msgs.scrollTop = msgs.scrollHeight;
+        btn.disabled = true;
+
+        setTimeout(function(){
+          typEl.remove();
+          var bEl = document.createElement('div');
+          bEl.className = 'sb-msg sb-msg-bot';
+          bEl.textContent = answers[q] || 'Great question! Reach out at saitejaappala@gmail.com for a deeper conversation. 📬';
+          msgs.appendChild(bEl);
+          msgs.scrollTop = msgs.scrollHeight;
+          btn.disabled = false;
+        }, 1100);
+      };
+
+      /* Auto-hide badge after 6 seconds */
+      setTimeout(function(){ badge.classList.add('sb-hidden'); }, 6000);
+    })();
+    </script>
+  </body>
+</html>
