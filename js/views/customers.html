@@ -10,6 +10,7 @@
 .ins3-title { font-size:1.7rem; font-weight:900; color:var(--rw-dark); margin:0 0 4px; }
 .ins3-sub { font-size:0.93rem; color:var(--rw-muted); }
 .ins3-section-lbl { font-size:0.7rem; text-transform:uppercase; letter-spacing:1.2px; color:var(--rw-muted); font-weight:700; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--rw-border); }
+.ins3-divider { height:1px; background:var(--rw-border); margin:32px 0; }
 
 /* ── FEATURED ── */
 .ins3-featured { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:16px; padding:36px; margin-bottom:28px; box-shadow:var(--rw-shadow); display:grid; grid-template-columns:84px 1fr; gap:28px; align-items:flex-start; transition:box-shadow 0.2s; }
@@ -41,71 +42,44 @@
 /* ── COMING SOON ── */
 .ins3-coming { background:var(--rw-bg); border:1.5px dashed var(--rw-border); border-radius:14px; padding:30px; text-align:center; color:#bbb; font-size:0.88rem; font-weight:600; }
 .ins3-coming span { font-size:0.8rem; font-weight:400; color:#ccc; display:block; margin-top:6px; }
-</style>
 
-<div class="ins3-page">
-  <div class="ins3-header">
-    <div class="ins3-title">Insights</div>
-    <div class="ins3-sub">Thoughts on Oracle Cloud, enterprise architecture, and digital transformation</div>
-  </div>
+/* ── LEARNING SERIES ── */
+.series-banner { background:linear-gradient(135deg,var(--rw-dark) 0%,#2e3d47 100%); border-radius:14px; padding:20px 24px; display:flex; align-items:center; gap:16px; margin-bottom:16px; flex-wrap:wrap; }
+.series-banner-icon { font-size:1.8rem; flex-shrink:0; }
+.series-banner-text h2 { font-size:1.05rem; font-weight:900; color:#fff; margin:0 0 3px; }
+.series-banner-text p { font-size:0.82rem; color:#a8b5be; margin:0; }
+.series-ep-count { margin-left:auto; background:rgba(255,255,255,0.1); color:#fff; font-size:0.72rem; font-weight:700; padding:5px 14px; border-radius:20px; white-space:nowrap; }
 
-  <!-- FEATURED ARTICLE -->
-  <div class="ins3-featured">
-    <div class="ins3-feat-icon">☁️</div>
-    <div class="ins3-feat-body">
-      <span class="ins3-feat-tag">Architecture</span>
-      <div class="ins3-feat-title">Why Oracle VBCS + OIC is the Enterprise Combination You Need in 2025</div>
-      <div class="ins3-feat-excerpt">After 5+ years of Oracle Cloud delivery, one pattern stands out: teams that pair Visual Builder Cloud Service with Integration Cloud achieve faster time-to-value, lower operational risk, and dramatically better UX. Here's how to structure the integration layer for scale.</div>
-      <div class="ins3-feat-footer">
-        <span class="ins3-date">May 2025</span>
-        <a class="ins3-req-btn" href="mailto:saitejaappala@gmail.com">Request Full Article →</a>
-      </div>
-    </div>
-  </div>
+.series-article { background:var(--rw-surface); border:1px solid var(--rw-border); border-radius:14px; overflow:hidden; box-shadow:var(--rw-shadow); margin-bottom:14px; }
+.series-article-header { padding:20px 24px; cursor:pointer; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; user-select:none; }
+.series-article-header:hover { background:var(--rw-bg); }
+.series-meta { display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
+.series-ep-badge { background:var(--rw-red); color:#fff; font-size:0.62rem; font-weight:800; padding:2px 9px; border-radius:4px; text-transform:uppercase; letter-spacing:0.4px; }
+.series-tag { font-size:0.68rem; color:var(--rw-red); font-weight:700; }
+.series-article-date { font-size:0.7rem; color:var(--rw-muted); }
+.series-article-title { font-size:1rem; font-weight:900; color:var(--rw-dark); margin:0 0 6px; line-height:1.35; }
+.series-article-summary { font-size:0.84rem; color:#666; line-height:1.6; margin:0 0 10px; }
+.series-article-tags { display:flex; gap:6px; flex-wrap:wrap; }
+.series-pill { background:var(--rw-bg); border:1px solid var(--rw-border); color:var(--rw-muted); font-size:0.65rem; font-weight:700; padding:2px 9px; border-radius:5px; }
+.series-read-time { font-size:0.7rem; color:var(--rw-muted); margin-top:6px; }
+.series-expand-btn { width:30px; height:30px; border-radius:50%; border:1.5px solid var(--rw-border); background:var(--rw-bg); color:var(--rw-muted); cursor:pointer; font-size:1.1rem; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.2s; align-self:center; line-height:1; }
+.series-expand-btn:hover { border-color:var(--rw-red); color:var(--rw-red); background:var(--rw-red-light); }
+.series-expand-btn.open { background:var(--rw-red); border-color:var(--rw-red); color:#fff; transform:rotate(45deg); }
 
-  <!-- ARTICLE GRID -->
-  <div class="ins3-section-lbl">More Insights</div>
-  <div class="ins3-grid">
-
-    <div class="ins3-card">
-      <span class="ins3-card-tag">Automation</span>
-      <div class="ins3-card-title">Automating Timecard Reconciliation: A Blueprint for Oracle ERP</div>
-      <div class="ins3-card-excerpt">Manual timecard reconciliation kills productivity. Here's the architecture I used to eliminate it for a Fortune 500 client — using OIC, VBCS, and ATP to handle 15,000+ entries per quarter.</div>
-      <div class="ins3-card-footer"><span class="ins3-card-date">March 2025</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
-    </div>
-
-    <div class="ins3-card">
-      <span class="ins3-card-tag">Design</span>
-      <div class="ins3-card-title">Redwood Design System: Building Enterprise UIs That Users Actually Like</div>
-      <div class="ins3-card-excerpt">Oracle Redwood is more than a theme — it's a design language. Here's how I use it to build enterprise apps that score high on usability without sacrificing compliance or performance.</div>
-      <div class="ins3-card-footer"><span class="ins3-card-date">January 2025</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
-    </div>
-
-    <div class="ins3-card">
-      <span class="ins3-card-tag">Integration</span>
-      <div class="ins3-card-title">REST vs SOAP in Oracle OIC: When to Use Which</div>
-      <div class="ins3-card-excerpt">A pragmatic guide to choosing the right integration style in Oracle Integration Cloud, based on real project experience across Finance, HR, and Procurement.</div>
-      <div class="ins3-card-footer"><span class="ins3-card-date">November 2024</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
-    </div>
-
-    <div class="ins3-card">
-      <span class="ins3-card-tag">Testing</span>
-      <div class="ins3-card-title">Scaling UAT Automation Across Oracle Fusion: Lessons Learned</div>
-      <div class="ins3-card-excerpt">How we built a reusable test automation framework across Finance, Procurement, and HCM — cutting UAT cycles by 40% and enabling continuous regression across every release.</div>
-      <div class="ins3-card-footer"><span class="ins3-card-date">September 2024</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
-    </div>
-
-    <div class="ins3-card">
-      <span class="ins3-card-tag">Architecture</span>
-      <div class="ins3-card-title">Designing for Scale: ATP as the Backbone of Oracle Cloud Apps</div>
-      <div class="ins3-card-excerpt">How Autonomous Transaction Processing enables high-throughput Oracle Cloud apps — indexing strategies, connection pooling, and PL/SQL patterns I use in production.</div>
-      <div class="ins3-card-footer"><span class="ins3-card-date">July 2024</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
-    </div>
-
-    <div class="ins3-coming">
-      ✍️ More insights coming soon.
-      <span>Topics: OCI DevOps · BI Publisher advanced reporting · Supplier portal patterns</span>
-    </div>
-
-  </div>
-</div>
+.series-body { border-top:1px solid var(--rw-border); padding:26px 26px 30px; display:none; }
+.series-body.visible { display:block; }
+.series-h2 { font-size:0.98rem; font-weight:800; color:var(--rw-dark); margin:0 0 10px; display:flex; align-items:center; gap:8px; }
+.series-h2::before { content:''; display:inline-block; width:3px; height:16px; background:var(--rw-red); border-radius:2px; flex-shrink:0; }
+.series-p { font-size:0.87rem; line-height:1.75; color:#444; margin:0 0 12px; }
+.series-callout { background:var(--rw-red-light); border-left:3px solid var(--rw-red); border-radius:0 8px 8px 0; padding:12px 16px; margin:12px 0; }
+.series-callout p { font-size:0.84rem; color:var(--rw-dark); line-height:1.6; margin:0; font-weight:500; }
+.series-list { padding-left:0; list-style:none; margin:8px 0; display:flex; flex-direction:column; gap:7px; }
+.series-list li { font-size:0.85rem; color:#444; line-height:1.6; padding-left:18px; position:relative; }
+.series-list li::before { content:'▸'; color:var(--rw-red); position:absolute; left:0; font-size:0.68rem; top:3px; }
+.series-compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px; }
+@media(max-width:580px){ .series-compare-grid { grid-template-columns:1fr; } }
+.series-compare-card { background:var(--rw-bg); border:1px solid var(--rw-border); border-radius:10px; padding:12px 14px; }
+.series-compare-card h4 { font-size:0.76rem; font-weight:800; color:var(--rw-dark); margin:0 0 7px; text-transform:uppercase; letter-spacing:0.4px; }
+.series-compare-card ul { padding-left:0; list-style:none; margin:0; display:flex; flex-direction:column; gap:4px; }
+.series-compare-card ul li { font-size:0.78rem; color:#555; padding-left:15px; position:relative; }
+.series-compare-card ul li::before { content:'✓'; color:#22C55E; position:absolut
