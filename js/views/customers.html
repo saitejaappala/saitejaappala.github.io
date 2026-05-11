@@ -82,4 +82,225 @@
 .series-compare-card h4 { font-size:0.76rem; font-weight:800; color:var(--rw-dark); margin:0 0 7px; text-transform:uppercase; letter-spacing:0.4px; }
 .series-compare-card ul { padding-left:0; list-style:none; margin:0; display:flex; flex-direction:column; gap:4px; }
 .series-compare-card ul li { font-size:0.78rem; color:#555; padding-left:15px; position:relative; }
-.series-compare-card ul li::before { content:'✓'; color:#22C55E; position:absolut
+.series-compare-card ul li::before { content:'✓'; color:#22C55E; position:absolute; left:0; font-weight:800; font-size:0.68rem; top:2px; }
+.series-table { width:100%; border-collapse:collapse; margin-top:10px; font-size:0.8rem; }
+.series-table th { background:var(--rw-dark); color:#fff; padding:8px 12px; text-align:left; font-size:0.7rem; font-weight:700; letter-spacing:0.4px; }
+.series-table th:first-child { border-radius:8px 0 0 0; }
+.series-table th:last-child { border-radius:0 8px 0 0; }
+.series-table td { padding:8px 12px; border-bottom:1px solid var(--rw-border); color:#444; vertical-align:top; }
+.series-table tr:last-child td { border-bottom:none; }
+.series-table tr:nth-child(even) td { background:var(--rw-bg); }
+.series-next { background:linear-gradient(135deg,var(--rw-dark) 0%,#2e3d47 100%); border-radius:10px; padding:18px 20px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-top:24px; }
+.series-next-text h3 { font-size:0.88rem; font-weight:800; color:#fff; margin:0 0 3px; }
+.series-next-text p { font-size:0.78rem; color:#a8b5be; margin:0; }
+.series-next-badge { background:rgba(255,255,255,0.12); color:#fff; font-size:0.74rem; font-weight:700; padding:7px 16px; border-radius:7px; white-space:nowrap; }
+
+.series-coming { background:var(--rw-bg); border:1.5px dashed var(--rw-border); border-radius:12px; padding:20px 22px; display:flex; align-items:center; gap:16px; }
+.series-coming-ep { width:36px; height:36px; border-radius:8px; background:var(--rw-border); display:flex; align-items:center; justify-content:center; color:var(--rw-muted); font-size:0.72rem; font-weight:800; flex-shrink:0; }
+.series-coming-text p { font-size:0.88rem; font-weight:800; color:#bbb; margin:0 0 2px; }
+.series-coming-text span { font-size:0.78rem; color:#ccc; }
+</style>
+
+<div class="ins3-page">
+  <div class="ins3-header">
+    <div class="ins3-title">Insights</div>
+    <div class="ins3-sub">Thoughts on Oracle Cloud, enterprise architecture, and digital transformation</div>
+  </div>
+
+  <!-- VBCS LEARNING SERIES -->
+  <div class="ins3-section-lbl">Learning Series</div>
+
+  <div class="series-banner">
+    <div class="series-banner-icon">📘</div>
+    <div class="series-banner-text">
+      <h2>Oracle VBCS Deep Dive</h2>
+      <p>Practical guides for Oracle Cloud consultants — from foundations to real-world implementations.</p>
+    </div>
+    <span class="series-ep-count">1 of many episodes</span>
+  </div>
+
+  <!-- EPISODE 1 -->
+  <div class="series-article">
+    <div class="series-article-header" onclick="(function(el){var body=el.closest('.series-article').querySelector('.series-body');var btn=el.querySelector('.series-expand-btn');var open=body.classList.toggle('visible');btn.classList.toggle('open',open);})(this)">
+      <div style="flex:1">
+        <div class="series-meta">
+          <span class="series-ep-badge">Episode 1</span>
+          <span class="series-tag">VBCS Learning Series</span>
+          <span class="series-article-date">May 2026</span>
+        </div>
+        <div class="series-article-title">What Is Oracle VBCS? A Practical Intro for Oracle Cloud Consultants</div>
+        <div class="series-article-summary">Oracle Visual Builder Cloud Service is Oracle's low-code platform for building web apps, mobile apps, and REST APIs on top of Fusion. This article breaks down what it is, when to use it, and exactly how it fits the Oracle Cloud stack.</div>
+        <div class="series-article-tags">
+          <span class="series-pill">VBCS</span>
+          <span class="series-pill">Oracle Cloud</span>
+          <span class="series-pill">Low-Code</span>
+          <span class="series-pill">PaaS</span>
+        </div>
+        <div class="series-read-time">6 min read</div>
+      </div>
+      <button class="series-expand-btn" title="Read article">+</button>
+    </div>
+
+    <div class="series-body">
+
+      <div style="margin-bottom:24px">
+        <div class="series-h2">The One-Line Answer</div>
+        <p class="series-p">Oracle Visual Builder Cloud Service (VBCS) is Oracle's <strong>low-code application development platform</strong> — a fully managed PaaS service that lets you build web and mobile apps, REST APIs, and process automations without writing infrastructure code.</p>
+        <div class="series-callout">
+          <p>💡 Think of VBCS as Oracle's answer to Salesforce Lightning or Microsoft Power Apps — but purpose-built for the Oracle Cloud ecosystem, with native integrations to Oracle Fusion, HCM, ERP, and SCM.</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom:24px">
+        <div class="series-h2">What Can You Actually Build With It?</div>
+        <p class="series-p">VBCS covers multiple build patterns:</p>
+        <ul class="series-list">
+          <li><strong>Web Apps</strong> — Custom UIs that extend Oracle Fusion (e.g., tailored HCM self-service portals, custom approval dashboards on top of SCM)</li>
+          <li><strong>Mobile Apps</strong> — Progressive Web Apps or native-packaged apps for field teams</li>
+          <li><strong>REST APIs</strong> — Backend services that expose Oracle data to external systems</li>
+          <li><strong>Process Automation</strong> — Structured workflows triggered by business events (approvals, notifications, routing)</li>
+          <li><strong>Lightweight Integration</strong> — Simple Oracle-to-Oracle flows without needing full OIC for every use case</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:24px">
+        <div class="series-h2">Where Does It Sit in Oracle Cloud?</div>
+        <p class="series-p">This is the question most consultants get wrong in early engagements. VBCS is part of the <strong>Oracle Cloud Platform (PaaS)</strong> layer — not SaaS. Here's the stack:</p>
+        <table class="series-table">
+          <thead>
+            <tr><th>Layer</th><th>Oracle Product</th><th>VBCS's Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SaaS</td><td>Fusion ERP, HCM, SCM, CX</td><td>The apps VBCS extends</td></tr>
+            <tr><td>PaaS – Dev</td><td><strong>VBCS</strong></td><td>Build custom apps &amp; APIs on top of SaaS</td></tr>
+            <tr><td>PaaS – Integration</td><td>OIC</td><td>Middleware; VBCS calls OIC flows</td></tr>
+            <tr><td>PaaS – Automation</td><td>OPA, ODA</td><td>Rules engine &amp; chatbot layer</td></tr>
+            <tr><td>IaaS</td><td>OCI Compute, DB, Storage</td><td>Infrastructure underneath everything</td></tr>
+          </tbody>
+        </table>
+        <p class="series-p" style="margin-top:10px">In practice a typical VBCS engagement looks like: <strong>VBCS UI → OIC REST flow → Oracle Fusion REST API</strong>. VBCS handles the presentation; OIC handles the transformation.</p>
+      </div>
+
+      <div style="margin-bottom:24px">
+        <div class="series-h2">VBCS vs. Oracle JET: Which Should You Use?</div>
+        <div class="series-compare-grid">
+          <div class="series-compare-card">
+            <h4>VBCS (Low-Code)</h4>
+            <ul>
+              <li>Visual drag-and-drop builder</li>
+              <li>Built-in REST service connections</li>
+              <li>No local dev environment needed</li>
+              <li>Oracle-managed hosting &amp; lifecycle</li>
+              <li>Faster for standard CRUD apps</li>
+            </ul>
+          </div>
+          <div class="series-compare-card">
+            <h4>Oracle JET (Pro-Code)</h4>
+            <ul>
+              <li>Full TypeScript/JavaScript control</li>
+              <li>Custom build pipelines</li>
+              <li>Any hosting target (OCI, GitHub Pages)</li>
+              <li>Better for complex UI &amp; state patterns</li>
+              <li>Requires local toolchain (Node, JET CLI)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="series-callout" style="margin-top:14px">
+          <p>🧠 <strong>Rule of thumb:</strong> Use VBCS when the client needs rapid delivery and standard Fusion extension patterns. Use Oracle JET when you need pixel-perfect control, complex state management, or deployment outside Oracle Cloud.</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom:0">
+        <div class="series-h2">Key Concepts Before Your First VBCS Engagement</div>
+        <ul class="series-list">
+          <li><strong>Visual Application</strong> — Top-level container. Holds pages, flows, business objects, and service connections.</li>
+          <li><strong>Business Objects (BOs)</strong> — VBCS's built-in database layer. Tables with auto-generated REST APIs. Use for app-specific data not in Fusion.</li>
+          <li><strong>Service Connections</strong> — How VBCS talks to external REST APIs (Fusion, OIC, custom backends). Define once, reuse across pages.</li>
+          <li><strong>Action Chains</strong> — The logic layer. Event-driven sequences (button click → call REST → update variable → navigate). No code needed for most flows.</li>
+          <li><strong>Page Flows</strong> — Groupings of pages sharing variables and navigation. Think of them as modules or feature areas.</li>
+        </ul>
+      </div>
+
+      <div class="series-next">
+        <div class="series-next-text">
+          <h3>Next up: Building Your First VBCS App</h3>
+          <p>Episode 2 — creating a Visual Application from scratch, connecting to a REST service, and wiring your first Action Chain.</p>
+        </div>
+        <span class="series-next-badge">Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EPISODE 2 COMING SOON -->
+  <div class="series-coming">
+    <div class="series-coming-ep">EP 2</div>
+    <div class="series-coming-text">
+      <p>Building Your First VBCS App from Scratch</p>
+      <span>Step-by-step: Visual Application setup, REST service connection, and your first Action Chain.</span>
+    </div>
+  </div>
+
+  <div class="ins3-divider"></div>
+
+  <!-- FEATURED ARTICLE -->
+  <div class="ins3-section-lbl">Featured</div>
+  <div class="ins3-featured">
+    <div class="ins3-feat-icon">☁️</div>
+    <div class="ins3-feat-body">
+      <span class="ins3-feat-tag">Architecture</span>
+      <div class="ins3-feat-title">Why Oracle VBCS + OIC is the Enterprise Combination You Need in 2025</div>
+      <div class="ins3-feat-excerpt">After 5+ years of Oracle Cloud delivery, one pattern stands out: teams that pair Visual Builder Cloud Service with Integration Cloud achieve faster time-to-value, lower operational risk, and dramatically better UX. Here's how to structure the integration layer for scale.</div>
+      <div class="ins3-feat-footer">
+        <span class="ins3-date">May 2025</span>
+        <a class="ins3-req-btn" href="mailto:saitejaappala@gmail.com">Request Full Article →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE GRID -->
+  <div class="ins3-section-lbl">More Insights</div>
+  <div class="ins3-grid">
+
+    <div class="ins3-card">
+      <span class="ins3-card-tag">Automation</span>
+      <div class="ins3-card-title">Automating Timecard Reconciliation: A Blueprint for Oracle ERP</div>
+      <div class="ins3-card-excerpt">Manual timecard reconciliation kills productivity. Here's the architecture I used to eliminate it for a Fortune 500 client — using OIC, VBCS, and ATP to handle 15,000+ entries per quarter.</div>
+      <div class="ins3-card-footer"><span class="ins3-card-date">March 2025</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
+    </div>
+
+    <div class="ins3-card">
+      <span class="ins3-card-tag">Design</span>
+      <div class="ins3-card-title">Redwood Design System: Building Enterprise UIs That Users Actually Like</div>
+      <div class="ins3-card-excerpt">Oracle Redwood is more than a theme — it's a design language. Here's how I use it to build enterprise apps that score high on usability without sacrificing compliance or performance.</div>
+      <div class="ins3-card-footer"><span class="ins3-card-date">January 2025</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
+    </div>
+
+    <div class="ins3-card">
+      <span class="ins3-card-tag">Integration</span>
+      <div class="ins3-card-title">REST vs SOAP in Oracle OIC: When to Use Which</div>
+      <div class="ins3-card-excerpt">A pragmatic guide to choosing the right integration style in Oracle Integration Cloud, based on real project experience across Finance, HR, and Procurement.</div>
+      <div class="ins3-card-footer"><span class="ins3-card-date">November 2024</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
+    </div>
+
+    <div class="ins3-card">
+      <span class="ins3-card-tag">Testing</span>
+      <div class="ins3-card-title">Scaling UAT Automation Across Oracle Fusion: Lessons Learned</div>
+      <div class="ins3-card-excerpt">How we built a reusable test automation framework across Finance, Procurement, and HCM — cutting UAT cycles by 40% and enabling continuous regression across every release.</div>
+      <div class="ins3-card-footer"><span class="ins3-card-date">September 2024</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
+    </div>
+
+    <div class="ins3-card">
+      <span class="ins3-card-tag">Architecture</span>
+      <div class="ins3-card-title">Designing for Scale: ATP as the Backbone of Oracle Cloud Apps</div>
+      <div class="ins3-card-excerpt">How Autonomous Transaction Processing enables high-throughput Oracle Cloud apps — indexing strategies, connection pooling, and PL/SQL patterns I use in production.</div>
+      <div class="ins3-card-footer"><span class="ins3-card-date">July 2024</span><a class="ins3-card-read" href="mailto:saitejaappala@gmail.com">Request Article →</a></div>
+    </div>
+
+    <div class="ins3-coming">
+      ✍️ More insights coming soon.
+      <span>Topics: OCI DevOps · BI Publisher advanced reporting · Supplier portal patterns</span>
+    </div>
+
+  </div>
+</div>
